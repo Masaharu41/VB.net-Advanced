@@ -1,8 +1,8 @@
 ﻿'Owen Fujii
 'Dart Game
 'TODO
-'[] Represent Dart Game Graphically
-'[] Show Each Dart Thrown
+'[*] Represent Dart Game Graphically
+'[*] Show Each Dart Thrown
 '[] Track Dart Throws
 '[] Recall old Games
 '[] Have Graphical replay
@@ -12,15 +12,25 @@ Option Explicit On
 Option Strict On
 
 Public Class DartBoard
-
-    Sub DrawDartBoard()
+    Sub DefaultLoader(sender As Object, e As EventArgs) Handles Me.Load
+        DrawDartBoard(True)
+    End Sub
+    Sub DrawDartBoard(refresh As Boolean)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black, 5)
         Dim x As Double, y As Double
         Dim pi As Double = Math.PI
         Dim screenWidth = DartBoardPictureBox.Width
         Dim screenHeight = DartBoardPictureBox.Height
-        DartBoardPictureBox.Refresh()
+        Static oldWidth As Integer = 0, oldHeight As Integer = 0
+        If refresh = True Then
+            DartBoardPictureBox.Refresh()
+        ElseIf oldWidth = screenWidth And oldHeight = screenHeight Then
+        Else
+            DartBoardPictureBox.Refresh()
+            oldWidth = screenWidth
+            oldHeight = screenHeight
+        End If
 
         If screenHeight < screenWidth Then
             Dim rect As New Rectangle(CInt((screenWidth - screenHeight) / 2), 0, screenHeight, screenHeight)
@@ -30,37 +40,61 @@ Public Class DartBoard
             g.DrawEllipse(pen, rect)
         End If
 
-        ' g.DrawEllipse(pen, rect)
-
-
 
     End Sub
 
     Private Sub CircleButton_Click(sender As Object, e As EventArgs) Handles CircleButton.Click
-        DrawDartBoard()
-        ' DartThrow(1)
+        Static throwCounter As Integer = 0
+        Static newTurn As Boolean
+
+        DrawDartBoard(newTurn)
+
+        If throwCounter <= 2 Then
+            newTurn = False
+            DartThrow()
+            throwCounter = throwCounter + 1
+        Else
+            MsgBox("turn is over")
+            throwCounter = 0
+            newTurn = True
+        End If
+
     End Sub
 
-    'Sub DartThrow(offset As Integer)
-    '    Dim g As Graphics = DartBoardPictureBox.CreateGraphics
-    '    Dim pen As New Pen(Color.DarkRed, 5)
-    '    Dim centerX As Integer, centerY As Integer
-    '    Dim referenceX = DartBoardPictureBox.Width
-    '    Dim referenceY = DartBoardPictureBox.Height
-    '    centerX = DartCord() + CInt(centerX / 2)
-    '    centerY = DartCord() + CInt(centerY / 2)
+    Sub DartThrow()
+        Dim g As Graphics = DartBoardPictureBox.CreateGraphics
+        Dim pen As New Pen(Color.DarkRed, 5)
+        Dim centerX As Integer, centerY As Integer
+        Dim referenceX = DartBoardPictureBox.Width
+        Dim referenceY = DartBoardPictureBox.Height
+        centerX = CInt(referenceX / 2) - DartCord()
+        centerY = CInt(referenceY / 2) - DartCord()
 
-    '    g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
-    '    g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
+        g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
+        g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
 
 
-    'End Sub
+    End Sub
 
     Function DartCord() As Integer
         Dim temp As Integer
         Dim screenWidth = DartBoardPictureBox.Width
-        Randomize()
-        temp = CInt(Rnd() * (screenWidth - (screenWidth - 1 / 8) / 10))
+        Dim screenHeight = DartBoardPictureBox.Height
+        Dim polarity As Integer
+        If screenWidth < screenHeight Then
+            Randomize()
+            temp = CInt(Rnd() * ((screenWidth - (screenWidth * (1 / 8))) / 4))
+        Else
+            Randomize()
+            temp = CInt(Rnd() * ((screenHeight - (screenHeight * (1 / 8))) / 4))
+        End If
+        polarity = CInt(Rnd())
+        If polarity = 1 Then
+            temp = -temp
+        Else
+
+        End If
+
         Return temp
     End Function
 End Class
