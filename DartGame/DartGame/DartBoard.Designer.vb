@@ -31,7 +31,7 @@ Partial Class DartBoard
         'CircleButton
         '
         Me.CircleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CircleButton.Location = New System.Drawing.Point(28, 522)
+        Me.CircleButton.Location = New System.Drawing.Point(34, 522)
         Me.CircleButton.Name = "CircleButton"
         Me.CircleButton.Size = New System.Drawing.Size(98, 41)
         Me.CircleButton.TabIndex = 0

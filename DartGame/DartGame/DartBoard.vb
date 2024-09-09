@@ -14,8 +14,7 @@ Option Strict On
 Public Class DartBoard
     Private Sub DefaultLoader(sender As Object, e As EventArgs) Handles Me.Load
         DrawDartBoard(True)
-        Me.Hide()
-        UserDisplay.Show()
+
     End Sub
     Sub DrawDartBoard(refresh As Boolean)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
@@ -83,7 +82,7 @@ Public Class DartBoard
 
         g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
         g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
-        savedCord = ($"{centerX},{centerY}")
+        savedCord = ($"{centerX};{centerY}")
         Return savedCord
 
     End Function
@@ -110,6 +109,8 @@ Public Class DartBoard
         Return temp
     End Function
 
+
+
     Sub WritePlayerData(playOne As String, playTwo As String, playThree As String, user As String, writeT As Boolean)
         Static currentUser As String
         If writeT = False Then
@@ -124,7 +125,7 @@ Public Class DartBoard
                 FileClose(2)
             End Try
 
-            Write(1, CStr($"User$${currentUser}Play1{playOne}Play2{playTwo}Play3{playThree}{vbNewLine}"))
+            Write(1, CStr($"User$${currentUser}:" + $"Play1##{playOne}:" + $"Play2##{playTwo}:" + $"Play3##{playThree}" + vbNewLine))
             FileClose(1)
         End If
     End Sub

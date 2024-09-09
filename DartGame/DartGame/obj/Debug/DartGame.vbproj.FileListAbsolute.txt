@@ -22,3 +22,4 @@ C:\Users\Quickemu\Source\Repos\Masaharu41\VB.net-Advanced\DartGame\DartGame\obj\
 C:\Users\Quickemu\Source\Repos\Masaharu41\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.exe
 C:\Users\Quickemu\Source\Repos\Masaharu41\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.xml
 C:\Users\Quickemu\Source\Repos\Masaharu41\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.pdb
+C:\Users\Quickemu\Source\Repos\Masaharu41\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.UserDisplay.resources
