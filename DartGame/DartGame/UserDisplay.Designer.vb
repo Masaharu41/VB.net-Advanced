@@ -28,75 +28,90 @@ Partial Class UserDisplay
         Me.PlayButton = New System.Windows.Forms.Button()
         Me.RecordsButton = New System.Windows.Forms.Button()
         Me.ReplayButton = New System.Windows.Forms.Button()
+        Me.ExitButton1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'RecordsListBox
         '
         Me.RecordsListBox.FormattingEnabled = True
-        Me.RecordsListBox.Location = New System.Drawing.Point(42, 30)
-        Me.RecordsListBox.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.RecordsListBox.ItemHeight = 25
+        Me.RecordsListBox.Location = New System.Drawing.Point(84, 58)
+        Me.RecordsListBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RecordsListBox.Name = "RecordsListBox"
-        Me.RecordsListBox.Size = New System.Drawing.Size(282, 407)
+        Me.RecordsListBox.Size = New System.Drawing.Size(560, 779)
         Me.RecordsListBox.TabIndex = 0
         '
         'UserTextBox
         '
-        Me.UserTextBox.Location = New System.Drawing.Point(370, 70)
-        Me.UserTextBox.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.UserTextBox.Location = New System.Drawing.Point(740, 135)
+        Me.UserTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.UserTextBox.Name = "UserTextBox"
-        Me.UserTextBox.Size = New System.Drawing.Size(137, 20)
+        Me.UserTextBox.Size = New System.Drawing.Size(270, 31)
         Me.UserTextBox.TabIndex = 1
         '
         'UserNameLabel
         '
         Me.UserNameLabel.AutoSize = True
-        Me.UserNameLabel.Location = New System.Drawing.Point(367, 44)
-        Me.UserNameLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.UserNameLabel.Location = New System.Drawing.Point(734, 85)
+        Me.UserNameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.UserNameLabel.Name = "UserNameLabel"
-        Me.UserNameLabel.Size = New System.Drawing.Size(88, 13)
+        Me.UserNameLabel.Size = New System.Drawing.Size(177, 25)
         Me.UserNameLabel.TabIndex = 2
         Me.UserNameLabel.Text = "Enter Your Name"
         '
         'PlayButton
         '
-        Me.PlayButton.Location = New System.Drawing.Point(370, 111)
-        Me.PlayButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PlayButton.Location = New System.Drawing.Point(750, 213)
+        Me.PlayButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PlayButton.Name = "PlayButton"
-        Me.PlayButton.Size = New System.Drawing.Size(82, 40)
+        Me.PlayButton.Size = New System.Drawing.Size(154, 77)
         Me.PlayButton.TabIndex = 3
         Me.PlayButton.Text = "Begin Playing"
         Me.PlayButton.UseVisualStyleBackColor = True
         '
         'RecordsButton
         '
-        Me.RecordsButton.Location = New System.Drawing.Point(375, 161)
+        Me.RecordsButton.Location = New System.Drawing.Point(750, 310)
+        Me.RecordsButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.RecordsButton.Name = "RecordsButton"
-        Me.RecordsButton.Size = New System.Drawing.Size(76, 37)
+        Me.RecordsButton.Size = New System.Drawing.Size(152, 71)
         Me.RecordsButton.TabIndex = 4
         Me.RecordsButton.Text = "Leaderboard"
         Me.RecordsButton.UseVisualStyleBackColor = True
         '
         'ReplayButton
         '
-        Me.ReplayButton.Location = New System.Drawing.Point(375, 204)
+        Me.ReplayButton.Location = New System.Drawing.Point(750, 392)
+        Me.ReplayButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.ReplayButton.Name = "ReplayButton"
-        Me.ReplayButton.Size = New System.Drawing.Size(76, 37)
+        Me.ReplayButton.Size = New System.Drawing.Size(152, 71)
         Me.ReplayButton.TabIndex = 5
         Me.ReplayButton.Text = "Replay"
         Me.ReplayButton.UseVisualStyleBackColor = True
         '
+        'ExitButton1
+        '
+        Me.ExitButton1.Location = New System.Drawing.Point(750, 475)
+        Me.ExitButton1.Margin = New System.Windows.Forms.Padding(6)
+        Me.ExitButton1.Name = "ExitButton1"
+        Me.ExitButton1.Size = New System.Drawing.Size(152, 71)
+        Me.ExitButton1.TabIndex = 6
+        Me.ExitButton1.Text = "Exit"
+        Me.ExitButton1.UseVisualStyleBackColor = True
+        '
         'UserDisplay
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(596, 472)
+        Me.ClientSize = New System.Drawing.Size(1192, 908)
+        Me.Controls.Add(Me.ExitButton1)
         Me.Controls.Add(Me.ReplayButton)
         Me.Controls.Add(Me.RecordsButton)
         Me.Controls.Add(Me.PlayButton)
         Me.Controls.Add(Me.UserNameLabel)
         Me.Controls.Add(Me.UserTextBox)
         Me.Controls.Add(Me.RecordsListBox)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "UserDisplay"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -110,4 +125,5 @@ Partial Class UserDisplay
     Friend WithEvents PlayButton As Button
     Friend WithEvents RecordsButton As Button
     Friend WithEvents ReplayButton As Button
+    Friend WithEvents ExitButton1 As Button
 End Class

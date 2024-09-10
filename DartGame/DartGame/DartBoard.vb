@@ -130,8 +130,13 @@ Public Class DartBoard
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles HistoryButton.Click
         Me.Hide()
         UserDisplay.Show()
+    End Sub
+
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+
     End Sub
 End Class

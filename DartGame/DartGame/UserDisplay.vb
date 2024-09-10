@@ -10,6 +10,7 @@ Public Class UserDisplay
         Dim players As String
         Dim temp() As String
         Dim display As String
+        RecordsListBox.Refresh()
 
         Try
             FileOpen(1, "..\..\Replay.txt", OpenMode.Input)
@@ -50,5 +51,9 @@ Public Class UserDisplay
 
     Private Sub RecordsButton_Click(sender As Object, e As EventArgs) Handles RecordsButton.Click
         PastUsersDisplay()
+    End Sub
+
+    Private Sub ExitButton1_Click(sender As Object, e As EventArgs) Handles ExitButton1.Click
+        Me.Close()
     End Sub
 End Class

@@ -24,7 +24,8 @@ Partial Class DartBoard
     Private Sub InitializeComponent()
         Me.CircleButton = New System.Windows.Forms.Button()
         Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.HistoryButton = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,19 +50,31 @@ Partial Class DartBoard
         Me.DartBoardPictureBox.TabIndex = 1
         Me.DartBoardPictureBox.TabStop = False
         '
-        'Button1
+        'HistoryButton
         '
-        Me.Button1.Location = New System.Drawing.Point(149, 511)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(141, 62)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.HistoryButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.HistoryButton.Location = New System.Drawing.Point(149, 522)
+        Me.HistoryButton.Name = "HistoryButton"
+        Me.HistoryButton.Size = New System.Drawing.Size(109, 41)
+        Me.HistoryButton.TabIndex = 2
+        Me.HistoryButton.Text = "History"
+        Me.HistoryButton.UseVisualStyleBackColor = True
+        '
+        'ExitButton
+        '
+        Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ExitButton.Location = New System.Drawing.Point(277, 522)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(98, 41)
+        Me.ExitButton.TabIndex = 3
+        Me.ExitButton.Text = "Exit"
+        Me.ExitButton.UseVisualStyleBackColor = True
         '
         'DartBoard
         '
         Me.ClientSize = New System.Drawing.Size(1154, 581)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ExitButton)
+        Me.Controls.Add(Me.HistoryButton)
         Me.Controls.Add(Me.DartBoardPictureBox)
         Me.Controls.Add(Me.CircleButton)
         Me.Name = "DartBoard"
@@ -73,5 +86,6 @@ Partial Class DartBoard
     Friend WithEvents DartBoard As PictureBox
     Friend WithEvents CircleButton As Button
     Friend WithEvents DartBoardPictureBox As PictureBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents HistoryButton As Button
+    Friend WithEvents ExitButton As Button
 End Class
