@@ -12,8 +12,10 @@ Option Explicit On
 Option Strict On
 
 Public Class DartBoard
-    Sub DefaultLoader(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub DefaultLoader(sender As Object, e As EventArgs) Handles Me.Load
         DrawDartBoard(True)
+        Me.Hide()
+        UserDisplay.Show()
     End Sub
     Sub DrawDartBoard(refresh As Boolean)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
@@ -56,11 +58,13 @@ Public Class DartBoard
                 throwOne = DartThrow()
             ElseIf throwCounter = 1 Then
                 throwTwo = DartThrow()
-
+            Else
+                throwThree = DartThrow()
             End If
             throwCounter = throwCounter + 1
         Else
             MsgBox("turn is over")
+            WritePlayerData(throwOne, throwTwo, throwThree, "tim", True)
             throwCounter = 0
             newTurn = True
         End If
@@ -105,4 +109,28 @@ Public Class DartBoard
 
         Return temp
     End Function
+
+    Sub WritePlayerData(playOne As String, playTwo As String, playThree As String, user As String, writeT As Boolean)
+        Static currentUser As String
+        If writeT = False Then
+            currentUser = user
+        Else
+            Try
+                FileOpen(1, "..\..\Replay.txt", OpenMode.Append)
+
+            Catch ex As Exception
+                FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
+                Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
+                FileClose(2)
+            End Try
+
+            Write(1, CStr($"User$${currentUser}Play1{playOne}Play2{playTwo}Play3{playThree}{vbNewLine}"))
+            FileClose(1)
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Hide()
+        UserDisplay.Show()
+    End Sub
 End Class

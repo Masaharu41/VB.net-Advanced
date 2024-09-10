@@ -23,8 +23,9 @@ Partial Class UserDisplay
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.UserTextBox = New System.Windows.Forms.TextBox()
         Me.UserNameLabel = New System.Windows.Forms.Label()
+        Me.PlayButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -36,12 +37,12 @@ Partial Class UserDisplay
         Me.ListBox1.Size = New System.Drawing.Size(559, 779)
         Me.ListBox1.TabIndex = 0
         '
-        'TextBox1
+        'UserTextBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(739, 135)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(270, 31)
-        Me.TextBox1.TabIndex = 1
+        Me.UserTextBox.Location = New System.Drawing.Point(739, 135)
+        Me.UserTextBox.Name = "UserTextBox"
+        Me.UserTextBox.Size = New System.Drawing.Size(270, 31)
+        Me.UserTextBox.TabIndex = 1
         '
         'UserNameLabel
         '
@@ -52,13 +53,23 @@ Partial Class UserDisplay
         Me.UserNameLabel.TabIndex = 2
         Me.UserNameLabel.Text = "Enter Your Name"
         '
+        'PlayButton
+        '
+        Me.PlayButton.Location = New System.Drawing.Point(739, 214)
+        Me.PlayButton.Name = "PlayButton"
+        Me.PlayButton.Size = New System.Drawing.Size(165, 77)
+        Me.PlayButton.TabIndex = 3
+        Me.PlayButton.Text = "Begin Playing"
+        Me.PlayButton.UseVisualStyleBackColor = True
+        '
         'UserDisplay
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1193, 907)
+        Me.Controls.Add(Me.PlayButton)
         Me.Controls.Add(Me.UserNameLabel)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.UserTextBox)
         Me.Controls.Add(Me.ListBox1)
         Me.Name = "UserDisplay"
         Me.Text = "Form1"
@@ -68,6 +79,7 @@ Partial Class UserDisplay
     End Sub
 
     Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents UserTextBox As TextBox
     Friend WithEvents UserNameLabel As Label
+    Friend WithEvents PlayButton As Button
 End Class

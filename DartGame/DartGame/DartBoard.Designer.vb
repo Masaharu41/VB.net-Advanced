@@ -24,6 +24,7 @@ Partial Class DartBoard
     Private Sub InitializeComponent()
         Me.CircleButton = New System.Windows.Forms.Button()
         Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -35,7 +36,7 @@ Partial Class DartBoard
         Me.CircleButton.Size = New System.Drawing.Size(98, 41)
         Me.CircleButton.TabIndex = 0
         Me.CircleButton.Text = "Circle"
-        Me.CircleButton.UseVisualStyleBackColor = False
+        Me.CircleButton.UseVisualStyleBackColor = True
         '
         'DartBoardPictureBox
         '
@@ -48,9 +49,19 @@ Partial Class DartBoard
         Me.DartBoardPictureBox.TabIndex = 1
         Me.DartBoardPictureBox.TabStop = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(149, 511)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(141, 62)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'DartBoard
         '
         Me.ClientSize = New System.Drawing.Size(1154, 581)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DartBoardPictureBox)
         Me.Controls.Add(Me.CircleButton)
         Me.Name = "DartBoard"
@@ -62,4 +73,5 @@ Partial Class DartBoard
     Friend WithEvents DartBoard As PictureBox
     Friend WithEvents CircleButton As Button
     Friend WithEvents DartBoardPictureBox As PictureBox
+    Friend WithEvents Button1 As Button
 End Class

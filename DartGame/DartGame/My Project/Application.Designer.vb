@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.DartGame.DartBoard
+            Me.MainForm = Global.DartGame.UserDisplay
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
