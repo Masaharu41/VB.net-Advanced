@@ -3,10 +3,10 @@
 'TODO
 '[*] Represent Dart Game Graphically
 '[*] Show Each Dart Thrown
-'[] Track Dart Throws
-'[] Recall old Games
-'[] Have Graphical replay
-'[] 
+'[*] Track Dart Throws
+'[*] Recall old Games
+'[*] Have Graphical replay
+
 
 Option Explicit On
 Option Strict On
@@ -62,10 +62,21 @@ Public Class DartBoard
             End If
             throwCounter = throwCounter + 1
         Else
-            MsgBox("turn is over")
-            WritePlayerData(throwOne, throwTwo, throwThree, "tim", True)
-            throwCounter = 0
-            newTurn = True
+            Dim result As MsgBoxResult = MsgBox("Want to Go Again?", MsgBoxStyle.YesNo)
+            Select Case result
+                Case MsgBoxResult.Yes
+
+                    WritePlayerData(throwOne, throwTwo, throwThree, "tim", True)
+                    throwCounter = 0
+                    newTurn = True
+                Case MsgBoxResult.No
+                    WritePlayerData(throwOne, throwTwo, throwThree, "tim", True)
+                    throwCounter = 0
+                    newTurn = True
+                    Me.Hide()
+                    UserDisplay.Show()
+
+            End Select
         End If
 
     End Sub
@@ -109,7 +120,39 @@ Public Class DartBoard
         Return temp
     End Function
 
+    Sub GameReplay(play1 As String, play2 As String, play3 As String)
+        Dim multiCord() As String, multicord2() As String, multicord3() As String
+        Dim firstX As Integer, firstY As Integer
+        Dim secondX As Integer, secondY As Integer
+        Dim thirdX As Integer, thirdY As Integer
+        Dim g As Graphics = DartBoardPictureBox.CreateGraphics
+        Dim pen As New Pen(Color.DarkRed, 5)
+        DrawDartBoard(True)
+        multiCord = Split(play1, ";")
+        multicord2 = Split(play2, ";")
+        multicord3 = Split(play3, ";")
 
+        firstX = CInt(multiCord(0))
+        firstY = CInt(multiCord(1))
+
+        secondX = CInt(multicord2(0))
+        secondY = CInt(multicord2(1))
+
+        thirdX = CInt(multicord3(0))
+        thirdY = CInt(multicord3(1))
+
+
+
+
+        g.DrawLine(pen, firstX, firstY - 10, firstX, firstY + 10)
+        g.DrawLine(pen, firstX - 10, firstY, firstX + 10, firstY)
+
+        g.DrawLine(pen, secondX, secondY - 10, secondX, secondY + 10)
+        g.DrawLine(pen, secondX - 10, secondY, secondX + 10, secondY)
+
+        g.DrawLine(pen, thirdX, thirdY - 10, thirdX, thirdY + 10)
+        g.DrawLine(pen, thirdX - 10, thirdY, thirdX + 10, thirdY)
+    End Sub
 
     Sub WritePlayerData(playOne As String, playTwo As String, playThree As String, user As String, writeT As Boolean)
         Static currentUser As String

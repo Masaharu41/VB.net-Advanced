@@ -36,7 +36,7 @@ Partial Class UserDisplay
         Me.RecordsListBox.FormattingEnabled = True
         Me.RecordsListBox.ItemHeight = 25
         Me.RecordsListBox.Location = New System.Drawing.Point(84, 58)
-        Me.RecordsListBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RecordsListBox.Margin = New System.Windows.Forms.Padding(4)
         Me.RecordsListBox.Name = "RecordsListBox"
         Me.RecordsListBox.Size = New System.Drawing.Size(560, 779)
         Me.RecordsListBox.TabIndex = 0
@@ -44,7 +44,7 @@ Partial Class UserDisplay
         'UserTextBox
         '
         Me.UserTextBox.Location = New System.Drawing.Point(740, 135)
-        Me.UserTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.UserTextBox.Margin = New System.Windows.Forms.Padding(4)
         Me.UserTextBox.Name = "UserTextBox"
         Me.UserTextBox.Size = New System.Drawing.Size(270, 31)
         Me.UserTextBox.TabIndex = 1
@@ -62,7 +62,7 @@ Partial Class UserDisplay
         'PlayButton
         '
         Me.PlayButton.Location = New System.Drawing.Point(750, 213)
-        Me.PlayButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PlayButton.Margin = New System.Windows.Forms.Padding(4)
         Me.PlayButton.Name = "PlayButton"
         Me.PlayButton.Size = New System.Drawing.Size(154, 77)
         Me.PlayButton.TabIndex = 3
@@ -72,7 +72,7 @@ Partial Class UserDisplay
         'RecordsButton
         '
         Me.RecordsButton.Location = New System.Drawing.Point(750, 310)
-        Me.RecordsButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.RecordsButton.Margin = New System.Windows.Forms.Padding(6)
         Me.RecordsButton.Name = "RecordsButton"
         Me.RecordsButton.Size = New System.Drawing.Size(152, 71)
         Me.RecordsButton.TabIndex = 4
@@ -82,7 +82,7 @@ Partial Class UserDisplay
         'ReplayButton
         '
         Me.ReplayButton.Location = New System.Drawing.Point(750, 392)
-        Me.ReplayButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.ReplayButton.Margin = New System.Windows.Forms.Padding(6)
         Me.ReplayButton.Name = "ReplayButton"
         Me.ReplayButton.Size = New System.Drawing.Size(152, 71)
         Me.ReplayButton.TabIndex = 5
@@ -111,7 +111,7 @@ Partial Class UserDisplay
         Me.Controls.Add(Me.UserNameLabel)
         Me.Controls.Add(Me.UserTextBox)
         Me.Controls.Add(Me.RecordsListBox)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "UserDisplay"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
