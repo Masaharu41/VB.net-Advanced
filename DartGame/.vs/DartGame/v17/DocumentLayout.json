@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\",
+  "WorkspaceRootPath": "C:\\Users\\jackel\\source\\repos\\VB.net-Advanced\\DartGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|c:\\users\\quickemu\\source\\repos\\masaharu41\\vb.net-advanced\\dartgame\\dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|c:\\users\\jackel\\source\\repos\\vb.net-advanced\\dartgame\\dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|solutionrelative:dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|C:\\Users\\jackel\\source\\repos\\VB.net-Advanced\\DartGame\\dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{09D60A6D-103B-41BD-965C-02C304AB37A6}|DartGame\\DartGame.vbproj|solutionrelative:dartgame\\dartboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DartBoard.vb",
-              "DocumentMoniker": "C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb",
+              "DocumentMoniker": "C:\\Users\\jackel\\source\\repos\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb",
               "RelativeDocumentMoniker": "DartGame\\DartBoard.vb",
-              "ToolTip": "C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb*",
-              "RelativeToolTip": "DartGame\\DartBoard.vb*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAlwDsAAAANAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\jackel\\source\\repos\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb",
+              "RelativeToolTip": "DartGame\\DartBoard.vb",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAtwDsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-09-03T02:11:43.216Z",
               "EditorCaption": ""
@@ -41,13 +41,12 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "DartBoard.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb",
+              "DocumentMoniker": "C:\\Users\\jackel\\source\\repos\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb",
               "RelativeDocumentMoniker": "DartGame\\DartBoard.vb",
               "ToolTip": "C:\\Users\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb [Design]*",
-              "RelativeToolTip": "DartGame\\DartBoard.vb [Design]*",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Quickemu\\source\\repos\\Masaharu41\\VB.net-Advanced\\DartGame\\DartGame\\DartBoard.vb [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-03T02:09:34.782Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-09-03T02:09:34.782Z"
             }
           ]
         }

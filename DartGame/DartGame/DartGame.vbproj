@@ -80,6 +80,12 @@
       <DependentUpon>DartBoard.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserDisplay.Designer.vb">
+      <DependentUpon>UserDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -106,6 +112,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserDisplay.resx">
+      <DependentUpon>UserDisplay.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

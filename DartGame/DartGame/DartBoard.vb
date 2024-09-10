@@ -46,12 +46,18 @@ Public Class DartBoard
     Private Sub CircleButton_Click(sender As Object, e As EventArgs) Handles CircleButton.Click
         Static throwCounter As Integer = 0
         Static newTurn As Boolean
+        Static throwOne As String, throwTwo As String, throwThree As String
 
         DrawDartBoard(newTurn)
 
         If throwCounter <= 2 Then
             newTurn = False
-            DartThrow()
+            If throwCounter = 0 Then
+                throwOne = DartThrow()
+            ElseIf throwCounter = 1 Then
+                throwTwo = DartThrow()
+
+            End If
             throwCounter = throwCounter + 1
         Else
             MsgBox("turn is over")
@@ -61,20 +67,22 @@ Public Class DartBoard
 
     End Sub
 
-    Sub DartThrow()
+    Function DartThrow() As String
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.DarkRed, 5)
         Dim centerX As Integer, centerY As Integer
         Dim referenceX = DartBoardPictureBox.Width
         Dim referenceY = DartBoardPictureBox.Height
+        Dim savedCord As String
         centerX = CInt(referenceX / 2) - DartCord()
         centerY = CInt(referenceY / 2) - DartCord()
 
         g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
         g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
+        savedCord = ($"{centerX},{centerY}")
+        Return savedCord
 
-
-    End Sub
+    End Function
 
     Function DartCord() As Integer
         Dim temp As Integer
