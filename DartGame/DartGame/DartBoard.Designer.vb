@@ -32,12 +32,13 @@ Partial Class DartBoard
         'CircleButton
         '
         Me.CircleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CircleButton.BackColor = System.Drawing.Color.SpringGreen
         Me.CircleButton.Location = New System.Drawing.Point(34, 522)
         Me.CircleButton.Name = "CircleButton"
         Me.CircleButton.Size = New System.Drawing.Size(163, 41)
         Me.CircleButton.TabIndex = 0
         Me.CircleButton.Text = "Throw Dart"
-        Me.CircleButton.UseVisualStyleBackColor = True
+        Me.CircleButton.UseVisualStyleBackColor = False
         '
         'DartBoardPictureBox
         '
@@ -63,12 +64,13 @@ Partial Class DartBoard
         'ExitButton
         '
         Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ExitButton.BackColor = System.Drawing.Color.Firebrick
         Me.ExitButton.Location = New System.Drawing.Point(347, 522)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(98, 41)
         Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "Exit"
-        Me.ExitButton.UseVisualStyleBackColor = True
+        Me.ExitButton.UseVisualStyleBackColor = False
         '
         'DartBoard
         '

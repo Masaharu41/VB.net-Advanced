@@ -27,7 +27,7 @@ Public Class DartBoard
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black, 5)
         Dim x As Double, y As Double
-        Dim pi As Double = Math.PI
+        ' Dim pi As Double = Math.PI
         Dim screenWidth = DartBoardPictureBox.Width
         Dim screenHeight = DartBoardPictureBox.Height
         Static oldWidth As Integer = 0, oldHeight As Integer = 0
@@ -103,16 +103,16 @@ Public Class DartBoard
     Function DartThrow() As String
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.DarkRed, 5)
-        Dim pen2 As New Pen(Color.BlueViolet, 20)
+        Dim pen2 As New Pen(Color.Black, 4)
         Dim centerX As Integer, centerY As Integer
         Dim referenceX = DartBoardPictureBox.Width
         Dim referenceY = DartBoardPictureBox.Height
         Dim savedCord As String
         centerX = CInt(referenceX / 2) - DartCord()
         centerY = CInt(referenceY / 2) - DartCord()
-        g.DrawLine(pen2, centerX, centerY, centerX, centerY)
         g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
         g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
+        g.DrawEllipse(pen2, centerX - 2, centerY - 2, 4, 4)
         savedCord = ($"{centerX};{centerY}")
         Return savedCord
 
@@ -178,6 +178,7 @@ Public Class DartBoard
         Static currentUser As String
         If writeT = False Then
             currentUser = user
+
         Else
             Try
                 FileOpen(1, "..\..\Replay.txt", OpenMode.Append)
@@ -200,6 +201,6 @@ Public Class DartBoard
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
-
+        UserDisplay.Close()
     End Sub
 End Class
