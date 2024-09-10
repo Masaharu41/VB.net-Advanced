@@ -34,9 +34,9 @@ Partial Class DartBoard
         Me.CircleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CircleButton.Location = New System.Drawing.Point(34, 522)
         Me.CircleButton.Name = "CircleButton"
-        Me.CircleButton.Size = New System.Drawing.Size(98, 41)
+        Me.CircleButton.Size = New System.Drawing.Size(163, 41)
         Me.CircleButton.TabIndex = 0
-        Me.CircleButton.Text = "Circle"
+        Me.CircleButton.Text = "Throw Dart"
         Me.CircleButton.UseVisualStyleBackColor = True
         '
         'DartBoardPictureBox
@@ -53,7 +53,7 @@ Partial Class DartBoard
         'HistoryButton
         '
         Me.HistoryButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.HistoryButton.Location = New System.Drawing.Point(149, 522)
+        Me.HistoryButton.Location = New System.Drawing.Point(218, 522)
         Me.HistoryButton.Name = "HistoryButton"
         Me.HistoryButton.Size = New System.Drawing.Size(109, 41)
         Me.HistoryButton.TabIndex = 2
@@ -63,7 +63,7 @@ Partial Class DartBoard
         'ExitButton
         '
         Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ExitButton.Location = New System.Drawing.Point(277, 522)
+        Me.ExitButton.Location = New System.Drawing.Point(347, 522)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(98, 41)
         Me.ExitButton.TabIndex = 3

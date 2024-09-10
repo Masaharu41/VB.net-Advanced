@@ -74,14 +74,26 @@ Public Class UserDisplay
 
     Private Sub ReplayButton_Click(sender As Object, e As EventArgs) Handles ReplayButton.Click
         Dim play1 As String, play2 As String, play3 As String
-        Dim temp As Integer
-        temp = RecordsListBox.SelectedIndex
-        play1 = shots(0, temp)
-        play2 = shots(1, temp)
-        play3 = shots(2, temp)
-        Me.Hide()
-        DartBoard.Show()
-        DartBoard.GameReplay(play1, play2, play3)
+        Dim tempInt As Double
+
+        Try
+            tempInt = RecordsListBox.SelectedIndex
+            play1 = shots(0, CInt(tempInt))
+            play2 = shots(1, CInt(tempInt))
+            play3 = shots(2, CInt(tempInt))
+            Me.Hide()
+            DartBoard.Show()
+            DartBoard.GameReplay(play1, play2, play3)
+
+        Catch ex As Exception
+            MsgBox("Please select which game you want to replay")
+
+        End Try
+
+
+
+
+
 
 
     End Sub

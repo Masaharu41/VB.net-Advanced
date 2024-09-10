@@ -11,11 +11,18 @@
 Option Explicit On
 Option Strict On
 
+Imports System.Threading
+Imports System.Runtime.InteropServices
+
 Public Class DartBoard
     Private Sub DefaultLoader(sender As Object, e As EventArgs) Handles Me.Load
+        Me.KeyPreview = True
+        Thread.Sleep(100)
         DrawDartBoard(True)
 
     End Sub
+
+
     Sub DrawDartBoard(refresh As Boolean)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black, 5)
@@ -45,6 +52,10 @@ Public Class DartBoard
     End Sub
 
     Private Sub CircleButton_Click(sender As Object, e As EventArgs) Handles CircleButton.Click
+        DartStacker()
+    End Sub
+
+    Sub DartStacker()
         Static throwCounter As Integer = 0
         Static newTurn As Boolean
         Static throwOne As String, throwTwo As String, throwThree As String
@@ -81,16 +92,25 @@ Public Class DartBoard
 
     End Sub
 
+    Sub SpacePress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Space Then
+            DartStacker()
+        Else
+
+        End If
+    End Sub
+
     Function DartThrow() As String
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.DarkRed, 5)
+        Dim pen2 As New Pen(Color.BlueViolet, 20)
         Dim centerX As Integer, centerY As Integer
         Dim referenceX = DartBoardPictureBox.Width
         Dim referenceY = DartBoardPictureBox.Height
         Dim savedCord As String
         centerX = CInt(referenceX / 2) - DartCord()
         centerY = CInt(referenceY / 2) - DartCord()
-
+        g.DrawLine(pen2, centerX, centerY, centerX, centerY)
         g.DrawLine(pen, centerX, centerY - 10, centerX, centerY + 10)
         g.DrawLine(pen, centerX - 10, centerY, centerX + 10, centerY)
         savedCord = ($"{centerX};{centerY}")
@@ -173,7 +193,7 @@ Public Class DartBoard
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles HistoryButton.Click
+    Private Sub HistoryButton_Click(sender As Object, e As EventArgs) Handles HistoryButton.Click
         Me.Hide()
         UserDisplay.Show()
     End Sub
