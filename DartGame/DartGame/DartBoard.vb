@@ -94,10 +94,16 @@ Public Class DartBoard
 
     Sub SpacePress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Space Then
+            CircleButton.Enabled = False
+            HistoryButton.Enabled = False
+            ExitButton.Enabled = False
             DartStacker()
         Else
 
         End If
+        CircleButton.Enabled = True
+        HistoryButton.Enabled = True
+        ExitButton.Enabled = True
     End Sub
 
     Function DartThrow() As String

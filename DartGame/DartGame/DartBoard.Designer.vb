@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class DartBoard
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class DartBoard
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.CircleButton = New System.Windows.Forms.Button()
         Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
@@ -36,7 +36,7 @@ Partial Class DartBoard
         Me.CircleButton.Location = New System.Drawing.Point(34, 522)
         Me.CircleButton.Name = "CircleButton"
         Me.CircleButton.Size = New System.Drawing.Size(163, 41)
-        Me.CircleButton.TabIndex = 0
+        Me.CircleButton.TabIndex = 1
         Me.CircleButton.Text = "Throw Dart"
         Me.CircleButton.UseVisualStyleBackColor = False
         '
