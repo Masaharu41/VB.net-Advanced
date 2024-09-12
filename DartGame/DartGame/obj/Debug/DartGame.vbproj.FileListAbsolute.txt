@@ -36,3 +36,16 @@ C:\Users\jackel\Source\Repos\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGam
 C:\Users\jackel\Source\Repos\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.exe
 C:\Users\jackel\Source\Repos\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.xml
 C:\Users\jackel\Source\Repos\VB.net-Advanced\DartGame\DartGame\obj\Debug\DartGame.pdb
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\bin\Debug\DartGame.exe.config
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\bin\Debug\DartGame.exe
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\bin\Debug\DartGame.pdb
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\bin\Debug\DartGame.xml
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.vbproj.AssemblyReference.cache
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.DartBoard.resources
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.Resources.resources
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.UserDisplay.resources
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.vbproj.GenerateResource.cache
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.vbproj.CoreCompileInputs.cache
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.exe
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.xml
+C:\Users\jackel\source\repos\VB.net\DartGame\DartGame\obj\Debug\DartGame.pdb

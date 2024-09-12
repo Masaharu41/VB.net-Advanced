@@ -22,23 +22,26 @@ Partial Class DartBoard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.CircleButton = New System.Windows.Forms.Button()
+        Me.components = New System.ComponentModel.Container()
+        Me.DartButton = New System.Windows.Forms.Button()
         Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
         Me.HistoryButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'CircleButton
+        'DartButton
         '
-        Me.CircleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CircleButton.BackColor = System.Drawing.Color.SpringGreen
-        Me.CircleButton.Location = New System.Drawing.Point(34, 522)
-        Me.CircleButton.Name = "CircleButton"
-        Me.CircleButton.Size = New System.Drawing.Size(163, 41)
-        Me.CircleButton.TabIndex = 1
-        Me.CircleButton.Text = "Throw Dart"
-        Me.CircleButton.UseVisualStyleBackColor = False
+        Me.DartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DartButton.BackColor = System.Drawing.Color.SpringGreen
+        Me.DartButton.Location = New System.Drawing.Point(34, 522)
+        Me.DartButton.Name = "DartButton"
+        Me.DartButton.Size = New System.Drawing.Size(163, 41)
+        Me.DartButton.TabIndex = 1
+        Me.DartButton.Text = "Throw Dart"
+        Me.ToolTip1.SetToolTip(Me.DartButton, "Throw a Dart")
+        Me.DartButton.UseVisualStyleBackColor = False
         '
         'DartBoardPictureBox
         '
@@ -50,6 +53,7 @@ Partial Class DartBoard
         Me.DartBoardPictureBox.Size = New System.Drawing.Size(1016, 431)
         Me.DartBoardPictureBox.TabIndex = 1
         Me.DartBoardPictureBox.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.DartBoardPictureBox, "Dart Board")
         '
         'HistoryButton
         '
@@ -59,6 +63,7 @@ Partial Class DartBoard
         Me.HistoryButton.Size = New System.Drawing.Size(109, 41)
         Me.HistoryButton.TabIndex = 2
         Me.HistoryButton.Text = "History"
+        Me.ToolTip1.SetToolTip(Me.HistoryButton, "See the Leaderboard")
         Me.HistoryButton.UseVisualStyleBackColor = True
         '
         'ExitButton
@@ -70,6 +75,7 @@ Partial Class DartBoard
         Me.ExitButton.Size = New System.Drawing.Size(98, 41)
         Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "Exit"
+        Me.ToolTip1.SetToolTip(Me.ExitButton, "Leave Game")
         Me.ExitButton.UseVisualStyleBackColor = False
         '
         'DartBoard
@@ -78,7 +84,7 @@ Partial Class DartBoard
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.HistoryButton)
         Me.Controls.Add(Me.DartBoardPictureBox)
-        Me.Controls.Add(Me.CircleButton)
+        Me.Controls.Add(Me.DartButton)
         Me.Name = "DartBoard"
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -86,8 +92,9 @@ Partial Class DartBoard
     End Sub
 
     Friend WithEvents DartBoard As PictureBox
-    Friend WithEvents CircleButton As Button
+    Friend WithEvents DartButton As Button
     Friend WithEvents DartBoardPictureBox As PictureBox
     Friend WithEvents HistoryButton As Button
     Friend WithEvents ExitButton As Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

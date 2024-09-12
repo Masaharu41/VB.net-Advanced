@@ -51,7 +51,7 @@ Public Class DartBoard
 
     End Sub
 
-    Private Sub CircleButton_Click(sender As Object, e As EventArgs) Handles CircleButton.Click
+    Private Sub DartButton_Click(sender As Object, e As EventArgs) Handles DartButton.Click
         DartStacker()
     End Sub
 
@@ -94,14 +94,14 @@ Public Class DartBoard
 
     Sub SpacePress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Space Then
-            CircleButton.Enabled = False
+            DartButton.Enabled = False
             HistoryButton.Enabled = False
             ExitButton.Enabled = False
             DartStacker()
         Else
 
         End If
-        CircleButton.Enabled = True
+        DartButton.Enabled = True
         HistoryButton.Enabled = True
         ExitButton.Enabled = True
     End Sub
@@ -153,6 +153,7 @@ Public Class DartBoard
         Dim thirdX As Integer, thirdY As Integer
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.DarkRed, 5)
+        Dim pen2 As New Pen(Color.Black, 4)
         DrawDartBoard(True)
         multiCord = Split(play1, ";")
         multicord2 = Split(play2, ";")
@@ -169,15 +170,18 @@ Public Class DartBoard
 
 
 
-
+        Thread.Sleep(300)
         g.DrawLine(pen, firstX, firstY - 10, firstX, firstY + 10)
         g.DrawLine(pen, firstX - 10, firstY, firstX + 10, firstY)
-
+        g.DrawEllipse(pen2, firstX - 2, firstY - 2, 4, 4)
+        Thread.Sleep(300)
         g.DrawLine(pen, secondX, secondY - 10, secondX, secondY + 10)
         g.DrawLine(pen, secondX - 10, secondY, secondX + 10, secondY)
-
+        g.DrawEllipse(pen2, secondX - 2, secondY - 2, 4, 4)
+        Thread.Sleep(300)
         g.DrawLine(pen, thirdX, thirdY - 10, thirdX, thirdY + 10)
         g.DrawLine(pen, thirdX - 10, thirdY, thirdX + 10, thirdY)
+        g.DrawEllipse(pen2, thirdX - 2, thirdY - 2, 4, 4)
     End Sub
 
     Sub WritePlayerData(playOne As String, playTwo As String, playThree As String, user As String, writeT As Boolean)
