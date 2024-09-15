@@ -53,8 +53,8 @@ Public Class RLCCalculator
         Return sendArray
     End Function
 
-    Function ParallelArray() As Array
-        Dim sendArray(10) As Double
+    Function ParallelArray() As Double()
+        Dim sendArray(3) As Double
         Dim branchTwo() As Double = Branch2()
         Dim branchOne() As Double = Branch1()
         Dim multtemp As Double
@@ -75,12 +75,22 @@ Public Class RLCCalculator
         temp(0) = Math.Sqrt((demoniatorAngle ^ 2) + (demoniatorRect ^ 2))
         temp(1) = Math.Atan(demoniatorRect / demoniatorAngle)
 
-
+        sendArray(0) = demoniatorRect / temp(0)
+        sendArray(1) = demoniatorAngle - temp(1)
+        sendArray(2) = sendArray(0) * Math.Cos(sendArray(1))
+        sendArray(3) = sendArray(0) * Math.Sin(sendArray(1))
 
         Return sendArray
     End Function
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
+    Function TotalReactace() As Double
+        Dim sendArray(1) As Double
+        Dim parallel() As Double = ParallelArray()
+
+
+
+    End Function
+    Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
 
     End Sub
 End Class
