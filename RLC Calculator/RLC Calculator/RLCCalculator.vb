@@ -13,7 +13,7 @@ Public Class RLCCalculator
     Function C2Calculator() As Double
         Dim C2 As Double               ' Calculate the reactance of c2
         Dim pi As Double = Math.PI
-        C2 = 1 / (2 * (pi) * CInt(FreqTextBox.Text) * CInt(C2TextBox.Text))
+        C2 = 1 / (2 * (pi) * CDbl(FreqTextBox.Text) * CDbl(C2TextBox.Text))
         massArray(3) = C2 ' store impedance c2
         Return C2
     End Function
@@ -21,7 +21,7 @@ Public Class RLCCalculator
         Dim C1 As Double           ' Calculate the reactance of C1
         Dim pi As Double = Math.PI
 
-        C1 = 1 / (2 * pi * CInt(FreqTextBox.Text) * CInt(C1TextBox.Text))
+        C1 = 1 / (2 * pi * CDbl(FreqTextBox.Text) * CDbl(C1TextBox.Text))
         massArray(0) = C1 ' store impedance c1
         Return C1
 
@@ -31,7 +31,7 @@ Public Class RLCCalculator
         Dim L1 As Double            ' Calculate the reactance of L1
         Dim pi As Double = Math.PI
 
-        L1 = (2 * pi * CInt(FreqTextBox.Text) * CInt(L1TextBox.Text))
+        L1 = (2 * pi * CDbl(FreqTextBox.Text) * CDbl(L1TextBox.Text))
         massArray(6) = L1 ' store impedance l1
         Return L1
     End Function
@@ -125,6 +125,7 @@ Public Class RLCCalculator
 
     Sub BigCalculator()
         ' final sub that finishes voltage and current calcs
+        TotalCurrents()
         Dim c1React As Double = massArray(0)
         Dim c2React As Double = massArray(3)
         Dim l1React As Double = massArray(6)
@@ -163,7 +164,9 @@ Public Class RLCCalculator
         RLCListBox.Items.Add($"Rseries Voltage = {massArray(8)}")
         RLCListBox.Items.Add($"Branch 2 Current = {massArray(15)}")
         RLCListBox.Items.Add($"C2 Reactance = {massArray(3)}")
-        RLCListBox.Items.Add($"")
+        RLCListBox.Items.Add($"C2 Voltage = {massArray(5)}")
+        RLCListBox.Items.Add($"R2 Resitance = {R2TextBox.Text}")
+        RLCListBox.Items.Add($"R2 Voltage = {massArray(12)}")
     End Sub
     ' still need todo
     ' add full polar calculations // missing angles
@@ -175,7 +178,7 @@ Public Class RLCCalculator
 
     'End Function
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
-
+        DisplayCalcs()
     End Sub
 
 
