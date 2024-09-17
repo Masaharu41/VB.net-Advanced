@@ -38,62 +38,66 @@ Partial Class RLCCalculator
         Me.C2Label = New System.Windows.Forms.Label()
         Me.R2Label = New System.Windows.Forms.Label()
         Me.SeriesRTextBox = New System.Windows.Forms.TextBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.RLCPictureBox = New System.Windows.Forms.PictureBox()
+        Me.SeriesRLabel = New System.Windows.Forms.Label()
+        CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'VoltTextBox
         '
-        Me.VoltTextBox.Location = New System.Drawing.Point(54, 64)
+        Me.VoltTextBox.Location = New System.Drawing.Point(25, 435)
         Me.VoltTextBox.Name = "VoltTextBox"
         Me.VoltTextBox.Size = New System.Drawing.Size(157, 31)
         Me.VoltTextBox.TabIndex = 0
         '
         'FreqTextBox
         '
-        Me.FreqTextBox.Location = New System.Drawing.Point(54, 146)
+        Me.FreqTextBox.Location = New System.Drawing.Point(25, 517)
         Me.FreqTextBox.Name = "FreqTextBox"
         Me.FreqTextBox.Size = New System.Drawing.Size(157, 31)
         Me.FreqTextBox.TabIndex = 1
         '
         'C1TextBox
         '
-        Me.C1TextBox.Location = New System.Drawing.Point(54, 216)
+        Me.C1TextBox.Location = New System.Drawing.Point(188, 435)
         Me.C1TextBox.Name = "C1TextBox"
         Me.C1TextBox.Size = New System.Drawing.Size(157, 31)
         Me.C1TextBox.TabIndex = 2
         '
         'R1TextBox
         '
-        Me.R1TextBox.Location = New System.Drawing.Point(54, 282)
+        Me.R1TextBox.Location = New System.Drawing.Point(188, 517)
         Me.R1TextBox.Name = "R1TextBox"
         Me.R1TextBox.Size = New System.Drawing.Size(157, 31)
         Me.R1TextBox.TabIndex = 3
         '
         'L1TextBox
         '
-        Me.L1TextBox.Location = New System.Drawing.Point(54, 361)
+        Me.L1TextBox.Location = New System.Drawing.Point(351, 435)
         Me.L1TextBox.Name = "L1TextBox"
         Me.L1TextBox.Size = New System.Drawing.Size(157, 31)
         Me.L1TextBox.TabIndex = 4
         '
         'C2TextBox
         '
-        Me.C2TextBox.Location = New System.Drawing.Point(54, 442)
+        Me.C2TextBox.Location = New System.Drawing.Point(516, 435)
         Me.C2TextBox.Name = "C2TextBox"
         Me.C2TextBox.Size = New System.Drawing.Size(157, 31)
         Me.C2TextBox.TabIndex = 5
         '
         'R2TextBox
         '
-        Me.R2TextBox.Location = New System.Drawing.Point(54, 501)
+        Me.R2TextBox.Location = New System.Drawing.Point(516, 517)
         Me.R2TextBox.Name = "R2TextBox"
         Me.R2TextBox.Size = New System.Drawing.Size(157, 31)
         Me.R2TextBox.TabIndex = 6
         '
         'CalculateButton
         '
-        Me.CalculateButton.Location = New System.Drawing.Point(276, 501)
+        Me.CalculateButton.Location = New System.Drawing.Point(25, 563)
         Me.CalculateButton.Name = "CalculateButton"
-        Me.CalculateButton.Size = New System.Drawing.Size(128, 33)
+        Me.CalculateButton.Size = New System.Drawing.Size(185, 84)
         Me.CalculateButton.TabIndex = 7
         Me.CalculateButton.Text = "Calculate"
         Me.CalculateButton.UseVisualStyleBackColor = True
@@ -101,7 +105,7 @@ Partial Class RLCCalculator
         'VoltLabel
         '
         Me.VoltLabel.AutoSize = True
-        Me.VoltLabel.Location = New System.Drawing.Point(49, 36)
+        Me.VoltLabel.Location = New System.Drawing.Point(20, 407)
         Me.VoltLabel.Name = "VoltLabel"
         Me.VoltLabel.Size = New System.Drawing.Size(91, 25)
         Me.VoltLabel.TabIndex = 8
@@ -110,7 +114,7 @@ Partial Class RLCCalculator
         'FreqLabel
         '
         Me.FreqLabel.AutoSize = True
-        Me.FreqLabel.Location = New System.Drawing.Point(49, 118)
+        Me.FreqLabel.Location = New System.Drawing.Point(20, 489)
         Me.FreqLabel.Name = "FreqLabel"
         Me.FreqLabel.Size = New System.Drawing.Size(114, 25)
         Me.FreqLabel.TabIndex = 9
@@ -119,7 +123,7 @@ Partial Class RLCCalculator
         'C1Label
         '
         Me.C1Label.AutoSize = True
-        Me.C1Label.Location = New System.Drawing.Point(49, 188)
+        Me.C1Label.Location = New System.Drawing.Point(183, 407)
         Me.C1Label.Name = "C1Label"
         Me.C1Label.Size = New System.Drawing.Size(39, 25)
         Me.C1Label.TabIndex = 10
@@ -128,7 +132,7 @@ Partial Class RLCCalculator
         'R1Label
         '
         Me.R1Label.AutoSize = True
-        Me.R1Label.Location = New System.Drawing.Point(49, 250)
+        Me.R1Label.Location = New System.Drawing.Point(183, 485)
         Me.R1Label.Name = "R1Label"
         Me.R1Label.Size = New System.Drawing.Size(39, 25)
         Me.R1Label.TabIndex = 11
@@ -137,7 +141,7 @@ Partial Class RLCCalculator
         'L1Label
         '
         Me.L1Label.AutoSize = True
-        Me.L1Label.Location = New System.Drawing.Point(49, 333)
+        Me.L1Label.Location = New System.Drawing.Point(346, 407)
         Me.L1Label.Name = "L1Label"
         Me.L1Label.Size = New System.Drawing.Size(36, 25)
         Me.L1Label.TabIndex = 12
@@ -146,7 +150,7 @@ Partial Class RLCCalculator
         'C2Label
         '
         Me.C2Label.AutoSize = True
-        Me.C2Label.Location = New System.Drawing.Point(49, 414)
+        Me.C2Label.Location = New System.Drawing.Point(511, 407)
         Me.C2Label.Name = "C2Label"
         Me.C2Label.Size = New System.Drawing.Size(39, 25)
         Me.C2Label.TabIndex = 13
@@ -155,7 +159,7 @@ Partial Class RLCCalculator
         'R2Label
         '
         Me.R2Label.AutoSize = True
-        Me.R2Label.Location = New System.Drawing.Point(49, 476)
+        Me.R2Label.Location = New System.Drawing.Point(511, 492)
         Me.R2Label.Name = "R2Label"
         Me.R2Label.Size = New System.Drawing.Size(39, 25)
         Me.R2Label.TabIndex = 14
@@ -163,16 +167,47 @@ Partial Class RLCCalculator
         '
         'SeriesRTextBox
         '
-        Me.SeriesRTextBox.Location = New System.Drawing.Point(386, 274)
+        Me.SeriesRTextBox.Location = New System.Drawing.Point(351, 517)
         Me.SeriesRTextBox.Name = "SeriesRTextBox"
         Me.SeriesRTextBox.Size = New System.Drawing.Size(157, 31)
         Me.SeriesRTextBox.TabIndex = 15
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 25
+        Me.ListBox1.Location = New System.Drawing.Point(730, 18)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(382, 629)
+        Me.ListBox1.TabIndex = 16
+        '
+        'RLCPictureBox
+        '
+        Me.RLCPictureBox.Image = Global.RLC_Calculator.My.Resources.Resources.RLC_Circuit
+        Me.RLCPictureBox.Location = New System.Drawing.Point(12, 11)
+        Me.RLCPictureBox.Name = "RLCPictureBox"
+        Me.RLCPictureBox.Size = New System.Drawing.Size(712, 388)
+        Me.RLCPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.RLCPictureBox.TabIndex = 17
+        Me.RLCPictureBox.TabStop = False
+        '
+        'SeriesRLabel
+        '
+        Me.SeriesRLabel.AutoSize = True
+        Me.SeriesRLabel.Location = New System.Drawing.Point(346, 489)
+        Me.SeriesRLabel.Name = "SeriesRLabel"
+        Me.SeriesRLabel.Size = New System.Drawing.Size(164, 25)
+        Me.SeriesRLabel.TabIndex = 18
+        Me.SeriesRLabel.Text = "Rwinding/series"
         '
         'RLCCalculator
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(929, 578)
+        Me.ClientSize = New System.Drawing.Size(1925, 1097)
+        Me.Controls.Add(Me.SeriesRLabel)
+        Me.Controls.Add(Me.RLCPictureBox)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.SeriesRTextBox)
         Me.Controls.Add(Me.R2Label)
         Me.Controls.Add(Me.C2Label)
@@ -191,6 +226,7 @@ Partial Class RLCCalculator
         Me.Controls.Add(Me.VoltTextBox)
         Me.Name = "RLCCalculator"
         Me.Text = "Form1"
+        CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -212,4 +248,7 @@ Partial Class RLCCalculator
     Friend WithEvents C2Label As Label
     Friend WithEvents R2Label As Label
     Friend WithEvents SeriesRTextBox As TextBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents RLCPictureBox As PictureBox
+    Friend WithEvents SeriesRLabel As Label
 End Class

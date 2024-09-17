@@ -147,6 +147,8 @@ Public Class RLCCalculator
     End Sub
 
     Sub DisplayCalcs()
+        BigCalculator()
+
 
     End Sub
 
@@ -159,4 +161,6 @@ Public Class RLCCalculator
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
 
     End Sub
+
+
 End Class
