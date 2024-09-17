@@ -179,7 +179,7 @@ Partial Class RLCCalculator
         Me.RLCListBox.ItemHeight = 25
         Me.RLCListBox.Location = New System.Drawing.Point(730, 18)
         Me.RLCListBox.Name = "RLCListBox"
-        Me.RLCListBox.Size = New System.Drawing.Size(382, 629)
+        Me.RLCListBox.Size = New System.Drawing.Size(572, 629)
         Me.RLCListBox.TabIndex = 16
         '
         'RLCPictureBox
@@ -215,6 +215,7 @@ Partial Class RLCCalculator
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1925, 1097)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.SeriesRLabel)
@@ -237,7 +238,7 @@ Partial Class RLCCalculator
         Me.Controls.Add(Me.FreqTextBox)
         Me.Controls.Add(Me.VoltTextBox)
         Me.Name = "RLCCalculator"
-        Me.Text = "Form1"
+        Me.Text = "RLC Calculator"
         CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

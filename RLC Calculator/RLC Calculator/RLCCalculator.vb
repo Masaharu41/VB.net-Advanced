@@ -193,11 +193,12 @@ Public Class RLCCalculator
             Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
             FileClose(2)
         End Try
-
-        For i = 0 To 16
+        Print(1, vbNewLine + $"Calculated on {TimeOfDay}" + vbNewLine)
+        For i = 0 To 18
             RLCListBox.SelectedIndex() = i
             Print(1, CStr(RLCListBox.SelectedItem) + vbNewLine)
         Next
+        Print(1, "PlaceHolder" + vbNewLine)
         FileClose(1)
     End Sub
     Function ValidData() As Boolean
@@ -291,4 +292,6 @@ Public Class RLCCalculator
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
+
+
 End Class
