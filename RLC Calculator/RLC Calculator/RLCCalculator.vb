@@ -149,6 +149,7 @@ Public Class RLCCalculator
 
     Sub DisplayCalcs()
         BigCalculator()
+        RLCListBox.Items.Clear()
 
         RLCListBox.Items.Add($"Total Current = {massArray(26)}")
         RLCListBox.Items.Add($"C1 Reactance = {massArray(0)} at -90 Degrees")
@@ -167,18 +168,35 @@ Public Class RLCCalculator
         RLCListBox.Items.Add($"C2 Voltage = {massArray(5)}")
         RLCListBox.Items.Add($"R2 Resitance = {R2TextBox.Text}")
         RLCListBox.Items.Add($"R2 Voltage = {massArray(12)}")
+
     End Sub
     ' still need todo
     ' add full polar calculations // missing angles
     ' add output file
     Sub StoreCalcs()
+        '  Dim temp As String
 
+        Try
+            FileOpen(1, "..\..\RLC_Data.txt", OpenMode.Append)
+
+        Catch ex As Exception
+            FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
+            Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
+            FileClose(2)
+        End Try
+
+        For i = 1 To 17
+            RLCListBox.SelectedIndex() = i
+            Print(1, RLCListBox.SelectedItem)
+        Next
+        FileClose(1)
     End Sub
     'Function ValidData() As Boolean
 
     'End Function
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
         DisplayCalcs()
+        StoreCalcs()
     End Sub
 
 

@@ -84,21 +84,21 @@ Partial Class RLCCalculator
         Me.C2TextBox.Location = New System.Drawing.Point(516, 435)
         Me.C2TextBox.Name = "C2TextBox"
         Me.C2TextBox.Size = New System.Drawing.Size(157, 31)
-        Me.C2TextBox.TabIndex = 5
+        Me.C2TextBox.TabIndex = 6
         '
         'R2TextBox
         '
         Me.R2TextBox.Location = New System.Drawing.Point(516, 517)
         Me.R2TextBox.Name = "R2TextBox"
         Me.R2TextBox.Size = New System.Drawing.Size(157, 31)
-        Me.R2TextBox.TabIndex = 6
+        Me.R2TextBox.TabIndex = 7
         '
         'CalculateButton
         '
         Me.CalculateButton.Location = New System.Drawing.Point(25, 563)
         Me.CalculateButton.Name = "CalculateButton"
         Me.CalculateButton.Size = New System.Drawing.Size(185, 84)
-        Me.CalculateButton.TabIndex = 7
+        Me.CalculateButton.TabIndex = 8
         Me.CalculateButton.Text = "Calculate"
         Me.CalculateButton.UseVisualStyleBackColor = True
         '
@@ -170,7 +170,7 @@ Partial Class RLCCalculator
         Me.SeriesRTextBox.Location = New System.Drawing.Point(351, 517)
         Me.SeriesRTextBox.Name = "SeriesRTextBox"
         Me.SeriesRTextBox.Size = New System.Drawing.Size(157, 31)
-        Me.SeriesRTextBox.TabIndex = 15
+        Me.SeriesRTextBox.TabIndex = 5
         '
         'RLCListBox
         '
