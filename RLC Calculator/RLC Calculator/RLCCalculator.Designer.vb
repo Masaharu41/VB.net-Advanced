@@ -38,7 +38,7 @@ Partial Class RLCCalculator
         Me.C2Label = New System.Windows.Forms.Label()
         Me.R2Label = New System.Windows.Forms.Label()
         Me.SeriesRTextBox = New System.Windows.Forms.TextBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.RLCListBox = New System.Windows.Forms.ListBox()
         Me.RLCPictureBox = New System.Windows.Forms.PictureBox()
         Me.SeriesRLabel = New System.Windows.Forms.Label()
         CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,14 +172,14 @@ Partial Class RLCCalculator
         Me.SeriesRTextBox.Size = New System.Drawing.Size(157, 31)
         Me.SeriesRTextBox.TabIndex = 15
         '
-        'ListBox1
+        'RLCListBox
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 25
-        Me.ListBox1.Location = New System.Drawing.Point(730, 18)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(382, 629)
-        Me.ListBox1.TabIndex = 16
+        Me.RLCListBox.FormattingEnabled = True
+        Me.RLCListBox.ItemHeight = 25
+        Me.RLCListBox.Location = New System.Drawing.Point(730, 18)
+        Me.RLCListBox.Name = "RLCListBox"
+        Me.RLCListBox.Size = New System.Drawing.Size(382, 629)
+        Me.RLCListBox.TabIndex = 16
         '
         'RLCPictureBox
         '
@@ -207,7 +207,7 @@ Partial Class RLCCalculator
         Me.ClientSize = New System.Drawing.Size(1925, 1097)
         Me.Controls.Add(Me.SeriesRLabel)
         Me.Controls.Add(Me.RLCPictureBox)
-        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.RLCListBox)
         Me.Controls.Add(Me.SeriesRTextBox)
         Me.Controls.Add(Me.R2Label)
         Me.Controls.Add(Me.C2Label)
@@ -248,7 +248,7 @@ Partial Class RLCCalculator
     Friend WithEvents C2Label As Label
     Friend WithEvents R2Label As Label
     Friend WithEvents SeriesRTextBox As TextBox
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents RLCListBox As ListBox
     Friend WithEvents RLCPictureBox As PictureBox
     Friend WithEvents SeriesRLabel As Label
 End Class

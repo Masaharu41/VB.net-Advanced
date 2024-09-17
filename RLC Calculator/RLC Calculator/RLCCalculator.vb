@@ -149,9 +149,25 @@ Public Class RLCCalculator
     Sub DisplayCalcs()
         BigCalculator()
 
-
+        RLCListBox.Items.Add($"Total Current = {massArray(26)}")
+        RLCListBox.Items.Add($"C1 Reactance = {massArray(0)} at -90 Degrees")
+        RLCListBox.Items.Add($"C1 Voltage = {massArray(1)}")
+        RLCListBox.Items.Add($"R1 Value = {R1TextBox.Text}")
+        RLCListBox.Items.Add($"R1 Voltage = {massArray(2)}")
+        RLCListBox.Items.Add($"Parallel Impedance = {massArray(19)} at {massArray(20)} degrees")
+        RLCListBox.Items.Add($"Parallel Volage = {massArray(4)}")
+        RLCListBox.Items.Add($"Branch 1 Current = {massArray(11)}")
+        RLCListBox.Items.Add($"L1 Reactance = {massArray(6)}")
+        RLCListBox.Items.Add($"L1 Voltage = {massArray(7)}")
+        RLCListBox.Items.Add($"Rseries = {SeriesRTextBox.Text}")
+        RLCListBox.Items.Add($"Rseries Voltage = {massArray(8)}")
+        RLCListBox.Items.Add($"Branch 2 Current = {massArray(15)}")
+        RLCListBox.Items.Add($"C2 Reactance = {massArray(3)}")
+        RLCListBox.Items.Add($"")
     End Sub
-
+    ' still need todo
+    ' add full polar calculations // missing angles
+    ' add output file
     Sub StoreCalcs()
 
     End Sub
