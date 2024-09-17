@@ -84,10 +84,10 @@ Public Class RLCCalculator
         sendArray(1) = rectAngle - temp(1)
         sendArray(2) = sendArray(0) * Math.Cos(sendArray(1))
         sendArray(3) = sendArray(0) * Math.Sin(sendArray(1))
-        massArray(17) = sendArray(0)  ' store parallel real
-        massArray(18) = sendArray(1)    ' store parallel imaginary
-        massArray(19) = sendArray(2)    ' store parallel polar
-        massArray(20) = sendArray(3)    ' store polar angle
+        massArray(17) = sendArray(0)  ' store polar
+        massArray(18) = sendArray(1)    ' store polar angle
+        massArray(19) = sendArray(2)    ' store real
+        massArray(20) = sendArray(3)    ' store imaginary
 
 
         Return sendArray
@@ -103,10 +103,10 @@ Public Class RLCCalculator
         sendArray(3) = -seriesCap + parallel(3)
         sendArray(0) = Math.Sqrt((sendArray(2) ^ 2) + (sendArray(3) ^ 2))
         sendArray(1) = Math.Atan(sendArray(3) / sendArray(2))
-        massArray(22) = sendArray(0)
-        massArray(23) = sendArray(1)
-        massArray(24) = sendArray(2)
-        massArray(25) = sendArray(3)
+        massArray(22) = sendArray(0)  ' store polar
+        massArray(23) = sendArray(1)    ' store angle
+        massArray(24) = sendArray(2)    ' store real
+        massArray(25) = sendArray(3)    ' store imaginary
 
 
         Return sendArray
@@ -120,6 +120,7 @@ Public Class RLCCalculator
 
         sender = voltageGen / reactance(0)
         massArray(26) = sender
+        massArray(27) = 0 - massArray(23)
 
     End Sub
 
@@ -191,12 +192,92 @@ Public Class RLCCalculator
         Next
         FileClose(1)
     End Sub
-    'Function ValidData() As Boolean
+    Function ValidData() As Boolean
+        Dim errorBool As Boolean = False
+        Dim errorMsg As String = "The Following Errors Have Occured"
+        Dim volt As Double
+        Dim freq As Double
+        Dim cOne As Double, rOne As Double
+        Dim lOne As Double, rSeries As Double
+        Dim ctwo As Double, rTwo As Double
 
-    'End Function
+        Try
+            volt = CDbl(VoltTextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "Volt is not valid"
+        End Try
+
+
+        Try
+            freq = CDbl(FreqTextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "Freguency is not valid"
+        End Try
+
+        Try
+            cOne = CDbl(C1TextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "C1 is not valid"
+        End Try
+
+        Try
+            rOne = CDbl(R1TextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "R1 is not valid"
+        End Try
+
+        Try
+            lOne = CDbl(L1TextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "L1 is not valid"
+        End Try
+
+        Try
+            rSeries = CDbl(SeriesRTextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "Winding Resitance is not valid"
+        End Try
+
+        Try
+            ctwo = CDbl(C2TextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "C2 is not valid"
+        End Try
+
+        Try
+            rTwo = CDbl(R2TextBox.Text)
+
+        Catch ex As Exception
+            errorBool = True
+            errorMsg = errorMsg + vbNewLine + "R2 is not valid"
+        End Try
+        If errorBool = True Then
+            MsgBox(errorMsg)
+        End If
+
+        Return errorBool
+    End Function
     Private Sub CalculateButton_Click(sender As Object, e As EventArgs) Handles CalculateButton.Click
-        DisplayCalcs()
-        StoreCalcs()
+        If ValidData() = False Then
+            DisplayCalcs()
+            StoreCalcs()
+        Else
+
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
