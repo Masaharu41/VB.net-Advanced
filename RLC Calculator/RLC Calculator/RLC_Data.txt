@@ -1,0 +1,17 @@
+Total Current = 0.0184751598154432
+C1 Reactance = 15.9154943091895 at -90 Degrees
+C1 Voltage = 0.294041300904053
+R1 Value = 150
+R1 Voltage = 2.77127397231647
+Parallel Impedance = 511.737247958092 at -840.813754195495 degrees
+Parallel Volage = 9.45442743954081
+Branch 1 Current = 0.0150452832243374
+L1 Reactance = 628.318530717959
+L1 Voltage = 9.45323024975125
+Rseries = 10
+Rseries Voltage = 0.150452832243374
+Branch 2 Current = 0.100598519965299
+C2 Reactance = 79.5774715459477
+C2 Voltage = 8.00537586010304
+R2 Resitance = 50
+R2 Voltage = 5.02992599826496

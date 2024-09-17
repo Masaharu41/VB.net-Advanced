@@ -41,6 +41,7 @@ Partial Class RLCCalculator
         Me.RLCListBox = New System.Windows.Forms.ListBox()
         Me.RLCPictureBox = New System.Windows.Forms.PictureBox()
         Me.SeriesRLabel = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -183,7 +184,8 @@ Partial Class RLCCalculator
         '
         'RLCPictureBox
         '
-        Me.RLCPictureBox.Image = Global.RLC_Calculator.My.Resources.Resources.RLC_Circuit
+        Me.RLCPictureBox.BackgroundImage = Global.RLC_Calculator.My.Resources.Resources.RLC_Circuit
+        Me.RLCPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.RLCPictureBox.Location = New System.Drawing.Point(12, 11)
         Me.RLCPictureBox.Name = "RLCPictureBox"
         Me.RLCPictureBox.Size = New System.Drawing.Size(712, 388)
@@ -200,11 +202,21 @@ Partial Class RLCCalculator
         Me.SeriesRLabel.TabIndex = 18
         Me.SeriesRLabel.Text = "Rwinding/series"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(216, 563)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(185, 84)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "Exit"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'RLCCalculator
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1925, 1097)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.SeriesRLabel)
         Me.Controls.Add(Me.RLCPictureBox)
         Me.Controls.Add(Me.RLCListBox)
@@ -251,4 +263,5 @@ Partial Class RLCCalculator
     Friend WithEvents RLCListBox As ListBox
     Friend WithEvents RLCPictureBox As PictureBox
     Friend WithEvents SeriesRLabel As Label
+    Friend WithEvents Button1 As Button
 End Class

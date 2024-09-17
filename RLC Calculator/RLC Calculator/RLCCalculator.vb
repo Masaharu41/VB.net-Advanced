@@ -185,9 +185,9 @@ Public Class RLCCalculator
             FileClose(2)
         End Try
 
-        For i = 1 To 17
+        For i = 0 To 16
             RLCListBox.SelectedIndex() = i
-            Print(1, RLCListBox.SelectedItem)
+            Print(1, CStr(RLCListBox.SelectedItem) + vbNewLine)
         Next
         FileClose(1)
     End Sub
@@ -199,5 +199,7 @@ Public Class RLCCalculator
         StoreCalcs()
     End Sub
 
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+    End Sub
 End Class
