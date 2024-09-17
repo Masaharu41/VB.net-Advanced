@@ -8,7 +8,7 @@ Option Strict On
 
 Public Class RLCCalculator
 
-    Public massArray(30) As Double
+    Public massArray(38) As Double
 
     Function C2Calculator() As Double
         Dim C2 As Double               ' Calculate the reactance of c2
@@ -135,13 +135,19 @@ Public Class RLCCalculator
         Dim rSeries As Double = CDbl(SeriesRTextBox.Text)
 
         massArray(1) = massArray(26) * massArray(0) ' store c1 voltage
+        massArray(28) = massArray(27) - 90 ' store c1 angle
         massArray(2) = massArray(26) * r1 ' store r1 voltage
-        massArray(4) = massArray(26) * massArray(19) ' store parallel voltage
+        massArray(4) = massArray(26) * massArray(19) ' store parallel voltage 
+        massArray(29) = massArray(27) - massArray(18) 'store parallel angle
         massArray(11) = massArray(4) / massArray(9) ' store branch 1 current
+        massArray(30) = massArray(27) + massArray(10) ' store branch 1 angle
         massArray(15) = massArray(4) / massArray(13) 'store branch 2 current
+        massArray(32) = massArray(29) - massArray(14) ' store branch 2 angle
         massArray(7) = massArray(11) * massArray(6) ' store l1 voltage
+        massArray(31) = massArray(30) + 90 ' store l1 angle
         massArray(8) = massArray(11) * rSeries
         massArray(5) = massArray(15) * massArray(3) ' store c2 voltage
+        massArray(33) = massArray(32) - 90
         massArray(12) = massArray(15) * r2 ' store r2 voltage
 
 
@@ -150,25 +156,27 @@ Public Class RLCCalculator
 
     Sub DisplayCalcs()
         BigCalculator()
+        ' clear list box before writing new data
         RLCListBox.Items.Clear()
-
-        RLCListBox.Items.Add($"Total Current = {massArray(26)}")
+        RLCListBox.Items.Add($"Generator Voltage = {VoltTextBox.Text}")
+        RLCListBox.Items.Add($"Frequency = {FreqTextBox.Text}")
+        RLCListBox.Items.Add($"Total Current = {massArray(26)} at {massArray(27)} degrees")
         RLCListBox.Items.Add($"C1 Reactance = {massArray(0)} at -90 Degrees")
-        RLCListBox.Items.Add($"C1 Voltage = {massArray(1)}")
+        RLCListBox.Items.Add($"C1 Voltage = {massArray(1)} at {massArray(28)} degress")
         RLCListBox.Items.Add($"R1 Value = {R1TextBox.Text}")
-        RLCListBox.Items.Add($"R1 Voltage = {massArray(2)}")
-        RLCListBox.Items.Add($"Parallel Impedance = {massArray(19)} at {massArray(20)} degrees")
-        RLCListBox.Items.Add($"Parallel Volage = {massArray(4)}")
-        RLCListBox.Items.Add($"Branch 1 Current = {massArray(11)}")
+        RLCListBox.Items.Add($"R1 Voltage = {massArray(2)} at {massArray(27)}")
+        RLCListBox.Items.Add($"Parallel Impedance = {massArray(17)} at {massArray(18)} degrees")
+        RLCListBox.Items.Add($"Parallel Voltage = {massArray(4)} at {massArray(29)} degrees")
+        RLCListBox.Items.Add($"Branch 1 Current = {massArray(11)} at {massArray(30)} degrees")
         RLCListBox.Items.Add($"L1 Reactance = {massArray(6)}")
-        RLCListBox.Items.Add($"L1 Voltage = {massArray(7)}")
+        RLCListBox.Items.Add($"L1 Voltage = {massArray(7)} at {massArray(31)} degrees")
         RLCListBox.Items.Add($"Rseries = {SeriesRTextBox.Text}")
-        RLCListBox.Items.Add($"Rseries Voltage = {massArray(8)}")
-        RLCListBox.Items.Add($"Branch 2 Current = {massArray(15)}")
+        RLCListBox.Items.Add($"Rseries Voltage = {massArray(8)} at {massArray(30)} degrees")
+        RLCListBox.Items.Add($"Branch 2 Current = {massArray(15)} at {massArray(32)} degrees")
         RLCListBox.Items.Add($"C2 Reactance = {massArray(3)}")
-        RLCListBox.Items.Add($"C2 Voltage = {massArray(5)}")
+        RLCListBox.Items.Add($"C2 Voltage = {massArray(5)} at {massArray(33)} degrees")
         RLCListBox.Items.Add($"R2 Resitance = {R2TextBox.Text}")
-        RLCListBox.Items.Add($"R2 Voltage = {massArray(12)}")
+        RLCListBox.Items.Add($"R2 Voltage = {massArray(12)} at {massArray(32)} degrees")
 
     End Sub
     ' still need todo
