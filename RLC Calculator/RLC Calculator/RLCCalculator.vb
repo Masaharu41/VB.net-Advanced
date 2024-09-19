@@ -233,7 +233,7 @@ Public Class RLCCalculator
 
         Catch ex As Exception
             errorBool = True
-            errorMsg = errorMsg + vbNewLine + "Freguency is not valid"
+            errorMsg = errorMsg + vbNewLine + "Frequency is not valid"
         End Try
 
         Try
@@ -296,6 +296,7 @@ Public Class RLCCalculator
         Else
 
         End If
+        EngineeringMath.EngForce(11.111)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
