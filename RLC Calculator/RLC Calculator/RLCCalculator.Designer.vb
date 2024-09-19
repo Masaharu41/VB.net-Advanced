@@ -22,6 +22,7 @@ Partial Class RLCCalculator
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.VoltTextBox = New System.Windows.Forms.TextBox()
         Me.FreqTextBox = New System.Windows.Forms.TextBox()
         Me.C1TextBox = New System.Windows.Forms.TextBox()
@@ -50,6 +51,8 @@ Partial Class RLCCalculator
         Me.R2ComboBox = New System.Windows.Forms.ComboBox()
         Me.L1ComboBox = New System.Windows.Forms.ComboBox()
         Me.SeriesRComboBox = New System.Windows.Forms.ComboBox()
+        Me.RLCContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RLCToolTip = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.RLCPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,6 +63,7 @@ Partial Class RLCCalculator
         Me.VoltTextBox.Name = "VoltTextBox"
         Me.VoltTextBox.Size = New System.Drawing.Size(157, 31)
         Me.VoltTextBox.TabIndex = 0
+        Me.RLCToolTip.SetToolTip(Me.VoltTextBox, "Input Voltage Here!")
         '
         'FreqTextBox
         '
@@ -68,6 +72,7 @@ Partial Class RLCCalculator
         Me.FreqTextBox.Name = "FreqTextBox"
         Me.FreqTextBox.Size = New System.Drawing.Size(157, 31)
         Me.FreqTextBox.TabIndex = 1
+        Me.RLCToolTip.SetToolTip(Me.FreqTextBox, "Input Frequency Here!")
         '
         'C1TextBox
         '
@@ -75,7 +80,8 @@ Partial Class RLCCalculator
         Me.C1TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.C1TextBox.Name = "C1TextBox"
         Me.C1TextBox.Size = New System.Drawing.Size(157, 31)
-        Me.C1TextBox.TabIndex = 2
+        Me.C1TextBox.TabIndex = 4
+        Me.RLCToolTip.SetToolTip(Me.C1TextBox, "Input Capactiance 1 Here!")
         '
         'R1TextBox
         '
@@ -83,7 +89,8 @@ Partial Class RLCCalculator
         Me.R1TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.R1TextBox.Name = "R1TextBox"
         Me.R1TextBox.Size = New System.Drawing.Size(157, 31)
-        Me.R1TextBox.TabIndex = 3
+        Me.R1TextBox.TabIndex = 5
+        Me.RLCToolTip.SetToolTip(Me.R1TextBox, "Input Resistance 1 Here!")
         '
         'L1TextBox
         '
@@ -91,7 +98,8 @@ Partial Class RLCCalculator
         Me.L1TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.L1TextBox.Name = "L1TextBox"
         Me.L1TextBox.Size = New System.Drawing.Size(157, 31)
-        Me.L1TextBox.TabIndex = 4
+        Me.L1TextBox.TabIndex = 2
+        Me.RLCToolTip.SetToolTip(Me.L1TextBox, "Input Inductor Here!")
         '
         'C2TextBox
         '
@@ -100,6 +108,7 @@ Partial Class RLCCalculator
         Me.C2TextBox.Name = "C2TextBox"
         Me.C2TextBox.Size = New System.Drawing.Size(157, 31)
         Me.C2TextBox.TabIndex = 6
+        Me.RLCToolTip.SetToolTip(Me.C2TextBox, "Input Capacitance 2 Here!")
         '
         'R2TextBox
         '
@@ -108,6 +117,7 @@ Partial Class RLCCalculator
         Me.R2TextBox.Name = "R2TextBox"
         Me.R2TextBox.Size = New System.Drawing.Size(157, 31)
         Me.R2TextBox.TabIndex = 7
+        Me.RLCToolTip.SetToolTip(Me.R2TextBox, "Input Resistance 2 Here!")
         '
         'CalculateButton
         '
@@ -188,7 +198,8 @@ Partial Class RLCCalculator
         Me.SeriesRTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.SeriesRTextBox.Name = "SeriesRTextBox"
         Me.SeriesRTextBox.Size = New System.Drawing.Size(157, 31)
-        Me.SeriesRTextBox.TabIndex = 5
+        Me.SeriesRTextBox.TabIndex = 3
+        Me.RLCToolTip.SetToolTip(Me.SeriesRTextBox, "Input Winding Resistance Here!")
         '
         'RLCListBox
         '
@@ -199,11 +210,13 @@ Partial Class RLCCalculator
         Me.RLCListBox.Name = "RLCListBox"
         Me.RLCListBox.Size = New System.Drawing.Size(572, 629)
         Me.RLCListBox.TabIndex = 16
+        Me.RLCToolTip.SetToolTip(Me.RLCListBox, "Display for Results")
         '
         'RLCPictureBox
         '
         Me.RLCPictureBox.BackgroundImage = Global.RLC_Calculator.My.Resources.Resources.RLC_Circuit
         Me.RLCPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.RLCPictureBox.ContextMenuStrip = Me.RLCContextMenuStrip
         Me.RLCPictureBox.Location = New System.Drawing.Point(12, 11)
         Me.RLCPictureBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.RLCPictureBox.Name = "RLCPictureBox"
@@ -211,6 +224,7 @@ Partial Class RLCCalculator
         Me.RLCPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.RLCPictureBox.TabIndex = 17
         Me.RLCPictureBox.TabStop = False
+        Me.RLCToolTip.SetToolTip(Me.RLCPictureBox, "Example Circuit")
         '
         'SeriesRLabel
         '
@@ -236,7 +250,7 @@ Partial Class RLCCalculator
         Me.VoltComboBox.FormattingEnabled = True
         Me.VoltComboBox.Items.AddRange(New Object() {"MV", "kV", "V", "mV", "uV", "nV", "pV"})
         Me.VoltComboBox.Location = New System.Drawing.Point(191, 435)
-        Me.VoltComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.VoltComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.VoltComboBox.Name = "VoltComboBox"
         Me.VoltComboBox.Size = New System.Drawing.Size(93, 33)
         Me.VoltComboBox.TabIndex = 20
@@ -247,7 +261,7 @@ Partial Class RLCCalculator
         Me.FreqComboBox.FormattingEnabled = True
         Me.FreqComboBox.Items.AddRange(New Object() {"MHz", "KHz", "Hz", "mHz", "uHz", "nHz", "pHz"})
         Me.FreqComboBox.Location = New System.Drawing.Point(191, 518)
-        Me.FreqComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.FreqComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.FreqComboBox.Name = "FreqComboBox"
         Me.FreqComboBox.Size = New System.Drawing.Size(93, 33)
         Me.FreqComboBox.TabIndex = 21
@@ -258,7 +272,7 @@ Partial Class RLCCalculator
         Me.C1ComboBox.FormattingEnabled = True
         Me.C1ComboBox.Items.AddRange(New Object() {"MF", "kF", "F", "mF", "uF", "nF", "pF"})
         Me.C1ComboBox.Location = New System.Drawing.Point(457, 435)
-        Me.C1ComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.C1ComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.C1ComboBox.Name = "C1ComboBox"
         Me.C1ComboBox.Size = New System.Drawing.Size(93, 33)
         Me.C1ComboBox.TabIndex = 22
@@ -269,7 +283,7 @@ Partial Class RLCCalculator
         Me.R1ComboBox.FormattingEnabled = True
         Me.R1ComboBox.Items.AddRange(New Object() {"MOhms", "kOhms", "Ohms", "mOhms", "uOhms", "nOhms", "pOhms"})
         Me.R1ComboBox.Location = New System.Drawing.Point(457, 520)
-        Me.R1ComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.R1ComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.R1ComboBox.Name = "R1ComboBox"
         Me.R1ComboBox.Size = New System.Drawing.Size(93, 33)
         Me.R1ComboBox.TabIndex = 23
@@ -280,7 +294,7 @@ Partial Class RLCCalculator
         Me.C2ComboBox.FormattingEnabled = True
         Me.C2ComboBox.Items.AddRange(New Object() {"MF", "kF", "F", "mF", "uF", "nF", "pF"})
         Me.C2ComboBox.Location = New System.Drawing.Point(457, 584)
-        Me.C2ComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.C2ComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.C2ComboBox.Name = "C2ComboBox"
         Me.C2ComboBox.Size = New System.Drawing.Size(93, 33)
         Me.C2ComboBox.TabIndex = 24
@@ -291,7 +305,7 @@ Partial Class RLCCalculator
         Me.R2ComboBox.FormattingEnabled = True
         Me.R2ComboBox.Items.AddRange(New Object() {"MOhms", "kOhms", "Ohms", "mOhms", "uOhms", "nOhms", "pOhms"})
         Me.R2ComboBox.Location = New System.Drawing.Point(457, 666)
-        Me.R2ComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.R2ComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.R2ComboBox.Name = "R2ComboBox"
         Me.R2ComboBox.Size = New System.Drawing.Size(93, 33)
         Me.R2ComboBox.TabIndex = 25
@@ -302,7 +316,7 @@ Partial Class RLCCalculator
         Me.L1ComboBox.FormattingEnabled = True
         Me.L1ComboBox.Items.AddRange(New Object() {"MH", "kH", "H", "mH", "uH", "nH", "pH"})
         Me.L1ComboBox.Location = New System.Drawing.Point(191, 588)
-        Me.L1ComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.L1ComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.L1ComboBox.Name = "L1ComboBox"
         Me.L1ComboBox.Size = New System.Drawing.Size(93, 33)
         Me.L1ComboBox.TabIndex = 26
@@ -313,11 +327,17 @@ Partial Class RLCCalculator
         Me.SeriesRComboBox.FormattingEnabled = True
         Me.SeriesRComboBox.Items.AddRange(New Object() {"MOhms", "kOhms", "Ohms", "mOhms", "uOhms", "nOhms", "pOhms"})
         Me.SeriesRComboBox.Location = New System.Drawing.Point(191, 669)
-        Me.SeriesRComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SeriesRComboBox.Margin = New System.Windows.Forms.Padding(4)
         Me.SeriesRComboBox.Name = "SeriesRComboBox"
         Me.SeriesRComboBox.Size = New System.Drawing.Size(93, 33)
         Me.SeriesRComboBox.TabIndex = 27
         Me.SeriesRComboBox.Text = "Unit"
+        '
+        'RLCContextMenuStrip
+        '
+        Me.RLCContextMenuStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.RLCContextMenuStrip.Name = "RLCContextMenuStrip"
+        Me.RLCContextMenuStrip.Size = New System.Drawing.Size(61, 4)
         '
         'RLCCalculator
         '
@@ -390,4 +410,6 @@ Partial Class RLCCalculator
     Friend WithEvents R2ComboBox As ComboBox
     Friend WithEvents L1ComboBox As ComboBox
     Friend WithEvents SeriesRComboBox As ComboBox
+    Friend WithEvents RLCToolTip As ToolTip
+    Friend WithEvents RLCContextMenuStrip As ContextMenuStrip
 End Class
