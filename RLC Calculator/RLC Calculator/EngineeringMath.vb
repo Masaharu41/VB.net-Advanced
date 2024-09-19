@@ -6,7 +6,7 @@
         Dim notation As String
         Dim vale = EngForce(SumValue)
         notation = MetricPrefix(vale.exp)
-        engNum = Math.Round(vale.enumber)
+        engNum = vale.enumber
         Return $"{engNum}{notation}"
     End Function
 
@@ -20,15 +20,17 @@
             exp = CInt(expNumber(1))
 
             If expNumber(1) > 0 Then
+                'does not work
                 Do Until exp = 0 Or exp = 3 Or exp = 6 Or exp = 9 Or exp = 12
                     exp += 1
-                    enumber = enumber * 10
+                    enumber /= 10
                 Loop
 
             Else
+                'works
                 Do Until exp = 0 Or exp = -3 Or exp = -6 Or exp = -9 Or exp = -12
                     exp -= 1
-                    enumber = enumber * 10
+                    enumber *= 10
                 Loop
             End If
 

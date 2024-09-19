@@ -801,3 +801,91 @@ Branch 2 Impedance = 1.01258594495015 as -9.04306107903769 degrees
 Branch 2 Current = 0.492229166877981 at 13.5929263881588 degrees
 C2 Reactance = 0.159154943091895
 PlaceHolder
+
+Calculated on 1/1/0001 10:21:49 AM
+Generator Voltage = 1
+Frequency = 1
+Total Current = 0.498424336075165 at 4.54986530912109 degrees
+Total Impedance = 2.00632258022248 at 4.54986530912109
+C1 Reactance = 0.159154943091895 at -90 Degrees
+C1 Voltage = 0.0793266968436585 at -85.4501346908789 degress
+R1 Value = 1
+R1 Voltage = 0.498424336075165 at 4.54986530912109
+Parallel Impedance = 1 at 0 degrees
+Parallel Voltage = 0.498424336075165 at 4.54986530912109 degrees
+Branch 1 Impedance = 6.36226513156733 as 80.9569389209623 degrees
+Branch 1 Current = 0.0783407050426361 at -76.4070736118412 degrees
+L1 Reactance = 6.28318530717959
+L1 Voltage = 0.492229166877981 at 13.5929263881588 degrees
+Rseries = 1
+Rseries Voltage = 0.0783407050426361 at -76.4070736118412 degrees
+Branch 2 Impedance = 1.01258594495015 as -9.04306107903769 degrees
+Branch 2 Current = 0.492229166877981 at 13.5929263881588 degrees
+C2 Reactance = 0.159154943091895
+PlaceHolder
+
+Calculated on 1/1/0001 10:22:12 AM
+Generator Voltage = 11
+Frequency = 2
+Total Current = 5.49565151791308 at 2.278524728622 degrees
+Total Impedance = 2.00158251740408 at 2.278524728622
+C1 Reactance = 0.0795774715459477 at -90 Degrees
+C1 Voltage = 0.437330052293172 at -87.721475271378 degress
+R1 Value = 1
+R1 Voltage = 5.49565151791308 at 2.278524728622
+Parallel Impedance = 1 at -1.4210854715202E-14 degrees
+Parallel Voltage = 5.49565151791308 at 2.27852472862199 degrees
+Branch 1 Impedance = 12.6060965575165 as 85.4501346908789 degrees
+Branch 1 Current = 0.435951881919882 at -83.1716099622569 degrees
+L1 Reactance = 12.5663706143592
+L1 Voltage = 5.47833291823259 at 6.82839003774308 degrees
+Rseries = 1
+Rseries Voltage = 0.435951881919882 at -83.1716099622569 degrees
+Branch 2 Impedance = 1.00316129011124 as -4.54986530912109 degrees
+Branch 2 Current = 5.47833291823259 at 6.82839003774308 degrees
+C2 Reactance = 0.0795774715459477
+PlaceHolder
+
+Calculated on 1/1/0001 10:24:52 AM
+Generator Voltage = 11
+Frequency = 1
+Total Current = 3.09792021471078 at -14.4563805332563 degrees
+Total Impedance = 3.55076930250347 at -14.4563805332563
+C1 Reactance = 0.0530516476972984 at -90 Degrees
+C1 Voltage = 0.164349771825175 at -104.456380533256 degress
+R1 Value = 1
+R1 Voltage = 3.09792021471078 at -14.4563805332563
+Parallel Impedance = 2.6130710172253 at 21.0712990709189 degrees
+Parallel Voltage = 8.0950855267371 at 6.61491853766264 degrees
+Branch 1 Impedance = 6.36226513156733 as 80.9569389209623 degrees
+Branch 1 Current = 1.27235903555357 at -74.3420203832997 degrees
+L1 Reactance = 6.28318530717959
+L1 Voltage = 7.99446759764737 at 15.6579796167003 degrees
+Rseries = 1
+Rseries Voltage = 1.27235903555357 at -74.3420203832997 degrees
+Branch 2 Impedance = 3.00421874967696 as -3.03678865343532 degrees
+Branch 2 Current = 2.69457259981736 at 9.65170719109795 degrees
+C2 Reactance = 0.159154943091895
+PlaceHolder
+
+Calculated on 1/1/0001 10:25:54 AM
+Generator Voltage = 1
+Frequency = 1
+Total Current = 0.498424336075165 at 4.54986530912109 degrees
+Total Impedance = 2.00632258022248 at 4.54986530912109
+C1 Reactance = 0.159154943091895 at -90 Degrees
+C1 Voltage = 0.0793266968436585 at -85.4501346908789 degress
+R1 Value = 1
+R1 Voltage = 0.498424336075165 at 4.54986530912109
+Parallel Impedance = 1 at 0 degrees
+Parallel Voltage = 0.498424336075165 at 4.54986530912109 degrees
+Branch 1 Impedance = 6.36226513156733 as 80.9569389209623 degrees
+Branch 1 Current = 0.0783407050426361 at -76.4070736118412 degrees
+L1 Reactance = 6.28318530717959
+L1 Voltage = 0.492229166877981 at 13.5929263881588 degrees
+Rseries = 1
+Rseries Voltage = 0.0783407050426361 at -76.4070736118412 degrees
+Branch 2 Impedance = 1.01258594495015 as -9.04306107903769 degrees
+Branch 2 Current = 0.492229166877981 at 13.5929263881588 degrees
+C2 Reactance = 0.159154943091895
+PlaceHolder

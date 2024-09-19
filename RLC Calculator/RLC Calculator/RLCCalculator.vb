@@ -189,10 +189,9 @@ Public Class RLCCalculator
 
     End Sub
     ' still need todo
-    ' add full polar calculations // missing angles
-    ' add output file
+    ' {*} add full polar calculations // missing angles
+    ' {*} add output file
     Sub StoreCalcs()
-        '  Dim temp As String
 
         Try
             FileOpen(1, "..\..\RLC_Data.txt", OpenMode.Append)
@@ -210,6 +209,10 @@ Public Class RLCCalculator
         Print(1, "PlaceHolder" + vbNewLine)
         FileClose(1)
     End Sub
+    ''' <summary>
+    ''' Sub that checks that all inputs are valid for numeric operations
+    ''' </summary>
+    ''' <returns></returns> returns a true value is errors are found and math will not execute
     Function ValidData() As Boolean
         Dim errorBool As Boolean = False
         Dim errorMsg As String = "The Following Errors Have Occured"
@@ -296,23 +299,11 @@ Public Class RLCCalculator
         Else
 
         End If
-        MsgBox(EngineeringMath.EngineeringConverter(11.11334))
+        MsgBox(EngineeringMath.EngineeringConverter(111111))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
 
-    'Function C2Unit() As Double
-    '    Dim c2 As Double
-    '    If 0 = C2ComboBox.SelectedIndex Then
-    '        c2 = CDbl(C2TextBox.Text) * 1000000
-    '    ElseIf -1 = C2ComboBox.SelectedIndex Then
-    '        c2 = CDbl(C2TextBox.Text) * 1000
-    '    ElseIf -2 = C2ComboBox.SelectedIndex Then
-    '        c2 = CDbl(C2TextBox.Text)
-    '    End If
-
-    '    Return c2
-    'End Function
 End Class
