@@ -296,7 +296,7 @@ Public Class RLCCalculator
         Else
 
         End If
-        EngineeringMath.EngForce(11.111)
+        MsgBox(EngineeringMath.EngineeringConverter(11.11334))
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
