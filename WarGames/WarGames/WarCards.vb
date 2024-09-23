@@ -6,9 +6,8 @@
 '{} Track Results of each card turn
 '
 
-
-
-
+Option Strict On
+Option Explicit On
 
 Public Class WarCards
 
