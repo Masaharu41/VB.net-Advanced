@@ -10,5 +10,6 @@ Option Strict On
 Option Explicit On
 
 Public Class WarCards
-
+    Dim player1(26, 1) As Integer
+    Dim player2(26, 1) As Integer
 End Class
