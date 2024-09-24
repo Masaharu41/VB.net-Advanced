@@ -1,13 +1,10 @@
-﻿﻿Imports System.Diagnostics.Tracing
-
-Public Class Shuffler
+﻿Public Class Shuffler
     'Sub NewGame(ByRef tracker(,) As Boolean)
     '    Console.Clear()
     '    ReDim tracker(12, 3)
     'End Sub
 
-    Public Sub DrawCard(ByRef player1(,) As Integer, ByRef player2(,) As Integer)
-        Dim currentSuit%, currentNumber%
+    Public Shared Sub DrawCard(ByRef player1(,) As Integer, ByRef player2(,) As Integer)
         Dim player1Deal As Boolean = True
         Dim dealer As Boolean
         Dim i%, e%
@@ -25,14 +22,17 @@ Public Class Shuffler
                 player1Deal = True
                 e += 1
             End If
-            currentNumber = RandomNumberZero(12)
-            currentSuit = RandomNumberZero(3)
+            If i = 26 And e = 26 Then
+                dealer = True
+            Else
+                dealer = False
+            End If
         Loop Until dealer = True
 
 
     End Sub
 
-    Private Function RandomNumberZero(max%) As Integer
+    Public Shared Function RandomNumberZero(max%) As Integer
         Dim _randomNumber As Integer
         Randomize()
         _randomNumber = CInt(Math.Floor(Rnd() * (max + 1)))

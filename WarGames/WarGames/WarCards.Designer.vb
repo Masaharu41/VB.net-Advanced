@@ -22,10 +22,29 @@ Partial Class WarCards
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.DealButton = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'DealButton
+        '
+        Me.DealButton.Location = New System.Drawing.Point(333, 23)
+        Me.DealButton.Name = "DealButton"
+        Me.DealButton.Size = New System.Drawing.Size(109, 39)
+        Me.DealButton.TabIndex = 0
+        Me.DealButton.Text = "Deal"
+        Me.DealButton.UseVisualStyleBackColor = True
+        '
+        'WarCards
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.DealButton)
+        Me.Name = "WarCards"
         Me.Text = "Form1"
+        Me.ResumeLayout(False)
+
     End Sub
 
+    Friend WithEvents DealButton As Button
 End Class
