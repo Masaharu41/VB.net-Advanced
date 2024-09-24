@@ -42,9 +42,10 @@ Public Class WarCards
             player2Wins(twoWin) = player2Card
             twoWin += twoWin
         ElseIf player1Card = player2Card Then
-
-        Else
-            player1Wins(playCount) = player2Card
+            playCount += 2
+            If player1Card Then
+            Else
+                player1Wins(playCount) = player2Card
             oneWin += oneWin
         End If
 
