@@ -27,6 +27,7 @@ Public Class WarCards
     Function PlayGame() As Integer
         Static Dim playCount%, twoWin%, oneWin%
         Dim player1Card%, player2Card%
+        Dim tie As Boolean = False
 
         If playCount <= 26 Then
             player1Card = player1(playCount, 0)
@@ -41,15 +42,31 @@ Public Class WarCards
         If player1Card < player2Card Then
             player2Wins(twoWin) = player2Card
             twoWin += twoWin
+            player2Wins(twoWin) = player1Card
+            twoWin += twoWin
         ElseIf player1Card = player2Card Then
-            playCount += 2
-            If player1Card Then
-            Else
-                player1Wins(playCount) = player2Card
+            playCount += 3
+            tie = True
+            player1Card = player1(playCount, 0)
+            player2Card = player2(playCount, 0)
+            If player1Card < player2Card Then
+                Do
+                    player2Wins(twoWin) = player1()
+                Loop Until 
+
+            End If
+        Else
+            player1Wins(oneWin) = player2Card
+            oneWin += oneWin
+            player2Wins(oneWin) = player1Card
             oneWin += oneWin
         End If
+        If tie = True Then
 
-        playCount += playCount
+        Else
+            playCount += playCount
+        End If
+
         Return playCount
     End Function
 
