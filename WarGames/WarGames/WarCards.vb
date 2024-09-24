@@ -25,7 +25,7 @@ Public Class WarCards
     End Sub
 
     Function PlayGame() As Integer
-        Static Dim playCount%, twoWin%, oneWin%
+        Static Dim playCount%, twoWin%, oneWin%, dummmyCount%
         Dim player1Card%, player2Card%
         Dim tie As Boolean = False
 
@@ -51,9 +51,24 @@ Public Class WarCards
             player2Card = player2(playCount, 0)
             If player1Card < player2Card Then
                 Do
-                    player2Wins(twoWin) = player1()
-                Loop Until 
-
+                    dummmyCount = playCount - 3
+                    player2Wins(twoWin) = player1(dummmyCount, 0)
+                    twoWin += twoWin
+                    player2Wins(twoWin) = player2(dummmyCount, 0)
+                    twoWin += twoWin
+                    dummmyCount += dummmyCount
+                Loop Until playCount = dummmyCount
+            ElseIf player2Card < player1Card Then
+                Do
+                    dummmyCount = playCount - 3
+                    player1Wins(oneWin) = player1(dummmyCount, 0)
+                    oneWin += oneWin
+                    player1Wins(twoWin) = player2(dummmyCount, 0)
+                    oneWin += oneWin
+                    dummmyCount += dummmyCount
+                Loop Until playCount = dummmyCount
+            Else
+                MsgBox("listen here Luck is not on your side")
             End If
         Else
             player1Wins(oneWin) = player2Card
