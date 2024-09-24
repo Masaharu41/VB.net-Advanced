@@ -1,7 +1,7 @@
 ﻿'Owen Fujii
 'War Card Game
 'TODO
-'{} Create a random deck for each player using standard 52 card deck 50/50
+'{*} Create a random deck for each player using standard 52 card deck 50/50
 '{} Display Cards Graphically
 '{} Track Results of each card turn
 '
@@ -15,16 +15,17 @@ Public Class WarCards
     Dim player1Wins() As Integer
     Dim player2Wins() As Integer
 
-    Sub CreateDecks()
-        Shuffler.DrawCard(player1, player2)
-        Console.Read()
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles DealButton.Click
-        CreateDecks()
+        Shuffler.DrawCard(player1, player2) ' distribute cards to each player
     End Sub
 
+    ''' <summary>
+    ''' Compares the two cards from each player's array based on the play count
+    ''' There is a single catch for equal instances.
+    ''' </summary>
+    ''' <returns></returns>
     Function PlayGame() As Integer
+
         Static Dim playCount%, twoWin%, oneWin%, dummmyCount%
         Dim player1Card%, player2Card%
         Dim tie As Boolean = False
@@ -85,5 +86,8 @@ Public Class WarCards
         Return playCount
     End Function
 
+    Sub DisplayCards()
+        Dim playCount% = PlayGame()
 
+    End Sub
 End Class
