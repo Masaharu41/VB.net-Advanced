@@ -99,4 +99,49 @@ Public Class WarCards
     Private Sub Play_Button_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
         DisplayCards()
     End Sub
+
+    Function DisplayPlayer1(index%) As String
+        Dim card As String
+        Dim suit As String
+        Select Case player1(index, 0)
+            Case 0
+                card = "Ace"
+            Case 1
+                card = "Two"
+            Case 3
+                card = "Three"
+            Case 4
+                card = "Four"
+            Case 5
+                card = "Five"
+            Case 6
+                card = "Six"
+            Case 7
+                card = "Seven"
+            Case 8
+                card = "Eight"
+            Case 9
+                card = "Nine"
+            Case 10
+                card = "Ten"
+            Case 11
+                card = "Joker"
+            Case 12
+                card = "Queen"
+            Case 13
+                card = "King"
+        End Select
+
+        Select Case player1(index, 1)
+            Case 0
+                suit = "Hearts"
+            Case 1
+                suit = "Clubs"
+            Case 2
+                suit = "Diamonds"
+            Case 3
+                suit = "Spades"
+        End Select
+        Return $"{card} {suit}"
+    End Function
 End Class
