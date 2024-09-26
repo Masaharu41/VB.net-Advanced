@@ -3,7 +3,7 @@
 'TODO
 '{*} Create a random deck for each player using standard 52 card deck 50/50
 '{} Display Cards Graphically
-'{} Track Results of each card turn
+'{*} Track Results of each card turn
 '
 
 Option Strict On
@@ -12,10 +12,10 @@ Option Explicit On
 Public Class WarCards
     Dim player1(26, 1) As Integer
     Dim player2(26, 1) As Integer
-    Dim player1Wins() As Integer
-    Dim player2Wins() As Integer
+    Dim player1Wins(52) As Integer
+    Dim player2Wins(52) As Integer
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles DealButton.Click
+    Private Sub Deal_Button_Click(sender As Object, e As EventArgs) Handles DealButton.Click
         Shuffler.DrawCard(player1, player2) ' distribute cards to each player
     End Sub
 
@@ -34,6 +34,8 @@ Public Class WarCards
             player1Card = player1(playCount, 0)
             player2Card = player2(playCount, 0)
         Else
+            ReDim Preserve player2Wins(twoWin - 1)
+            ReDim Preserve player1Wins(oneWin - 1)
             playCount = 0
             twoWin = 0
             oneWin = 0
@@ -89,5 +91,12 @@ Public Class WarCards
     Sub DisplayCards()
         Dim playCount% = PlayGame()
 
+
+
+
+    End Sub
+
+    Private Sub Play_Button_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
+        DisplayCards()
     End Sub
 End Class

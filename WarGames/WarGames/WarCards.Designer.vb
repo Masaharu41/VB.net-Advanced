@@ -23,6 +23,7 @@ Partial Class WarCards
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DealButton = New System.Windows.Forms.Button()
+        Me.PlayButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'DealButton
@@ -34,11 +35,21 @@ Partial Class WarCards
         Me.DealButton.Text = "Deal"
         Me.DealButton.UseVisualStyleBackColor = True
         '
+        'PlayButton
+        '
+        Me.PlayButton.Location = New System.Drawing.Point(305, 224)
+        Me.PlayButton.Name = "PlayButton"
+        Me.PlayButton.Size = New System.Drawing.Size(148, 44)
+        Me.PlayButton.TabIndex = 1
+        Me.PlayButton.Text = "Play"
+        Me.PlayButton.UseVisualStyleBackColor = True
+        '
         'WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.PlayButton)
         Me.Controls.Add(Me.DealButton)
         Me.Name = "WarCards"
         Me.Text = "Form1"
@@ -47,4 +58,5 @@ Partial Class WarCards
     End Sub
 
     Friend WithEvents DealButton As Button
+    Friend WithEvents PlayButton As Button
 End Class
