@@ -24,39 +24,68 @@ Partial Class WarCards
     Private Sub InitializeComponent()
         Me.DealButton = New System.Windows.Forms.Button()
         Me.PlayButton = New System.Windows.Forms.Button()
+        Me.Player2PictureBox = New System.Windows.Forms.PictureBox()
+        Me.Player1PictureBox = New System.Windows.Forms.PictureBox()
+        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DealButton
         '
-        Me.DealButton.Location = New System.Drawing.Point(333, 23)
+        Me.DealButton.Location = New System.Drawing.Point(250, 18)
+        Me.DealButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.DealButton.Name = "DealButton"
-        Me.DealButton.Size = New System.Drawing.Size(109, 39)
+        Me.DealButton.Size = New System.Drawing.Size(82, 31)
         Me.DealButton.TabIndex = 0
         Me.DealButton.Text = "Deal"
         Me.DealButton.UseVisualStyleBackColor = True
         '
         'PlayButton
         '
-        Me.PlayButton.Location = New System.Drawing.Point(305, 224)
+        Me.PlayButton.Location = New System.Drawing.Point(229, 179)
+        Me.PlayButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.PlayButton.Name = "PlayButton"
-        Me.PlayButton.Size = New System.Drawing.Size(148, 44)
+        Me.PlayButton.Size = New System.Drawing.Size(111, 35)
         Me.PlayButton.TabIndex = 1
         Me.PlayButton.Text = "Play"
         Me.PlayButton.UseVisualStyleBackColor = True
         '
+        'Player2PictureBox
+        '
+        Me.Player2PictureBox.Location = New System.Drawing.Point(367, 66)
+        Me.Player2PictureBox.Name = "Player2PictureBox"
+        Me.Player2PictureBox.Size = New System.Drawing.Size(179, 259)
+        Me.Player2PictureBox.TabIndex = 2
+        Me.Player2PictureBox.TabStop = False
+        '
+        'Player1PictureBox
+        '
+        Me.Player1PictureBox.Location = New System.Drawing.Point(28, 66)
+        Me.Player1PictureBox.Name = "Player1PictureBox"
+        Me.Player1PictureBox.Size = New System.Drawing.Size(177, 259)
+        Me.Player1PictureBox.TabIndex = 3
+        Me.Player1PictureBox.TabStop = False
+        '
         'WarCards
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(600, 360)
+        Me.Controls.Add(Me.Player1PictureBox)
+        Me.Controls.Add(Me.Player2PictureBox)
         Me.Controls.Add(Me.PlayButton)
         Me.Controls.Add(Me.DealButton)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "WarCards"
         Me.Text = "Form1"
+        CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents DealButton As Button
     Friend WithEvents PlayButton As Button
+    Friend WithEvents Player2PictureBox As PictureBox
+    Friend WithEvents Player1PictureBox As PictureBox
 End Class
