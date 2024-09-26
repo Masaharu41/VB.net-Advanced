@@ -82,7 +82,7 @@ Public Class WarCards
         If tie = True Then
 
         Else
-            playCount += playCount
+            playCount += 1
         End If
 
         Return playCount
@@ -90,9 +90,11 @@ Public Class WarCards
 
     Sub DisplayCards()
         Dim playCount% = PlayGame()
+        Player1PictureBox.Refresh()
+        Player2PictureBox.Refresh()
 
         Player1PictureBox.Image = Image.FromFile($"C:\Users\Quickemu\source\repos\VB.net-Advanced\WarGames\WarGames\Card Images\{DisplayPlayer1(playCount)}.png")
-        '  Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{DisplayPlayer2(playCount)}.png")
+        Player2PictureBox.Image = Image.FromFile($"C:\Users\Quickemu\source\repos\VB.net-Advanced\WarGames\WarGames\Card Images\{DisplayPlayer2(playCount)}.png")
 
 
     End Sub

@@ -52,6 +52,7 @@ Partial Class WarCards
         '
         'Player2PictureBox
         '
+        Me.Player2PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Player2PictureBox.Location = New System.Drawing.Point(367, 66)
         Me.Player2PictureBox.Name = "Player2PictureBox"
         Me.Player2PictureBox.Size = New System.Drawing.Size(179, 259)
@@ -60,6 +61,7 @@ Partial Class WarCards
         '
         'Player1PictureBox
         '
+        Me.Player1PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Player1PictureBox.Location = New System.Drawing.Point(28, 66)
         Me.Player1PictureBox.Name = "Player1PictureBox"
         Me.Player1PictureBox.Size = New System.Drawing.Size(177, 259)
