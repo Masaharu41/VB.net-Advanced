@@ -36,15 +36,19 @@ Public Class WarCards
             player1Card = player1(playCount, 0)
             player2Card = player2(playCount, 0)
         Else
+            ' never enters this case????
             ReDim Preserve player2Wins(twoWin - 1)
             ReDim Preserve player1Wins(oneWin - 1)
+            ReDim player1(26, 1)
+            ReDim player2(26, 1)
+
             playCount = 0
             twoWin = 0
             oneWin = 0
             Return -1
         End If
 
-        If player1Card > player2Card Then
+        If player1Card < player2Card Then
             OutcomeLabel.Text = "Player2 Wins This Round"
             player2Wins(twoWin) = player2Card
             twoWin += twoWin
@@ -53,31 +57,36 @@ Public Class WarCards
         ElseIf player1Card = player2Card Then
             OutcomeLabel.Text = "There Has been a Tie"
             playCount += 3
-            tie = True
-            player1Card = player1(playCount, 0)
-            player2Card = player2(playCount, 0)
-            If player1Card > player2Card Then
-                OutcomeLabel.Text = "Player 2 Wins the Draw"
-                Do
+            If playCount <= 26 Then
+                tie = True
+                player1Card = player1(playCount, 0)
+                player2Card = player2(playCount, 0)
+                If player1Card > player2Card Then
+                    OutcomeLabel.Text = "Player 2 Wins the Draw"
                     dummmyCount = playCount - 3
-                    player2Wins(twoWin) = player1(dummmyCount, 0)
-                    twoWin += twoWin
-                    player2Wins(twoWin) = player2(dummmyCount, 0)
-                    twoWin += twoWin
-                    dummmyCount += dummmyCount
-                Loop Until playCount = dummmyCount
-            ElseIf player2Card > player1Card Then
-                OutcomeLabel.Text = "Player 1 Wins the Draw"
-                Do
+                    Do
+                        player2Wins(twoWin) = player1(dummmyCount, 0)
+                        twoWin += twoWin
+                        player2Wins(twoWin) = player2(dummmyCount, 0)
+                        twoWin += twoWin
+                        dummmyCount += 1
+                    Loop Until playCount = dummmyCount
+                ElseIf player2Card > player1Card Then
+                    OutcomeLabel.Text = "Player 1 Wins the Draw"
                     dummmyCount = playCount - 3
-                    player1Wins(oneWin) = player1(dummmyCount, 0)
-                    oneWin += oneWin
-                    player1Wins(twoWin) = player2(dummmyCount, 0)
-                    oneWin += oneWin
-                    dummmyCount += dummmyCount
-                Loop Until playCount = dummmyCount
+                    Do
+                        player1Wins(oneWin) = player1(dummmyCount, 0)
+                        oneWin += oneWin
+                        player1Wins(twoWin) = player2(dummmyCount, 0)
+                        oneWin += oneWin
+                        dummmyCount += 1
+                    Loop Until playCount = dummmyCount
+                Else
+                    MsgBox("listen here Luck is not on your side")
+                End If
             Else
-                MsgBox("listen here Luck is not on your side")
+                playCount = 25
+
             End If
         Else
             OutcomeLabel.Text = "Player 1 Wins This Round"
@@ -86,6 +95,7 @@ Public Class WarCards
             player2Wins(oneWin) = player1Card
             oneWin += oneWin
         End If
+
         If tie = True Then
         Else
             playCount += 1
@@ -112,8 +122,8 @@ Public Class WarCards
             End If
         Else
 
-            Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount, 0), player1(playCount, 1))}.png")
-            Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount, 0), player2(playCount, 1))}.png")
+            Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount - 1, 0), player1(playCount - 1, 1))}.png")
+            Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount - 1, 0), player2(playCount - 1, 1))}.png")
         End If
 
 
