@@ -2,6 +2,7 @@
 Option Explicit On
 'Owen Fujii
 'War Card Game
+'RCET 3371
 'TODO
 '{*} Create a random deck for each player using standard 52 card deck 50/50
 '{*} Display Cards Graphically
@@ -103,8 +104,11 @@ Public Class WarCards
 
         Return playCount
     End Function
-
+    ''' <summary>
+    ''' Handles the majority of display responsibilities for each card
+    ''' </summary>
     Sub DisplayCards()
+
         Dim playCount% = PlayGame()
         Dim player1Result%, player2Result%
         Player1PictureBox.Refresh()
