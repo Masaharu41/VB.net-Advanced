@@ -87,7 +87,6 @@ Public Class WarCards
             oneWin += oneWin
         End If
         If tie = True Then
-
         Else
             playCount += 1
         End If
@@ -97,11 +96,26 @@ Public Class WarCards
 
     Sub DisplayCards()
         Dim playCount% = PlayGame()
+        Dim player1Result%, player2Result%
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
-        Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount, 0), player1(playCount, 1))}.png")
-        Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount, 0), player2(playCount, 1))}.png")
+        If playCount = -1 Then
+            player1Result = UBound(player1Wins)
+            player2Result = UBound(player2Wins)
+            If player1Result > player2Result Then
+                OutcomeLabel.Text = "Player 1 is the master winner"
+            ElseIf player2Result > player1Result Then
+                OutcomeLabel.Text = "Player 2 is the master winner"
+            Else
+                OutcomeLabel.Text = "Neither side wins"
+            End If
+        Else
+
+            Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount, 0), player1(playCount, 1))}.png")
+            Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount, 0), player2(playCount, 1))}.png")
+        End If
+
 
 
     End Sub
