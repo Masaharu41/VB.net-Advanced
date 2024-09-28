@@ -45,16 +45,19 @@ Public Class WarCards
         End If
 
         If player1Card < player2Card Then
+            OutcomeLabel.Text = "Player2 Wins This Round"
             player2Wins(twoWin) = player2Card
             twoWin += twoWin
             player2Wins(twoWin) = player1Card
             twoWin += twoWin
         ElseIf player1Card = player2Card Then
+            OutcomeLabel.Text = "There Has been a Tie"
             playCount += 3
             tie = True
             player1Card = player1(playCount, 0)
             player2Card = player2(playCount, 0)
             If player1Card < player2Card Then
+                OutcomeLabel.Text = "Player 2 Wins the Draw"
                 Do
                     dummmyCount = playCount - 3
                     player2Wins(twoWin) = player1(dummmyCount, 0)
@@ -64,6 +67,7 @@ Public Class WarCards
                     dummmyCount += dummmyCount
                 Loop Until playCount = dummmyCount
             ElseIf player2Card < player1Card Then
+                OutcomeLabel.Text = "Player 1 Wins the Draw"
                 Do
                     dummmyCount = playCount - 3
                     player1Wins(oneWin) = player1(dummmyCount, 0)
@@ -76,6 +80,7 @@ Public Class WarCards
                 MsgBox("listen here Luck is not on your side")
             End If
         Else
+            OutcomeLabel.Text = "Player 1 Wins This Round"
             player1Wins(oneWin) = player2Card
             oneWin += oneWin
             player2Wins(oneWin) = player1Card

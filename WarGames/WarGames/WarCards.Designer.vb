@@ -26,6 +26,7 @@ Partial Class WarCards
         Me.PlayButton = New System.Windows.Forms.Button()
         Me.Player2PictureBox = New System.Windows.Forms.PictureBox()
         Me.Player1PictureBox = New System.Windows.Forms.PictureBox()
+        Me.OutcomeLabel = New System.Windows.Forms.Label()
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -72,11 +73,21 @@ Partial Class WarCards
         Me.Player1PictureBox.TabIndex = 3
         Me.Player1PictureBox.TabStop = False
         '
+        'OutcomeLabel
+        '
+        Me.OutcomeLabel.AutoSize = True
+        Me.OutcomeLabel.Location = New System.Drawing.Point(300, 351)
+        Me.OutcomeLabel.Name = "OutcomeLabel"
+        Me.OutcomeLabel.Size = New System.Drawing.Size(61, 25)
+        Me.OutcomeLabel.TabIndex = 4
+        Me.OutcomeLabel.Text = "Hello"
+        '
         'WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.OutcomeLabel)
         Me.Controls.Add(Me.Player1PictureBox)
         Me.Controls.Add(Me.Player2PictureBox)
         Me.Controls.Add(Me.PlayButton)
@@ -87,6 +98,7 @@ Partial Class WarCards
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -94,4 +106,5 @@ Partial Class WarCards
     Friend WithEvents PlayButton As Button
     Friend WithEvents Player2PictureBox As PictureBox
     Friend WithEvents Player1PictureBox As PictureBox
+    Friend WithEvents OutcomeLabel As Label
 End Class
