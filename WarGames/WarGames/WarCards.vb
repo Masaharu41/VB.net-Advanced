@@ -4,9 +4,10 @@ Option Explicit On
 'War Card Game
 'TODO
 '{*} Create a random deck for each player using standard 52 card deck 50/50
-'{} Display Cards Graphically
+'{*} Display Cards Graphically
 '{*} Track Results of each card turn
-'
+'{} Determine winner
+'{} Display Winner 
 
 Imports WarGames.My.Resources
 
@@ -91,12 +92,11 @@ Public Class WarCards
 
     Sub DisplayCards()
         Dim playCount% = PlayGame()
-        'Dim imageOne As String
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
-        Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{DisplayPlayer1(playCount)}.png")
-        Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{DisplayPlayer2(playCount)}.png")
+        Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount, 0), player1(playCount, 1))}.png")
+        Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount, 0), player2(playCount, 1))}.png")
 
 
     End Sub
@@ -104,40 +104,47 @@ Public Class WarCards
     Private Sub Play_Button_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
         DisplayCards()
     End Sub
+    ''' <summary>
+    ''' A function to decode the integers into a string for the file name of the corresponding card
+    ''' </summary>
+    ''' <param name="indexCard%"></param>
+    ''' <param name="suitIndex%"></param>
+    ''' <returns></returns>
+    ''' returns a string that is the string of the file that will be selected. 
+    Function CardSuit(indexCard%, suitIndex%) As String
 
-    Function DisplayPlayer1(index%) As String
         Dim card As String
         Dim suit As String
-        Select Case player1(index, 0)
+        Select Case indexCard
             Case 0
                 card = "Ace"
             Case 1
                 card = "Two"
-            Case 3
+            Case 2
                 card = "Three"
-            Case 4
+            Case 3
                 card = "Four"
-            Case 5
+            Case 4
                 card = "Five"
-            Case 6
+            Case 5
                 card = "Six"
-            Case 7
+            Case 6
                 card = "Seven"
-            Case 8
+            Case 7
                 card = "Eight"
-            Case 9
+            Case 8
                 card = "Nine"
-            Case 10
+            Case 9
                 card = "Ten"
-            Case 11
+            Case 10
                 card = "Joker"
-            Case 12
+            Case 11
                 card = "Queen"
-            Case 13
+            Case 12
                 card = "King"
         End Select
 
-        Select Case player1(index, 1)
+        Select Case suitIndex
             Case 0
                 suit = "Hearts"
             Case 1
@@ -150,49 +157,6 @@ Public Class WarCards
         Return $"{card} {suit}"
     End Function
 
-    Function DisplayPlayer2(index%) As String
-        Dim card As String
-        Dim suit As String
-        Select Case player2(index, 0)
-            Case 0
-                card = "Ace"
-            Case 1
-                card = "Two"
-            Case 3
-                card = "Three"
-            Case 4
-                card = "Four"
-            Case 5
-                card = "Five"
-            Case 6
-                card = "Six"
-            Case 7
-                card = "Seven"
-            Case 8
-                card = "Eight"
-            Case 9
-                card = "Nine"
-            Case 10
-                card = "Ten"
-            Case 11
-                card = "Joker"
-            Case 12
-                card = "Queen"
-            Case 13
-                card = "King"
-        End Select
 
-        Select Case player2(index, 1)
-            Case 0
-                suit = "Hearts"
-            Case 1
-                suit = "Clubs"
-            Case 2
-                suit = "Diamonds"
-            Case 3
-                suit = "Spades"
-        End Select
-        Return $"{card} {suit}"
-    End Function
 
 End Class
