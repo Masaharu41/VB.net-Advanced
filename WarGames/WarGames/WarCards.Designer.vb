@@ -57,7 +57,7 @@ Partial Class WarCards
         '
         Me.Player2PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Player2PictureBox.Location = New System.Drawing.Point(539, 82)
-        Me.Player2PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Player2PictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Player2PictureBox.Name = "Player2PictureBox"
         Me.Player2PictureBox.Size = New System.Drawing.Size(336, 441)
         Me.Player2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -68,7 +68,7 @@ Partial Class WarCards
         '
         Me.Player1PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Player1PictureBox.Location = New System.Drawing.Point(50, 82)
-        Me.Player1PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Player1PictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Player1PictureBox.Name = "Player1PictureBox"
         Me.Player1PictureBox.Size = New System.Drawing.Size(336, 441)
         Me.Player1PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -80,9 +80,9 @@ Partial Class WarCards
         Me.OutcomeLabel.AutoSize = True
         Me.OutcomeLabel.Location = New System.Drawing.Point(355, 556)
         Me.OutcomeLabel.Name = "OutcomeLabel"
-        Me.OutcomeLabel.Size = New System.Drawing.Size(61, 25)
+        Me.OutcomeLabel.Size = New System.Drawing.Size(399, 25)
         Me.OutcomeLabel.TabIndex = 4
-        Me.OutcomeLabel.Text = "Hello"
+        Me.OutcomeLabel.Text = "Hello! Press Deal Cards to begin playing"
         '
         'Player2Label
         '
@@ -106,7 +106,7 @@ Partial Class WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1191, 848)
+        Me.ClientSize = New System.Drawing.Size(1150, 692)
         Me.Controls.Add(Me.Player1Label)
         Me.Controls.Add(Me.Player2Label)
         Me.Controls.Add(Me.OutcomeLabel)

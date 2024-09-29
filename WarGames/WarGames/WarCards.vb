@@ -1,15 +1,16 @@
-﻿Option Strict On
-Option Explicit On
-'Owen Fujii
+﻿'Owen Fujii
 'War Card Game
 'RCET 3371
 'TODO
 '{*} Create a random deck for each player using standard 52 card deck 50/50
 '{*} Display Cards Graphically
 '{*} Track Results of each card turn
-'{} Determine winner
-'{} Display Winner 
+'{*} Determine winner
+'{*} Display Winner 
+'{} Track 
 
+Option Strict On
+Option Explicit On
 Imports WarGames.My.Resources
 
 Public Class WarCards
@@ -20,6 +21,9 @@ Public Class WarCards
 
     Private Sub Deal_Button_Click(sender As Object, e As EventArgs) Handles DealButton.Click
         Shuffler.DrawCard(player1, player2) ' distribute cards to each player
+        PlayButton.Enabled = True
+        DealButton.Enabled = False
+
     End Sub
 
     ''' <summary>
@@ -27,6 +31,7 @@ Public Class WarCards
     ''' There is a single catch for equal instances.
     ''' </summary>
     ''' <returns></returns>
+    ''' Returns the incremented playcount
     Function PlayGame() As Integer
 
         Static Dim playCount%, twoWin%, oneWin%, dummmyCount%
@@ -39,8 +44,10 @@ Public Class WarCards
         Else
             ReDim Preserve player2Wins(twoWin - 1)
             ReDim Preserve player1Wins(oneWin - 1)
-            ReDim player1(26, 1)
-            ReDim player2(26, 1)
+            ReDim player1(25, 1)
+            ReDim player2(25, 1)
+            PlayButton.Enabled = False
+            DealButton.Enabled = True
 
             playCount = 0
             twoWin = 0
@@ -57,7 +64,7 @@ Public Class WarCards
         ElseIf player1Card = player2Card Then
             OutcomeLabel.Text = "There Has been a Tie"
             playCount += 3
-            If playCount <= 26 Then
+            If playCount <= 25 Then
                 tie = True
                 player1Card = player1(playCount, 0)
                 player2Card = player2(playCount, 0)
@@ -133,6 +140,12 @@ Public Class WarCards
 
     End Sub
 
+    ''' <summary>
+    ''' When play button is pressed begin entering the first sub
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+
     Private Sub Play_Button_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
         DisplayCards()
     End Sub
@@ -189,6 +202,14 @@ Public Class WarCards
         Return $"{card} {suit}"
     End Function
 
+    ''' <summary>
+    ''' When the from loads disable the ability to play until the deal button is pressed 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
-
+    Private Sub WarCards_Load(sender As Object, e As EventArgs) Handles Me.Load
+        PlayButton.Enabled = False
+        DealButton.Enabled = True
+    End Sub
 End Class
