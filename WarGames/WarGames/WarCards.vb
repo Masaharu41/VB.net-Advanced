@@ -1,4 +1,6 @@
-﻿'Owen Fujii
+﻿Option Strict On
+Option Explicit On
+'Owen Fujii
 'War Card Game
 'TODO
 '{*} Create a random deck for each player using standard 52 card deck 50/50
@@ -6,8 +8,7 @@
 '{*} Track Results of each card turn
 '
 
-Option Strict On
-Option Explicit On
+Imports WarGames.My.Resources
 
 Public Class WarCards
     Dim player1(26, 1) As Integer
@@ -90,11 +91,12 @@ Public Class WarCards
 
     Sub DisplayCards()
         Dim playCount% = PlayGame()
+        'Dim imageOne As String
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
-        Player1PictureBox.Image = Image.FromFile($"C:\Users\Quickemu\source\repos\VB.net-Advanced\WarGames\WarGames\Card Images\{DisplayPlayer1(playCount)}.png")
-        Player2PictureBox.Image = Image.FromFile($"C:\Users\Quickemu\source\repos\VB.net-Advanced\WarGames\WarGames\Card Images\{DisplayPlayer2(playCount)}.png")
+        Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{DisplayPlayer1(playCount)}.png")
+        Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{DisplayPlayer2(playCount)}.png")
 
 
     End Sub
