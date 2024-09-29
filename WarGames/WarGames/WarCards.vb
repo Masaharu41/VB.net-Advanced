@@ -14,6 +14,8 @@ Option Explicit On
 Imports WarGames.My.Resources
 
 Public Class WarCards
+    ' Dim the arrays that will be used for the storing decks
+    ' and storing players win records
     Dim player1(25, 1) As Integer
     Dim player2(25, 1) As Integer
     Dim player1Wins(52) As Integer
@@ -56,7 +58,7 @@ Public Class WarCards
         End If
 
         If player1Card < player2Card Then
-            OutcomeLabel.Text = "Player2 Wins This Round"
+            OutcomeLabel.Text = "Player 2 Wins This Round"
             player2Wins(twoWin) = player2Card
             twoWin += 1
             player2Wins(twoWin) = player1Card
@@ -124,9 +126,9 @@ Public Class WarCards
             player1Result = UBound(player1Wins)
             player2Result = UBound(player2Wins)
             If player1Result > player2Result Then
-                OutcomeLabel.Text = "Player 1 is the master winner"
+                OutcomeLabel.Text = "Player 1 is the master winner!"
             ElseIf player2Result > player1Result Then
-                OutcomeLabel.Text = "Player 2 is the master winner"
+                OutcomeLabel.Text = "Player 2 is the master winner!"
             Else
                 OutcomeLabel.Text = "Neither side wins"
             End If
