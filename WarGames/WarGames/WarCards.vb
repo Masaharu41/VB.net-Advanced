@@ -13,8 +13,8 @@ Option Explicit On
 Imports WarGames.My.Resources
 
 Public Class WarCards
-    Dim player1(26, 1) As Integer
-    Dim player2(26, 1) As Integer
+    Dim player1(25, 1) As Integer
+    Dim player2(25, 1) As Integer
     Dim player1Wins(52) As Integer
     Dim player2Wins(52) As Integer
 
@@ -33,11 +33,10 @@ Public Class WarCards
         Dim player1Card%, player2Card%
         Dim tie As Boolean = False
 
-        If playCount <= 26 Then
+        If playCount <= 25 Then
             player1Card = player1(playCount, 0)
             player2Card = player2(playCount, 0)
         Else
-            ' never enters this case????
             ReDim Preserve player2Wins(twoWin - 1)
             ReDim Preserve player1Wins(oneWin - 1)
             ReDim player1(26, 1)
@@ -52,9 +51,9 @@ Public Class WarCards
         If player1Card < player2Card Then
             OutcomeLabel.Text = "Player2 Wins This Round"
             player2Wins(twoWin) = player2Card
-            twoWin += twoWin
+            twoWin += 1
             player2Wins(twoWin) = player1Card
-            twoWin += twoWin
+            twoWin += 1
         ElseIf player1Card = player2Card Then
             OutcomeLabel.Text = "There Has been a Tie"
             playCount += 3
@@ -67,9 +66,9 @@ Public Class WarCards
                     dummmyCount = playCount - 3
                     Do
                         player2Wins(twoWin) = player1(dummmyCount, 0)
-                        twoWin += twoWin
+                        twoWin += 1
                         player2Wins(twoWin) = player2(dummmyCount, 0)
-                        twoWin += twoWin
+                        twoWin += 1
                         dummmyCount += 1
                     Loop Until playCount = dummmyCount
                 ElseIf player2Card > player1Card Then
@@ -77,9 +76,9 @@ Public Class WarCards
                     dummmyCount = playCount - 3
                     Do
                         player1Wins(oneWin) = player1(dummmyCount, 0)
-                        oneWin += oneWin
+                        oneWin += 1
                         player1Wins(twoWin) = player2(dummmyCount, 0)
-                        oneWin += oneWin
+                        oneWin += 1
                         dummmyCount += 1
                     Loop Until playCount = dummmyCount
                 Else
@@ -92,9 +91,9 @@ Public Class WarCards
         Else
             OutcomeLabel.Text = "Player 1 Wins This Round"
             player1Wins(oneWin) = player2Card
-            oneWin += oneWin
+            oneWin += 1
             player2Wins(oneWin) = player1Card
-            oneWin += oneWin
+            oneWin += 1
         End If
 
         If tie = True Then

@@ -24,7 +24,7 @@
                 player1Deal = True
                 e += 1
             End If
-            If i = 26 And e = 26 Then
+            If i = 25 And e = 25 Then
                 dealer = True
             Else
                 dealer = False
