@@ -123,7 +123,6 @@ Public Class WarCards
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
-        PlaysLabel.Text = $"{playCount - 1}"
 
         If playCount = -1 Then
             player1Result = UBound(player1Wins)
@@ -139,8 +138,10 @@ Public Class WarCards
                 OutcomeLabel.Text = "Neither side wins"
             End If
             totalPlays += 1
+            GamesLabel.Text = $"{totalPlays}"
         Else
 
+            PlaysLabel.Text = $"{playCount - 1}"
             Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount - 1, 0), player1(playCount - 1, 1))}.png")
             Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount - 1, 0), player2(playCount - 1, 1))}.png")
         End If
@@ -221,7 +222,7 @@ Public Class WarCards
         PlayButton.Enabled = False
         DealButton.Enabled = True
         PlaysLabel.Text = ""
-        GameLabel.Text = ""
+        GamesLabel.Text = ""
     End Sub
 
 

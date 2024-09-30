@@ -118,160 +118,166 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Two Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Two Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Two Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Two Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Two Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Two Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Two Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Two Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Three Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Three Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Three Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Three Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Three Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Three Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Three Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Three Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Ten Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ten Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Ten Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ten Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Ten Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ten Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Ten Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ten Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Six Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Six Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Six Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Six Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Six Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Six Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Six Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Six Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Seven Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Seven Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Seven Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Seven Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Seven Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Seven Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Seven Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Seven Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Queen Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Queen Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Queen Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Queen Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Queen Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Queen Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Queen Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Queen Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Nine Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Nine Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Nine Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Nine Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Nine Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Nine Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Nine Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Nine Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="King Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\King Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="King Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\King Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="King Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\King Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="King Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\King Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Joker Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Joker Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Joker Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Joker Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Joker Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Joker Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Joker Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Joker Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Four Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Four Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Four Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Four Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Four Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Four Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Four Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Four Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Five Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Five Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Five Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Five Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Five Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Five Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Five Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Five Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Eight Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Eight Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Eight Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Eight Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Eight Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Eight Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Eight Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Eight Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Ace Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ace Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="King Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\King Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Ace Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Ace Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Two Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Two Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Seven Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seven Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Six Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Six Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="King Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\King Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Two Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Two Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Seven Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seven Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Ace Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Ace Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Six Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Six Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Seven Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seven Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Four Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Four Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Five Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Five Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Joker Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Joker Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Splash.jpg;System.Byte[]</value>
+  </data>
+  <data name="Three Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Three Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nine Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Nine Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Four Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Four Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Three Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Three Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="King Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\King Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Six Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Six Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nine Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Nine Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ten Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ten Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ten Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ten Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Queen Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Queen Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Five Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Five Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ace Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ace Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Five Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Five Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Eight Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Eight Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Eight Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Eight Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ace Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ace Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Ace Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Ace Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Joker Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Joker Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Joker Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Joker Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Four Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Four Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Five Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Five Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Queen Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Queen Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Three Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Three Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Two Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Two Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nine Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Nine Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Three Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Three Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nine Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Nine Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Seven Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Seven Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Six Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Six Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Queen Diamonds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Queen Diamonds.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ten Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ten Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Four Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Four Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Eight Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Eight Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Two Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Two Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Joker Clubs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Joker Clubs.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Ten Hearts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Ten Hearts.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Queen Spades" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Queen Spades.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Splash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
