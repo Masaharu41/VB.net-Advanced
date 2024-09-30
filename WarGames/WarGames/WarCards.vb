@@ -119,19 +119,26 @@ Public Class WarCards
 
         Dim playCount% = PlayGame()
         Dim player1Result%, player2Result%
+        Static Dim totalWinsOne%, totalWinsTwo%, totalPlays%
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
+
+        PlaysLabel.Text = $"{playCount - 1}"
 
         If playCount = -1 Then
             player1Result = UBound(player1Wins)
             player2Result = UBound(player2Wins)
+
             If player1Result > player2Result Then
                 OutcomeLabel.Text = "Player 1 is the master winner!"
+                totalWinsOne += 1
             ElseIf player2Result > player1Result Then
                 OutcomeLabel.Text = "Player 2 is the master winner!"
+                totalWinsTwo += 1
             Else
                 OutcomeLabel.Text = "Neither side wins"
             End If
+            totalPlays += 1
         Else
 
             Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount - 1, 0), player1(playCount - 1, 1))}.png")
@@ -213,5 +220,9 @@ Public Class WarCards
     Private Sub WarCards_Load(sender As Object, e As EventArgs) Handles Me.Load
         PlayButton.Enabled = False
         DealButton.Enabled = True
+        PlaysLabel.Text = ""
+        GameLabel.Text = ""
     End Sub
+
+
 End Class

@@ -29,6 +29,10 @@ Partial Class WarCards
         Me.OutcomeLabel = New System.Windows.Forms.Label()
         Me.Player2Label = New System.Windows.Forms.Label()
         Me.Player1Label = New System.Windows.Forms.Label()
+        Me.PlayLabel = New System.Windows.Forms.Label()
+        Me.PlaysLabel = New System.Windows.Forms.Label()
+        Me.GameLabel = New System.Windows.Forms.Label()
+        Me.GamesLabel = New System.Windows.Forms.Label()
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -36,7 +40,7 @@ Partial Class WarCards
         'DealButton
         '
         Me.DealButton.Location = New System.Drawing.Point(153, 437)
-        Me.DealButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.DealButton.Margin = New System.Windows.Forms.Padding(2)
         Me.DealButton.Name = "DealButton"
         Me.DealButton.Size = New System.Drawing.Size(137, 35)
         Me.DealButton.TabIndex = 0
@@ -46,7 +50,7 @@ Partial Class WarCards
         'PlayButton
         '
         Me.PlayButton.Location = New System.Drawing.Point(38, 437)
-        Me.PlayButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PlayButton.Margin = New System.Windows.Forms.Padding(2)
         Me.PlayButton.Name = "PlayButton"
         Me.PlayButton.Size = New System.Drawing.Size(111, 35)
         Me.PlayButton.TabIndex = 1
@@ -103,11 +107,51 @@ Partial Class WarCards
         Me.Player1Label.TabIndex = 6
         Me.Player1Label.Text = "Player 1"
         '
+        'PlayLabel
+        '
+        Me.PlayLabel.AutoSize = True
+        Me.PlayLabel.Location = New System.Drawing.Point(671, 93)
+        Me.PlayLabel.Name = "PlayLabel"
+        Me.PlayLabel.Size = New System.Drawing.Size(46, 20)
+        Me.PlayLabel.TabIndex = 7
+        Me.PlayLabel.Text = "Plays"
+        '
+        'PlaysLabel
+        '
+        Me.PlaysLabel.AutoSize = True
+        Me.PlaysLabel.Location = New System.Drawing.Point(671, 126)
+        Me.PlaysLabel.Name = "PlaysLabel"
+        Me.PlaysLabel.Size = New System.Drawing.Size(39, 20)
+        Me.PlaysLabel.TabIndex = 8
+        Me.PlaysLabel.Text = "hold"
+        '
+        'GameLabel
+        '
+        Me.GameLabel.AutoSize = True
+        Me.GameLabel.Location = New System.Drawing.Point(671, 174)
+        Me.GameLabel.Name = "GameLabel"
+        Me.GameLabel.Size = New System.Drawing.Size(61, 20)
+        Me.GameLabel.TabIndex = 9
+        Me.GameLabel.Text = "Games"
+        '
+        'GamesLabel
+        '
+        Me.GamesLabel.AutoSize = True
+        Me.GamesLabel.Location = New System.Drawing.Point(671, 207)
+        Me.GamesLabel.Name = "GamesLabel"
+        Me.GamesLabel.Size = New System.Drawing.Size(39, 20)
+        Me.GamesLabel.TabIndex = 10
+        Me.GamesLabel.Text = "hold"
+        '
         'WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(862, 554)
+        Me.Controls.Add(Me.GamesLabel)
+        Me.Controls.Add(Me.GameLabel)
+        Me.Controls.Add(Me.PlaysLabel)
+        Me.Controls.Add(Me.PlayLabel)
         Me.Controls.Add(Me.Player1Label)
         Me.Controls.Add(Me.Player2Label)
         Me.Controls.Add(Me.OutcomeLabel)
@@ -115,7 +159,7 @@ Partial Class WarCards
         Me.Controls.Add(Me.Player2PictureBox)
         Me.Controls.Add(Me.PlayButton)
         Me.Controls.Add(Me.DealButton)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "WarCards"
         Me.Text = "Form1"
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
@@ -132,4 +176,8 @@ Partial Class WarCards
     Friend WithEvents OutcomeLabel As Label
     Friend WithEvents Player2Label As Label
     Friend WithEvents Player1Label As Label
+    Friend WithEvents PlayLabel As Label
+    Friend WithEvents PlaysLabel As Label
+    Friend WithEvents GameLabel As Label
+    Friend WithEvents GamesLabel As Label
 End Class
