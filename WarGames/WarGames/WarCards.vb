@@ -11,6 +11,7 @@
 
 Option Strict On
 Option Explicit On
+Imports System.ComponentModel
 Imports WarGames.My.Resources
 
 Public Class WarCards
@@ -20,6 +21,7 @@ Public Class WarCards
     Dim player2(25, 1) As Integer
     Dim player1Wins(52) As Integer
     Dim player2Wins(52) As Integer
+    Dim totalWinsOne%, totalWinsTwo%, totalPlays%
 
     Private Sub Deal_Button_Click(sender As Object, e As EventArgs) Handles DealButton.Click
         Shuffler.DrawCard(player1, player2) ' distribute cards to each player
@@ -119,7 +121,7 @@ Public Class WarCards
 
         Dim playCount% = PlayGame()
         Dim player1Result%, player2Result%
-        Static Dim totalWinsOne%, totalWinsTwo%, totalPlays%
+        ' Static Dim totalWinsOne%, totalWinsTwo%, totalPlays%
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
@@ -227,5 +229,11 @@ Public Class WarCards
         GamesLabel.Text = ""
     End Sub
 
+    Private Sub WarCards_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        MsgBox($"There were {totalPlays} games played {vbNewLine} Player 1 won {totalWinsOne} times {vbNewLine} Player 2 won {totalWinsTwo} times")
+    End Sub
 
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
 End Class
