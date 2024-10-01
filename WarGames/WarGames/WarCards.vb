@@ -139,6 +139,8 @@ Public Class WarCards
             End If
             totalPlays += 1
             GamesLabel.Text = $"{totalPlays}"
+            ReDim player1Wins(50)
+            ReDim player2Wins(50)
         Else
 
             PlaysLabel.Text = $"{playCount - 1}"
