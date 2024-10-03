@@ -7,7 +7,6 @@
 '{*} Track Results of each card turn
 '{*} Determine winner
 '{*} Display Winner 
-'{} Track 
 
 Option Strict On
 Option Explicit On
@@ -175,31 +174,31 @@ Public Class WarCards
         Dim card As String
         Dim suit As String
         Select Case indexCard
-            Case 0
-                card = "Ace"
-            Case 1
-                card = "Two"
-            Case 2
-                card = "Three"
-            Case 3
-                card = "Four"
-            Case 4
-                card = "Five"
-            Case 5
-                card = "Six"
-            Case 6
-                card = "Seven"
-            Case 7
-                card = "Eight"
-            Case 8
-                card = "Nine"
-            Case 9
-                card = "Ten"
-            Case 10
-                card = "Joker"
-            Case 11
-                card = "Queen"
             Case 12
+                card = "Ace"
+            Case 0
+                card = "Two"
+            Case 1
+                card = "Three"
+            Case 2
+                card = "Four"
+            Case 3
+                card = "Five"
+            Case 4
+                card = "Six"
+            Case 5
+                card = "Seven"
+            Case 6
+                card = "Eight"
+            Case 7
+                card = "Nine"
+            Case 8
+                card = "Ten"
+            Case 9
+                card = "Joker"
+            Case 10
+                card = "Queen"
+            Case 11
                 card = "King"
         End Select
 
