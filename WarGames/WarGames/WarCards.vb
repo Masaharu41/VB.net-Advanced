@@ -7,6 +7,8 @@
 '{*} Track Results of each card turn
 '{*} Determine winner
 '{*} Display Winner 
+'{} Check for duplicate cards
+'{} Add hotkeys
 
 Option Strict On
 Option Explicit On

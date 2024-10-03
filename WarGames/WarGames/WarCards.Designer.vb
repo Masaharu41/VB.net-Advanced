@@ -158,7 +158,7 @@ Partial Class WarCards
         '
         Me.ExitButton.BackColor = System.Drawing.Color.Ivory
         Me.ExitButton.Location = New System.Drawing.Point(38, 476)
-        Me.ExitButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ExitButton.Margin = New System.Windows.Forms.Padding(2)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(111, 33)
         Me.ExitButton.TabIndex = 11
@@ -169,7 +169,7 @@ Partial Class WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.LightCoral
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(862, 554)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.GamesLabel)
