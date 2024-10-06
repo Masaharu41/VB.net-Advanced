@@ -8,7 +8,7 @@
 '{*} Determine winner
 '{*} Display Winner 
 '{} Check for duplicate cards
-'{} Add hotkeys
+'{*} Add hotkeys
 
 Option Strict On
 Option Explicit On
@@ -155,6 +155,26 @@ Public Class WarCards
 
     End Sub
 
+    Sub G_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.G Then
+            DisplayCards()
+        End If
+    End Sub
+
+    Sub D_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.D Then
+            Shuffler.DrawCard(player1, player2) ' distribute cards to each player
+            PlayButton.Enabled = True
+            DealButton.Enabled = False
+        End If
+    End Sub
+
+    Sub F_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F Then
+            Me.Close()
+        End If
+    End Sub
+
     ''' <summary>
     ''' When play button is pressed begin entering the first sub
     ''' </summary>
@@ -224,6 +244,7 @@ Public Class WarCards
     ''' <param name="e"></param>
 
     Private Sub WarCards_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.KeyPreview = True
         PlayButton.Enabled = False
         DealButton.Enabled = True
         PlaysLabel.Text = ""

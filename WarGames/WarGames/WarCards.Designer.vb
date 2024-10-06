@@ -22,6 +22,7 @@ Partial Class WarCards
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.DealButton = New System.Windows.Forms.Button()
         Me.PlayButton = New System.Windows.Forms.Button()
         Me.Player2PictureBox = New System.Windows.Forms.PictureBox()
@@ -34,6 +35,7 @@ Partial Class WarCards
         Me.GameLabel = New System.Windows.Forms.Label()
         Me.GamesLabel = New System.Windows.Forms.Label()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.WarToolTip = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,53 +44,59 @@ Partial Class WarCards
         '
         Me.DealButton.BackColor = System.Drawing.Color.Ivory
         Me.DealButton.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.DealButton.Location = New System.Drawing.Point(153, 437)
+        Me.DealButton.Location = New System.Drawing.Point(187, 524)
         Me.DealButton.Margin = New System.Windows.Forms.Padding(2)
         Me.DealButton.Name = "DealButton"
-        Me.DealButton.Size = New System.Drawing.Size(137, 35)
+        Me.DealButton.Size = New System.Drawing.Size(167, 42)
         Me.DealButton.TabIndex = 0
         Me.DealButton.Text = "Play New Game"
+        Me.WarToolTip.SetToolTip(Me.DealButton, "Press to Deal Cards or press ""D""")
         Me.DealButton.UseVisualStyleBackColor = False
         '
         'PlayButton
         '
         Me.PlayButton.BackColor = System.Drawing.Color.Ivory
-        Me.PlayButton.Location = New System.Drawing.Point(38, 437)
+        Me.PlayButton.Location = New System.Drawing.Point(46, 524)
         Me.PlayButton.Margin = New System.Windows.Forms.Padding(2)
         Me.PlayButton.Name = "PlayButton"
-        Me.PlayButton.Size = New System.Drawing.Size(111, 35)
+        Me.PlayButton.Size = New System.Drawing.Size(136, 42)
         Me.PlayButton.TabIndex = 1
         Me.PlayButton.Text = "Play"
+        Me.WarToolTip.SetToolTip(Me.PlayButton, "Click to Start a war or press ""G""")
         Me.PlayButton.UseVisualStyleBackColor = False
         '
         'Player2PictureBox
         '
         Me.Player2PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Player2PictureBox.Location = New System.Drawing.Point(404, 66)
+        Me.Player2PictureBox.Location = New System.Drawing.Point(494, 79)
+        Me.Player2PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Player2PictureBox.Name = "Player2PictureBox"
-        Me.Player2PictureBox.Size = New System.Drawing.Size(252, 353)
+        Me.Player2PictureBox.Size = New System.Drawing.Size(308, 424)
         Me.Player2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Player2PictureBox.TabIndex = 2
         Me.Player2PictureBox.TabStop = False
+        Me.WarToolTip.SetToolTip(Me.Player2PictureBox, "Player 2 Card Display")
         '
         'Player1PictureBox
         '
         Me.Player1PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Player1PictureBox.Location = New System.Drawing.Point(38, 66)
+        Me.Player1PictureBox.Location = New System.Drawing.Point(46, 79)
+        Me.Player1PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Player1PictureBox.Name = "Player1PictureBox"
-        Me.Player1PictureBox.Size = New System.Drawing.Size(252, 353)
+        Me.Player1PictureBox.Size = New System.Drawing.Size(308, 424)
         Me.Player1PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.Player1PictureBox.TabIndex = 3
         Me.Player1PictureBox.TabStop = False
+        Me.WarToolTip.SetToolTip(Me.Player1PictureBox, "Player 1 Card Display")
         '
         'OutcomeLabel
         '
         Me.OutcomeLabel.AutoSize = True
         Me.OutcomeLabel.BackColor = System.Drawing.Color.White
-        Me.OutcomeLabel.Location = New System.Drawing.Point(333, 444)
+        Me.OutcomeLabel.Location = New System.Drawing.Point(407, 533)
         Me.OutcomeLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.OutcomeLabel.Name = "OutcomeLabel"
-        Me.OutcomeLabel.Size = New System.Drawing.Size(323, 20)
+        Me.OutcomeLabel.Size = New System.Drawing.Size(403, 25)
         Me.OutcomeLabel.TabIndex = 4
         Me.OutcomeLabel.Text = "Hello! Press Play New Game to begin playing"
         '
@@ -96,10 +104,10 @@ Partial Class WarCards
         '
         Me.Player2Label.AutoSize = True
         Me.Player2Label.BackColor = System.Drawing.Color.White
-        Me.Player2Label.Location = New System.Drawing.Point(400, 30)
+        Me.Player2Label.Location = New System.Drawing.Point(489, 36)
         Me.Player2Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Player2Label.Name = "Player2Label"
-        Me.Player2Label.Size = New System.Drawing.Size(65, 20)
+        Me.Player2Label.Size = New System.Drawing.Size(83, 25)
         Me.Player2Label.TabIndex = 5
         Me.Player2Label.Text = "Player 2"
         '
@@ -107,10 +115,10 @@ Partial Class WarCards
         '
         Me.Player1Label.AutoSize = True
         Me.Player1Label.BackColor = System.Drawing.Color.White
-        Me.Player1Label.Location = New System.Drawing.Point(34, 30)
+        Me.Player1Label.Location = New System.Drawing.Point(42, 36)
         Me.Player1Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Player1Label.Name = "Player1Label"
-        Me.Player1Label.Size = New System.Drawing.Size(65, 20)
+        Me.Player1Label.Size = New System.Drawing.Size(83, 25)
         Me.Player1Label.TabIndex = 6
         Me.Player1Label.Text = "Player 1"
         '
@@ -118,9 +126,10 @@ Partial Class WarCards
         '
         Me.PlayLabel.AutoSize = True
         Me.PlayLabel.BackColor = System.Drawing.Color.White
-        Me.PlayLabel.Location = New System.Drawing.Point(671, 93)
+        Me.PlayLabel.Location = New System.Drawing.Point(820, 112)
+        Me.PlayLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PlayLabel.Name = "PlayLabel"
-        Me.PlayLabel.Size = New System.Drawing.Size(46, 20)
+        Me.PlayLabel.Size = New System.Drawing.Size(60, 25)
         Me.PlayLabel.TabIndex = 7
         Me.PlayLabel.Text = "Plays"
         '
@@ -128,9 +137,10 @@ Partial Class WarCards
         '
         Me.PlaysLabel.AutoSize = True
         Me.PlaysLabel.BackColor = System.Drawing.Color.White
-        Me.PlaysLabel.Location = New System.Drawing.Point(671, 126)
+        Me.PlaysLabel.Location = New System.Drawing.Point(820, 151)
+        Me.PlaysLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PlaysLabel.Name = "PlaysLabel"
-        Me.PlaysLabel.Size = New System.Drawing.Size(39, 20)
+        Me.PlaysLabel.Size = New System.Drawing.Size(49, 25)
         Me.PlaysLabel.TabIndex = 8
         Me.PlaysLabel.Text = "hold"
         '
@@ -138,9 +148,10 @@ Partial Class WarCards
         '
         Me.GameLabel.AutoSize = True
         Me.GameLabel.BackColor = System.Drawing.Color.White
-        Me.GameLabel.Location = New System.Drawing.Point(671, 174)
+        Me.GameLabel.Location = New System.Drawing.Point(820, 209)
+        Me.GameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.GameLabel.Name = "GameLabel"
-        Me.GameLabel.Size = New System.Drawing.Size(61, 20)
+        Me.GameLabel.Size = New System.Drawing.Size(75, 25)
         Me.GameLabel.TabIndex = 9
         Me.GameLabel.Text = "Games"
         '
@@ -148,29 +159,31 @@ Partial Class WarCards
         '
         Me.GamesLabel.AutoSize = True
         Me.GamesLabel.BackColor = System.Drawing.Color.White
-        Me.GamesLabel.Location = New System.Drawing.Point(671, 207)
+        Me.GamesLabel.Location = New System.Drawing.Point(820, 248)
+        Me.GamesLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.GamesLabel.Name = "GamesLabel"
-        Me.GamesLabel.Size = New System.Drawing.Size(39, 20)
+        Me.GamesLabel.Size = New System.Drawing.Size(49, 25)
         Me.GamesLabel.TabIndex = 10
         Me.GamesLabel.Text = "hold"
         '
         'ExitButton
         '
         Me.ExitButton.BackColor = System.Drawing.Color.Ivory
-        Me.ExitButton.Location = New System.Drawing.Point(38, 476)
+        Me.ExitButton.Location = New System.Drawing.Point(46, 571)
         Me.ExitButton.Margin = New System.Windows.Forms.Padding(2)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(111, 33)
+        Me.ExitButton.Size = New System.Drawing.Size(136, 40)
         Me.ExitButton.TabIndex = 11
         Me.ExitButton.Text = "Exit"
+        Me.WarToolTip.SetToolTip(Me.ExitButton, "Press to Exit or press ""F""")
         Me.ExitButton.UseVisualStyleBackColor = False
         '
         'WarCards
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(862, 554)
+        Me.ClientSize = New System.Drawing.Size(1054, 665)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.GamesLabel)
         Me.Controls.Add(Me.GameLabel)
@@ -205,4 +218,5 @@ Partial Class WarCards
     Friend WithEvents GameLabel As Label
     Friend WithEvents GamesLabel As Label
     Friend WithEvents ExitButton As Button
+    Friend WithEvents WarToolTip As ToolTip
 End Class
