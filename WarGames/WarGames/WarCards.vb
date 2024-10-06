@@ -145,7 +145,7 @@ Public Class WarCards
             ReDim player1Wins(50)
             ReDim player2Wins(50)
         Else
-
+            WarToolStripProgressBar.Value = playCount - 1
             PlaysLabel.Text = $"{playCount - 1}"
             Player1PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player1(playCount - 1, 0), player1(playCount - 1, 1))}.png")
             Player2PictureBox.Image = Image.FromFile($"..\..\Card Images\{CardSuit(player2(playCount - 1, 0), player2(playCount - 1, 1))}.png")
@@ -156,7 +156,7 @@ Public Class WarCards
     End Sub
 
     Sub G_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.G Then
+        If e.KeyCode = Keys.G And PlayButton.Enabled Then
             DisplayCards()
         End If
     End Sub
@@ -250,6 +250,12 @@ Public Class WarCards
         PlaysLabel.Text = ""
         GamesLabel.Text = ""
     End Sub
+
+    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+        Me.Hide()
+        AboutForm.Show()
+    End Sub
+
 
     Private Sub WarCards_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         MsgBox($"There were {totalPlays} games played {vbNewLine} Player 1 won {totalWinsOne} times {vbNewLine} Player 2 won {totalWinsTwo} times")

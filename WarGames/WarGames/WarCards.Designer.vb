@@ -36,15 +36,19 @@ Partial Class WarCards
         Me.GamesLabel = New System.Windows.Forms.Label()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.WarToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.WarToolStripProgressBar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.AboutToolStripLabel = New System.Windows.Forms.ToolStripLabel()
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DealButton
         '
         Me.DealButton.BackColor = System.Drawing.Color.Ivory
         Me.DealButton.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.DealButton.Location = New System.Drawing.Point(187, 524)
+        Me.DealButton.Location = New System.Drawing.Point(204, 552)
         Me.DealButton.Margin = New System.Windows.Forms.Padding(2)
         Me.DealButton.Name = "DealButton"
         Me.DealButton.Size = New System.Drawing.Size(167, 42)
@@ -56,7 +60,7 @@ Partial Class WarCards
         'PlayButton
         '
         Me.PlayButton.BackColor = System.Drawing.Color.Ivory
-        Me.PlayButton.Location = New System.Drawing.Point(46, 524)
+        Me.PlayButton.Location = New System.Drawing.Point(63, 552)
         Me.PlayButton.Margin = New System.Windows.Forms.Padding(2)
         Me.PlayButton.Name = "PlayButton"
         Me.PlayButton.Size = New System.Drawing.Size(136, 42)
@@ -68,8 +72,8 @@ Partial Class WarCards
         'Player2PictureBox
         '
         Me.Player2PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Player2PictureBox.Location = New System.Drawing.Point(494, 79)
-        Me.Player2PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Player2PictureBox.Location = New System.Drawing.Point(511, 107)
+        Me.Player2PictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Player2PictureBox.Name = "Player2PictureBox"
         Me.Player2PictureBox.Size = New System.Drawing.Size(308, 424)
         Me.Player2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -80,8 +84,8 @@ Partial Class WarCards
         'Player1PictureBox
         '
         Me.Player1PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Player1PictureBox.Location = New System.Drawing.Point(46, 79)
-        Me.Player1PictureBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Player1PictureBox.Location = New System.Drawing.Point(63, 107)
+        Me.Player1PictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.Player1PictureBox.Name = "Player1PictureBox"
         Me.Player1PictureBox.Size = New System.Drawing.Size(308, 424)
         Me.Player1PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -93,7 +97,7 @@ Partial Class WarCards
         '
         Me.OutcomeLabel.AutoSize = True
         Me.OutcomeLabel.BackColor = System.Drawing.Color.White
-        Me.OutcomeLabel.Location = New System.Drawing.Point(407, 533)
+        Me.OutcomeLabel.Location = New System.Drawing.Point(424, 561)
         Me.OutcomeLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.OutcomeLabel.Name = "OutcomeLabel"
         Me.OutcomeLabel.Size = New System.Drawing.Size(403, 25)
@@ -104,7 +108,7 @@ Partial Class WarCards
         '
         Me.Player2Label.AutoSize = True
         Me.Player2Label.BackColor = System.Drawing.Color.White
-        Me.Player2Label.Location = New System.Drawing.Point(489, 36)
+        Me.Player2Label.Location = New System.Drawing.Point(506, 64)
         Me.Player2Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Player2Label.Name = "Player2Label"
         Me.Player2Label.Size = New System.Drawing.Size(83, 25)
@@ -115,7 +119,7 @@ Partial Class WarCards
         '
         Me.Player1Label.AutoSize = True
         Me.Player1Label.BackColor = System.Drawing.Color.White
-        Me.Player1Label.Location = New System.Drawing.Point(42, 36)
+        Me.Player1Label.Location = New System.Drawing.Point(59, 64)
         Me.Player1Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Player1Label.Name = "Player1Label"
         Me.Player1Label.Size = New System.Drawing.Size(83, 25)
@@ -126,7 +130,7 @@ Partial Class WarCards
         '
         Me.PlayLabel.AutoSize = True
         Me.PlayLabel.BackColor = System.Drawing.Color.White
-        Me.PlayLabel.Location = New System.Drawing.Point(820, 112)
+        Me.PlayLabel.Location = New System.Drawing.Point(837, 140)
         Me.PlayLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PlayLabel.Name = "PlayLabel"
         Me.PlayLabel.Size = New System.Drawing.Size(60, 25)
@@ -137,7 +141,7 @@ Partial Class WarCards
         '
         Me.PlaysLabel.AutoSize = True
         Me.PlaysLabel.BackColor = System.Drawing.Color.White
-        Me.PlaysLabel.Location = New System.Drawing.Point(820, 151)
+        Me.PlaysLabel.Location = New System.Drawing.Point(837, 179)
         Me.PlaysLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PlaysLabel.Name = "PlaysLabel"
         Me.PlaysLabel.Size = New System.Drawing.Size(49, 25)
@@ -148,7 +152,7 @@ Partial Class WarCards
         '
         Me.GameLabel.AutoSize = True
         Me.GameLabel.BackColor = System.Drawing.Color.White
-        Me.GameLabel.Location = New System.Drawing.Point(820, 209)
+        Me.GameLabel.Location = New System.Drawing.Point(837, 237)
         Me.GameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.GameLabel.Name = "GameLabel"
         Me.GameLabel.Size = New System.Drawing.Size(75, 25)
@@ -159,7 +163,7 @@ Partial Class WarCards
         '
         Me.GamesLabel.AutoSize = True
         Me.GamesLabel.BackColor = System.Drawing.Color.White
-        Me.GamesLabel.Location = New System.Drawing.Point(820, 248)
+        Me.GamesLabel.Location = New System.Drawing.Point(837, 276)
         Me.GamesLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.GamesLabel.Name = "GamesLabel"
         Me.GamesLabel.Size = New System.Drawing.Size(49, 25)
@@ -169,7 +173,7 @@ Partial Class WarCards
         'ExitButton
         '
         Me.ExitButton.BackColor = System.Drawing.Color.Ivory
-        Me.ExitButton.Location = New System.Drawing.Point(46, 571)
+        Me.ExitButton.Location = New System.Drawing.Point(63, 599)
         Me.ExitButton.Margin = New System.Windows.Forms.Padding(2)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(136, 40)
@@ -178,12 +182,36 @@ Partial Class WarCards
         Me.WarToolTip.SetToolTip(Me.ExitButton, "Press to Exit or press ""F""")
         Me.ExitButton.UseVisualStyleBackColor = False
         '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(28, 28)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WarToolStripProgressBar, Me.AboutToolStripLabel})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1054, 36)
+        Me.ToolStrip1.TabIndex = 12
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'WarToolStripProgressBar
+        '
+        Me.WarToolStripProgressBar.Maximum = 26
+        Me.WarToolStripProgressBar.Name = "WarToolStripProgressBar"
+        Me.WarToolStripProgressBar.Size = New System.Drawing.Size(100, 30)
+        '
+        'AboutToolStripLabel
+        '
+        Me.AboutToolStripLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.Text
+        Me.AboutToolStripLabel.Name = "AboutToolStripLabel"
+        Me.AboutToolStripLabel.Size = New System.Drawing.Size(70, 30)
+        Me.AboutToolStripLabel.Text = "About"
+        '
         'WarCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1054, 665)
+        Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.GamesLabel)
         Me.Controls.Add(Me.GameLabel)
@@ -201,6 +229,8 @@ Partial Class WarCards
         Me.Text = "Form1"
         CType(Me.Player2PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Player1PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -219,4 +249,7 @@ Partial Class WarCards
     Friend WithEvents GamesLabel As Label
     Friend WithEvents ExitButton As Button
     Friend WithEvents WarToolTip As ToolTip
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents WarToolStripProgressBar As ToolStripProgressBar
+    Friend WithEvents AboutToolStripLabel As ToolStripLabel
 End Class
