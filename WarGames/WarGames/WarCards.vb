@@ -34,6 +34,7 @@ Public Class WarCards
     ''' <summary>
     ''' Compares the two cards from each player's array based on the play count
     ''' There is a single catch for equal instances.
+    ''' can operate independent of display but does handle some display responsibilities
     ''' </summary>
     ''' <returns></returns>
     ''' Returns the incremented playcount
@@ -122,7 +123,6 @@ Public Class WarCards
 
         Dim playCount% = PlayGame()
         Dim player1Result%, player2Result%
-        ' Static Dim totalWinsOne%, totalWinsTwo%, totalPlays%
         Player1PictureBox.Refresh()
         Player2PictureBox.Refresh()
 
@@ -154,23 +154,19 @@ Public Class WarCards
 
 
     End Sub
-
+    ''' <summary>
+    ''' Below Sub handles key events for each of the hotkeys avaible  
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Sub G_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.G And PlayButton.Enabled Then
             DisplayCards()
-        End If
-    End Sub
-
-    Sub D_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.D Then
+        ElseIf e.KeyCode = Keys.D Then
             Shuffler.DrawCard(player1, player2) ' distribute cards to each player
             PlayButton.Enabled = True
             DealButton.Enabled = False
-        End If
-    End Sub
-
-    Sub F_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.F Then
+        ElseIf e.KeyCode = Keys.F Then
             Me.Close()
         End If
     End Sub
@@ -239,6 +235,7 @@ Public Class WarCards
 
     ''' <summary>
     ''' When the from loads disable the ability to play until the deal button is pressed 
+    ''' enable key events for hot keys
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
@@ -252,12 +249,14 @@ Public Class WarCards
     End Sub
 
     Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+        'Hide current form to Show About Form
         Me.Hide()
         AboutForm.Show()
     End Sub
 
 
     Private Sub WarCards_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        'Display the results of the games upon form close
         MsgBox($"There were {totalPlays} games played {vbNewLine} Player 1 won {totalWinsOne} times {vbNewLine} Player 2 won {totalWinsTwo} times")
     End Sub
 
