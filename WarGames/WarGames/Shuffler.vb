@@ -10,20 +10,25 @@
         Dim player1Deal As Boolean = True
         Dim dealer As Boolean
         Dim i%, e%
-        Dim cardpool(52, 3)
-        CreatePool(cardpool(52, 3))
+        Dim cardpool(12, 4) As Boolean
         ' loop until we get a ball that has not been drawn yet
 
         Do
             If player1Deal = True Then
-                player1(i, 0) = RandomNumberZero(12)
-                player1(i, 1) = RandomNumberZero(3)
+                Do
+                    player1(i, 0) = RandomNumberZero(12)
+                    player1(i, 1) = RandomNumberZero(3)
+                Loop While cardpool(player1(i, 0), player1(i, 1))
+                cardpool(player1(i, 0), player1(i, 1)) = True
                 player1Deal = False
 
                 i += 1
             Else
-                player2(e, 0) = RandomNumberZero(12)
-                player2(e, 1) = RandomNumberZero(3)
+                Do
+                    player2(e, 0) = RandomNumberZero(12)
+                    player2(e, 1) = RandomNumberZero(3)
+                Loop While cardpool(player2(e, 0), player2(e, 1))
+                cardpool(player2(e, 0), player2(e, 1)) = True
                 player1Deal = True
                 e += 1
             End If
@@ -37,37 +42,6 @@
 
     End Sub
 
-    Public Shared Sub CreatePool(ByRef cardpool(,) As Integer)
-        Dim i%
-        Do
-            cardpool(i, 0) = i
-            cardpool(i, 1) = 0
-            i += 1
-        Loop Until i = 12
-        i = 0
-        Do
-            cardpool(i, 0) = i
-            cardpool(i, 1) = 1
-            i += 1
-        Loop Until i = 12
-        i = 0
-        Do
-            cardpool(i, 0) = i
-            cardpool(i, 1) = 2
-            i += 1
-        Loop Until i = 12
-        i = 0
-        Do
-            cardpool(i, 0) = i
-            cardpool(i, 1) = 0
-            i += 1
-        Loop Until i = 12
-
-
-
-
-
-    End Sub
 
     ''' <summary>
     ''' generates a random number
