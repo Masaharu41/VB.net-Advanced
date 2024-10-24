@@ -23,6 +23,9 @@ Imports System.IO.Ports
 Public Class DataForm
 
     Dim port As Boolean
+    Dim msb As Byte
+    Dim lsb As Byte
+
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -88,15 +91,16 @@ Public Class DataForm
         Dim data(DataSerialPort.BytesToRead) As Byte
         DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
 
+
     End Sub
 
     Sub plot(plotdata() As Integer)
-        Dim g As Graphics = ArrayPictureBox.CreateGraphics
+        Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black)
-        Dim height% = ArrayPictureBox.Height
+        Dim height% = DataPictureBox.Height
         Dim oldX%, oldY%
-        Dim widthUnit% = CInt(ArrayPictureBox.Width / 100)
-        g.ScaleTransform(CSng(ArrayPictureBox.Width / 100), 1)
+        Dim widthUnit% = CInt(DataPictureBox.Width / 1024)
+        g.ScaleTransform(CSng(DataPictureBox.Width / 1024), 1)
         For x = 0 To UBound(plotdata)
             g.DrawLine(pen, oldX, oldY, x, plotdata(x))
             oldX = x
@@ -104,7 +108,10 @@ Public Class DataForm
         Next
     End Sub
 
-    Function ShiftArray(newdata As Integer) As Integer()
+    Sub ByteToInt()
+
+    End Sub
+    Function ShiftArrayAN1(newdata As Integer) As Integer()
         Static Dim data(99) As Integer
 
         For i = LBound(data) To UBound(data) - 1
@@ -115,4 +122,15 @@ Public Class DataForm
         Return data
     End Function
 
+    Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
+        PollTimer.Enabled = True
+    End Sub
+
+    Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
+        PollTimer.Enabled = False
+    End Sub
+
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        Me.Close()
+    End Sub
 End Class

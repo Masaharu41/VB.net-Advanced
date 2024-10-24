@@ -33,6 +33,10 @@ Partial Class DataForm
         Me.ConnectButton = New System.Windows.Forms.Button()
         Me.DataPictureBox = New System.Windows.Forms.PictureBox()
         Me.AnalogLabel = New System.Windows.Forms.Label()
+        Me.PollTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.StartButton = New System.Windows.Forms.Button()
+        Me.StopButton = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -65,14 +69,14 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'PortToolStripMenuItem
         '
         Me.PortToolStripMenuItem.Name = "PortToolStripMenuItem"
-        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 44)
+        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
         Me.PortToolStripMenuItem.Text = "Port"
         '
         'PortConLabel
@@ -119,15 +123,49 @@ Partial Class DataForm
         Me.AnalogLabel.AutoSize = True
         Me.AnalogLabel.Location = New System.Drawing.Point(7, 69)
         Me.AnalogLabel.Name = "AnalogLabel"
-        Me.AnalogLabel.Size = New System.Drawing.Size(165, 25)
+        Me.AnalogLabel.Size = New System.Drawing.Size(183, 25)
         Me.AnalogLabel.TabIndex = 7
-        Me.AnalogLabel.Text = "Analog Channel"
+        Me.AnalogLabel.Text = "Analog Channel 1"
+        '
+        'PollTimer
+        '
+        Me.PollTimer.Interval = 60
+        '
+        'StartButton
+        '
+        Me.StartButton.Location = New System.Drawing.Point(574, 364)
+        Me.StartButton.Name = "StartButton"
+        Me.StartButton.Size = New System.Drawing.Size(117, 57)
+        Me.StartButton.TabIndex = 8
+        Me.StartButton.Text = "Start"
+        Me.StartButton.UseVisualStyleBackColor = True
+        '
+        'StopButton
+        '
+        Me.StopButton.Location = New System.Drawing.Point(697, 361)
+        Me.StopButton.Name = "StopButton"
+        Me.StopButton.Size = New System.Drawing.Size(117, 57)
+        Me.StopButton.TabIndex = 9
+        Me.StopButton.Text = "Stop"
+        Me.StopButton.UseVisualStyleBackColor = True
+        '
+        'ExitButton
+        '
+        Me.ExitButton.Location = New System.Drawing.Point(574, 430)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(117, 57)
+        Me.ExitButton.TabIndex = 10
+        Me.ExitButton.Text = "Exit"
+        Me.ExitButton.UseVisualStyleBackColor = True
         '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(867, 525)
+        Me.Controls.Add(Me.ExitButton)
+        Me.Controls.Add(Me.StopButton)
+        Me.Controls.Add(Me.StartButton)
         Me.Controls.Add(Me.AnalogLabel)
         Me.Controls.Add(Me.DataPictureBox)
         Me.Controls.Add(Me.ConnectButton)
@@ -157,4 +195,8 @@ Partial Class DataForm
     Friend WithEvents ConnectButton As Button
     Friend WithEvents DataPictureBox As PictureBox
     Friend WithEvents AnalogLabel As Label
+    Friend WithEvents PollTimer As Timer
+    Friend WithEvents StartButton As Button
+    Friend WithEvents StopButton As Button
+    Friend WithEvents ExitButton As Button
 End Class
