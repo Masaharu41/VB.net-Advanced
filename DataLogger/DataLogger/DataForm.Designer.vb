@@ -31,8 +31,14 @@ Partial Class DataForm
         Me.PortConLabel = New System.Windows.Forms.Label()
         Me.ManualCheckBox = New System.Windows.Forms.CheckBox()
         Me.ConnectButton = New System.Windows.Forms.Button()
+        Me.DataPictureBox = New System.Windows.Forms.PictureBox()
+        Me.AnalogLabel = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'DataSerialPort
+        '
         '
         'ComComboBox
         '
@@ -59,14 +65,14 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'PortToolStripMenuItem
         '
         Me.PortToolStripMenuItem.Name = "PortToolStripMenuItem"
-        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
+        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 44)
         Me.PortToolStripMenuItem.Text = "Port"
         '
         'PortConLabel
@@ -97,11 +103,33 @@ Partial Class DataForm
         Me.ConnectButton.Text = "Connect"
         Me.ConnectButton.UseVisualStyleBackColor = True
         '
+        'DataPictureBox
+        '
+        Me.DataPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataPictureBox.Location = New System.Drawing.Point(12, 97)
+        Me.DataPictureBox.Name = "DataPictureBox"
+        Me.DataPictureBox.Size = New System.Drawing.Size(831, 249)
+        Me.DataPictureBox.TabIndex = 6
+        Me.DataPictureBox.TabStop = False
+        '
+        'AnalogLabel
+        '
+        Me.AnalogLabel.AutoSize = True
+        Me.AnalogLabel.Location = New System.Drawing.Point(7, 69)
+        Me.AnalogLabel.Name = "AnalogLabel"
+        Me.AnalogLabel.Size = New System.Drawing.Size(165, 25)
+        Me.AnalogLabel.TabIndex = 7
+        Me.AnalogLabel.Text = "Analog Channel"
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(867, 525)
+        Me.Controls.Add(Me.AnalogLabel)
+        Me.Controls.Add(Me.DataPictureBox)
         Me.Controls.Add(Me.ConnectButton)
         Me.Controls.Add(Me.ManualCheckBox)
         Me.Controls.Add(Me.PortConLabel)
@@ -113,6 +141,7 @@ Partial Class DataForm
         Me.Text = "Data Logger"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -126,4 +155,6 @@ Partial Class DataForm
     Friend WithEvents PortConLabel As Label
     Friend WithEvents ManualCheckBox As CheckBox
     Friend WithEvents ConnectButton As Button
+    Friend WithEvents DataPictureBox As PictureBox
+    Friend WithEvents AnalogLabel As Label
 End Class

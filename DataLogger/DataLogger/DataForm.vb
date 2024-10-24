@@ -1,4 +1,6 @@
-﻿' Owen Fujii
+﻿Option Explicit On
+Option Strict On
+' Owen Fujii
 ' RCET 3371
 ' Data Logger
 ' Started on 10/24/2024
@@ -16,8 +18,8 @@
 ' log_YYMMDDHH.log >> File name style
 ' {} Write to file every hour
 
-Option Explicit On
-Option Strict On
+Imports System.IO.Ports
+
 Public Class DataForm
 
     Dim port As Boolean
@@ -74,4 +76,43 @@ Public Class DataForm
             OpenPort()
         End If
     End Sub
+
+    Sub PollAN1()
+        ' Sends byte to get the adc result for ADC1
+        Dim x(1) As Byte
+        x(0) = &H51
+        DataSerialPort.Write(x, 0, 2)
+    End Sub
+
+    Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
+        Dim data(DataSerialPort.BytesToRead) As Byte
+        DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
+
+    End Sub
+
+    Sub plot(plotdata() As Integer)
+        Dim g As Graphics = ArrayPictureBox.CreateGraphics
+        Dim pen As New Pen(Color.Black)
+        Dim height% = ArrayPictureBox.Height
+        Dim oldX%, oldY%
+        Dim widthUnit% = CInt(ArrayPictureBox.Width / 100)
+        g.ScaleTransform(CSng(ArrayPictureBox.Width / 100), 1)
+        For x = 0 To UBound(plotdata)
+            g.DrawLine(pen, oldX, oldY, x, plotdata(x))
+            oldX = x
+            oldY = plotdata(x)
+        Next
+    End Sub
+
+    Function ShiftArray(newdata As Integer) As Integer()
+        Static Dim data(99) As Integer
+
+        For i = LBound(data) To UBound(data) - 1
+            data(i) = data(i + 1)
+        Next
+        data(UBound(data)) = newdata
+        'Console.Read()
+        Return data
+    End Function
+
 End Class
