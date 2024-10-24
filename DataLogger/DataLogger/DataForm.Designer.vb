@@ -37,6 +37,8 @@ Partial Class DataForm
         Me.StartButton = New System.Windows.Forms.Button()
         Me.StopButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.SampleComboBox = New System.Windows.Forms.ComboBox()
+        Me.SampleButton = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -71,7 +73,7 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -157,18 +159,39 @@ Partial Class DataForm
         'ExitButton
         '
         Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ExitButton.Location = New System.Drawing.Point(574, 430)
+        Me.ExitButton.Location = New System.Drawing.Point(697, 427)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(117, 57)
         Me.ExitButton.TabIndex = 10
         Me.ExitButton.Text = "Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
+        'SampleComboBox
+        '
+        Me.SampleComboBox.FormattingEnabled = True
+        Me.SampleComboBox.Items.AddRange(New Object() {"1", "5", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
+        Me.SampleComboBox.Location = New System.Drawing.Point(447, 443)
+        Me.SampleComboBox.Name = "SampleComboBox"
+        Me.SampleComboBox.Size = New System.Drawing.Size(121, 33)
+        Me.SampleComboBox.TabIndex = 11
+        '
+        'SampleButton
+        '
+        Me.SampleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SampleButton.Location = New System.Drawing.Point(574, 427)
+        Me.SampleButton.Name = "SampleButton"
+        Me.SampleButton.Size = New System.Drawing.Size(117, 57)
+        Me.SampleButton.TabIndex = 12
+        Me.SampleButton.Text = "Sample"
+        Me.SampleButton.UseVisualStyleBackColor = True
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(867, 525)
+        Me.Controls.Add(Me.SampleButton)
+        Me.Controls.Add(Me.SampleComboBox)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.StopButton)
         Me.Controls.Add(Me.StartButton)
@@ -205,4 +228,6 @@ Partial Class DataForm
     Friend WithEvents StartButton As Button
     Friend WithEvents StopButton As Button
     Friend WithEvents ExitButton As Button
+    Friend WithEvents SampleComboBox As ComboBox
+    Friend WithEvents SampleButton As Button
 End Class

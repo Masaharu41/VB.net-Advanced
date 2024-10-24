@@ -11,7 +11,7 @@ Option Strict On
 ' {} Graphical display of entire data history
 ' {} Graphical display for last 30 second history
 ' {} Multiple analog channels
-' {} Default sample rate for 10 samples a second
+' {*} Default sample rate for 10 samples a second
 ' {} Add variable sample select from 1 to 100 samp/sec
 ' {} Store analog data in an external file using below format
 ' "$$AN1",<HighByte>,<LowByte>,<timestamp>
@@ -70,6 +70,7 @@ Public Class DataForm
 
     Private Sub DataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenPort()
+        SampleComboBox.Text = "10"
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
@@ -114,9 +115,9 @@ Public Class DataForm
 
 
     Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
-        Dim data(DataSerialPort.BytesToRead) As Byte
-        DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
         Try
+            Dim data(DataSerialPort.BytesToRead) As Byte
+            DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
             msb = data(0)
             lsb = data(1)
             Console.WriteLine(msb)
@@ -182,4 +183,23 @@ Public Class DataForm
             PollAN1()
         End If
     End Sub
+
+    Private Sub SampleButton_Click(sender As Object, e As EventArgs) Handles SampleButton.Click
+        PollTimer.Enabled = False
+        PollTimer.Interval = CalculatePoll()
+        PollTimer.Enabled = True
+    End Sub
+
+    Function CalculatePoll() As Integer
+        Dim pollRate%
+        If CInt(SampleComboBox.Text) <= 100 Then
+
+            pollRate = CInt(1000 / CInt(SampleComboBox.Text))
+        Else
+            MsgBox("Sample Rate cannot be greater than 100")
+            pollRate = 10
+        End If
+
+        Return pollRate
+    End Function
 End Class
