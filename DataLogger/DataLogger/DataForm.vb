@@ -20,4 +20,48 @@ Option Explicit On
 Option Strict On
 Public Class DataForm
 
+    Dim port As Boolean
+    Sub OpenPort(Optional force As Boolean = False)
+        Dim portValid As Boolean = False
+        Dim portName As String
+        ' auto test "all" COM port values until a valid connection or nothing reports back
+        If force = True Then
+            Try
+                portName = ComComboBox.Text
+                DataSerialPort.PortName = portName
+                DataSerialPort.BaudRate = 9600
+                DataSerialPort.Open()
+                portValid = True
+            Catch ex As Exception
+                portValid = False
+            End Try
+        Else
+            For i = 0 To 50
+
+                portName = $"COM{i}"
+                Try
+                    DataSerialPort.PortName = portName
+                    DataSerialPort.BaudRate = 9600
+                    DataSerialPort.Open()
+                    portValid = True
+                    Exit For
+                Catch ex As Exception
+                    ' MsgBox("Com was not Valid")
+                    portValid = False
+
+                End Try
+            Next
+        End If
+
+        If portValid = True Then
+            PortLabel.Text = "Port Is Open"
+            ComComboBox.SelectedText = portName
+            port = True
+        Else
+            PortLabel.Text = "Port Is Closed"
+            port = False
+        End If
+    End Sub
+
+
 End Class
