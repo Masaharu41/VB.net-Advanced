@@ -129,7 +129,6 @@ Partial Class DataForm
         '
         'PollTimer
         '
-        Me.PollTimer.Interval = 60
         '
         'StartButton
         '

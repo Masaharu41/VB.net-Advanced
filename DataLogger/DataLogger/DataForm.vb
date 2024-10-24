@@ -84,13 +84,25 @@ Public Class DataForm
         ' Sends byte to get the adc result for ADC1
         Dim x(1) As Byte
         x(0) = &H51
-        DataSerialPort.Write(x, 0, 2)
+        Try
+
+            DataSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+        End Try
     End Sub
 
     Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
         Dim data(DataSerialPort.BytesToRead) As Byte
         DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
+        Try
+            msb = data(0)
+            lsb = data(1)
+            ByteToInt()
+        Catch ex As Exception
 
+        End Try
 
     End Sub
 
@@ -109,6 +121,10 @@ Public Class DataForm
     End Sub
 
     Sub ByteToInt()
+        Dim byteAsInt%
+
+        byteAsInt = CInt(msb) * 4 + CInt(lsb >> 6)
+        plot(ShiftArrayAN1(byteAsInt))
 
     End Sub
     Function ShiftArrayAN1(newdata As Integer) As Integer()
@@ -132,5 +148,11 @@ Public Class DataForm
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
+    End Sub
+
+    Private Sub PollTimer_Tick(sender As Object, e As EventArgs) Handles PollTimer.Tick
+        If port Then
+            PollAN1()
+        End If
     End Sub
 End Class
