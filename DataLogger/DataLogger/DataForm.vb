@@ -4,7 +4,7 @@
 ' Started on 10/24/2024
 ' TODO
 ' {} Create Gui with full interface and display
-' {} Serial communication to Pic/Qy@ board
+' {*} Serial communication to Pic/Qy@ board
 ' {} Add serial verify for port state
 ' {} Graphical display of entire data history
 ' {} Graphical display for last 30 second history
@@ -41,7 +41,7 @@ Public Class DataForm
                 portName = $"COM{i}"
                 Try
                     DataSerialPort.PortName = portName
-                    DataSerialPort.BaudRate = 9600
+                    DataSerialPort.BaudRate = 115200
                     DataSerialPort.Open()
                     portValid = True
                     Exit For
@@ -63,5 +63,7 @@ Public Class DataForm
         End If
     End Sub
 
-
+    Private Sub DataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        OpenPort()
+    End Sub
 End Class

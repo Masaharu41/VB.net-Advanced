@@ -28,6 +28,7 @@ Partial Class DataForm
         Me.PortLabel = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.PortToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PortConLabel = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,11 +43,11 @@ Partial Class DataForm
         'PortLabel
         '
         Me.PortLabel.AutoSize = True
-        Me.PortLabel.Location = New System.Drawing.Point(12, 349)
+        Me.PortLabel.Location = New System.Drawing.Point(136, 377)
         Me.PortLabel.Name = "PortLabel"
-        Me.PortLabel.Size = New System.Drawing.Size(161, 25)
+        Me.PortLabel.Size = New System.Drawing.Size(118, 25)
         Me.PortLabel.TabIndex = 1
-        Me.PortLabel.Text = "Connected Port"
+        Me.PortLabel.Text = "Port Status"
         '
         'MenuStrip1
         '
@@ -65,11 +66,21 @@ Partial Class DataForm
         Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
         Me.PortToolStripMenuItem.Text = "Port"
         '
+        'PortConLabel
+        '
+        Me.PortConLabel.AutoSize = True
+        Me.PortConLabel.Location = New System.Drawing.Point(12, 349)
+        Me.PortConLabel.Name = "PortConLabel"
+        Me.PortConLabel.Size = New System.Drawing.Size(222, 25)
+        Me.PortConLabel.TabIndex = 3
+        Me.PortConLabel.Text = "Port Name and Status"
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.PortConLabel)
         Me.Controls.Add(Me.PortLabel)
         Me.Controls.Add(Me.ComComboBox)
         Me.Controls.Add(Me.MenuStrip1)
@@ -88,4 +99,5 @@ Partial Class DataForm
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents PortToolStripMenuItem As ToolStripMenuItem
     Public WithEvents PortLabel As Label
+    Friend WithEvents PortConLabel As Label
 End Class
