@@ -46,6 +46,7 @@ Partial Class DataForm
         '
         'ComComboBox
         '
+        Me.ComComboBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ComComboBox.FormattingEnabled = True
         Me.ComComboBox.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10"})
         Me.ComComboBox.Location = New System.Drawing.Point(17, 377)
@@ -55,6 +56,7 @@ Partial Class DataForm
         '
         'PortLabel
         '
+        Me.PortLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PortLabel.AutoSize = True
         Me.PortLabel.Location = New System.Drawing.Point(136, 377)
         Me.PortLabel.Name = "PortLabel"
@@ -69,7 +71,7 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -81,6 +83,7 @@ Partial Class DataForm
         '
         'PortConLabel
         '
+        Me.PortConLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PortConLabel.AutoSize = True
         Me.PortConLabel.Location = New System.Drawing.Point(12, 349)
         Me.PortConLabel.Name = "PortConLabel"
@@ -90,6 +93,7 @@ Partial Class DataForm
         '
         'ManualCheckBox
         '
+        Me.ManualCheckBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ManualCheckBox.AutoSize = True
         Me.ManualCheckBox.Location = New System.Drawing.Point(17, 430)
         Me.ManualCheckBox.Name = "ManualCheckBox"
@@ -132,6 +136,7 @@ Partial Class DataForm
         '
         'StartButton
         '
+        Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.StartButton.Location = New System.Drawing.Point(574, 364)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(117, 57)
@@ -141,6 +146,7 @@ Partial Class DataForm
         '
         'StopButton
         '
+        Me.StopButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.StopButton.Location = New System.Drawing.Point(697, 361)
         Me.StopButton.Name = "StopButton"
         Me.StopButton.Size = New System.Drawing.Size(117, 57)
@@ -150,6 +156,7 @@ Partial Class DataForm
         '
         'ExitButton
         '
+        Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ExitButton.Location = New System.Drawing.Point(574, 430)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(117, 57)

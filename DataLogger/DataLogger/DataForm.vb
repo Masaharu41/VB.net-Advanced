@@ -7,7 +7,7 @@ Option Strict On
 ' TODO
 ' {} Create Gui with full interface and display
 ' {*} Serial communication to Pic/Qy@ board
-' {} Add serial verify for port state
+' {*} Add serial verify for port state
 ' {} Graphical display of entire data history
 ' {} Graphical display for last 30 second history
 ' {} Multiple analog channels
@@ -99,34 +99,41 @@ Public Class DataForm
         Try
             msb = data(0)
             lsb = data(1)
-            ByteToInt()
+            Console.WriteLine(msb)
+            Console.WriteLine(lsb >> 6)
+            displayAN1()
         Catch ex As Exception
 
         End Try
 
     End Sub
+    Sub DisplayAN1()
+        DataPictureBox.Image = Nothing
+        plot(ShiftArrayAN1(ByteToInt))
+    End Sub
 
     Sub plot(plotdata() As Integer)
         Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black)
-        Dim height% = DataPictureBox.Height
+        Dim height As Double = DataPictureBox.Height / 1024
         Dim oldX%, oldY%
-        Dim widthUnit% = CInt(DataPictureBox.Width / 1024)
-        g.ScaleTransform(CSng(DataPictureBox.Width / 1024), 1)
+        Dim widthUnit% = CInt(DataPictureBox.Width / 100)
+        g.ScaleTransform(CSng(DataPictureBox.Width / 100), 1)
         For x = 0 To UBound(plotdata)
-            g.DrawLine(pen, oldX, oldY, x, plotdata(x))
+            g.DrawLine(pen, oldX, oldY, x, CInt(plotdata(x) * height))
             oldX = x
-            oldY = plotdata(x)
+            oldY = CInt(plotdata(x) * height)
         Next
     End Sub
 
-    Sub ByteToInt()
+    Function ByteToInt() As Integer
         Dim byteAsInt%
 
         byteAsInt = CInt(msb) * 4 + CInt(lsb >> 6)
-        plot(ShiftArrayAN1(byteAsInt))
+        ' DataPictureBox.Refresh()
 
-    End Sub
+        Return byteAsInt
+    End Function
     Function ShiftArrayAN1(newdata As Integer) As Integer()
         Static Dim data(99) As Integer
 
