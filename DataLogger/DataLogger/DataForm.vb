@@ -25,7 +25,7 @@ Public Class DataForm
     Dim port As Boolean
     Dim msb As Byte
     Dim lsb As Byte
-
+    Dim anCh As String
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -91,7 +91,27 @@ Public Class DataForm
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
         End Try
+        anCh = "$$AN1"
     End Sub
+
+    Sub WritePlayerData()
+        ' Static currentUser As String
+
+
+        Try
+            FileOpen(1, $"..\..\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
+
+        Catch ex As Exception
+                FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
+                Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
+                FileClose(2)
+            End Try
+
+        Write(1, "Hi")
+        FileClose(1)
+
+    End Sub
+
 
     Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
         Dim data(DataSerialPort.BytesToRead) As Byte
@@ -115,7 +135,7 @@ Public Class DataForm
     Sub plot(plotdata() As Integer)
         Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black)
-        Dim height As Double = DataPictureBox.Height / 1024
+        Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
         Dim widthUnit% = CInt(DataPictureBox.Width / 100)
         g.ScaleTransform(CSng(DataPictureBox.Width / 100), 1)
