@@ -29,7 +29,7 @@ Public Class DataForm
             Try
                 portName = ComComboBox.Text
                 DataSerialPort.PortName = portName
-                DataSerialPort.BaudRate = 9600
+                DataSerialPort.BaudRate = 115200
                 DataSerialPort.Open()
                 portValid = True
             Catch ex As Exception
@@ -65,5 +65,13 @@ Public Class DataForm
 
     Private Sub DataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenPort()
+    End Sub
+
+    Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
+        If ManualCheckBox.Checked Then
+            OpenPort(True)
+        Else
+            OpenPort()
+        End If
     End Sub
 End Class

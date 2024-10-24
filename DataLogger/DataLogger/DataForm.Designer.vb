@@ -29,12 +29,15 @@ Partial Class DataForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.PortToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PortConLabel = New System.Windows.Forms.Label()
+        Me.ManualCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ConnectButton = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ComComboBox
         '
         Me.ComComboBox.FormattingEnabled = True
+        Me.ComComboBox.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10"})
         Me.ComComboBox.Location = New System.Drawing.Point(17, 377)
         Me.ComComboBox.Name = "ComComboBox"
         Me.ComComboBox.Size = New System.Drawing.Size(113, 33)
@@ -56,7 +59,7 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 40)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -75,11 +78,32 @@ Partial Class DataForm
         Me.PortConLabel.TabIndex = 3
         Me.PortConLabel.Text = "Port Name and Status"
         '
+        'ManualCheckBox
+        '
+        Me.ManualCheckBox.AutoSize = True
+        Me.ManualCheckBox.Location = New System.Drawing.Point(17, 430)
+        Me.ManualCheckBox.Name = "ManualCheckBox"
+        Me.ManualCheckBox.Size = New System.Drawing.Size(201, 29)
+        Me.ManualCheckBox.TabIndex = 4
+        Me.ManualCheckBox.Text = "Manual Connect"
+        Me.ManualCheckBox.UseVisualStyleBackColor = True
+        '
+        'ConnectButton
+        '
+        Me.ConnectButton.Location = New System.Drawing.Point(244, 407)
+        Me.ConnectButton.Name = "ConnectButton"
+        Me.ConnectButton.Size = New System.Drawing.Size(116, 52)
+        Me.ConnectButton.TabIndex = 5
+        Me.ConnectButton.Text = "Connect"
+        Me.ConnectButton.UseVisualStyleBackColor = True
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(867, 525)
+        Me.Controls.Add(Me.ConnectButton)
+        Me.Controls.Add(Me.ManualCheckBox)
         Me.Controls.Add(Me.PortConLabel)
         Me.Controls.Add(Me.PortLabel)
         Me.Controls.Add(Me.ComComboBox)
@@ -100,4 +124,6 @@ Partial Class DataForm
     Friend WithEvents PortToolStripMenuItem As ToolStripMenuItem
     Public WithEvents PortLabel As Label
     Friend WithEvents PortConLabel As Label
+    Friend WithEvents ManualCheckBox As CheckBox
+    Friend WithEvents ConnectButton As Button
 End Class
