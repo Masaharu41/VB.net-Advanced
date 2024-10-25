@@ -188,7 +188,7 @@ Partial Class DataForm
         '
         'WriteTimer
         '
-        Me.WriteTimer.Interval = 60000
+        Me.WriteTimer.Interval = 6000
         '
         'DataForm
         '

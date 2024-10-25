@@ -26,7 +26,7 @@ Public Class DataForm
     Dim msb As Byte
     Dim lsb As Byte
     Dim anCh As String
-    Dim store() As String
+    Dim store(1) As String
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -96,7 +96,7 @@ Public Class DataForm
         anCh = "$$AN1"
     End Sub
 
-    Sub WritePlayerData()
+    Sub WriteStoredData()
         ' Static currentUser As String
 
 
@@ -104,12 +104,14 @@ Public Class DataForm
             FileOpen(1, $"..\..\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
 
         Catch ex As Exception
-                FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
-                Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
-                FileClose(2)
-            End Try
+            FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
+            Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
+            FileClose(2)
+        End Try
+        For e = LBound(store) To UBound(store)
 
-        Write(1, "Hi")
+            Write(1, $"{store(e)}")
+        Next
         FileClose(1)
 
     End Sub
@@ -132,7 +134,7 @@ Public Class DataForm
     Sub DisplayAN1()
         DataPictureBox.Image = Nothing
         plot(ShiftArrayAN1(ByteToInt))
-
+        StoreData()
     End Sub
 
     Sub StoreData(Optional reset As Boolean = False)
@@ -141,8 +143,9 @@ Public Class DataForm
         If reset Then
             i = 0
         Else
-            store(i) = $"{anCh},{msb},{lsb >> 6}"
+            store(i) = $"{anCh},{msb},{lsb >> 6},{DateTime.Now.ToString("ddhhmmss")}{DateTime.UtcNow.Millisecond}"
             i += 1
+            ReDim Preserve store(i)
         End If
 
     End Sub
@@ -183,6 +186,7 @@ Public Class DataForm
 
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         PollTimer.Enabled = True
+        WriteTimer.Enabled = True
     End Sub
 
     Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
@@ -219,6 +223,6 @@ Public Class DataForm
     End Function
 
     Private Sub WriteTimer_Tick(sender As Object, e As EventArgs) Handles WriteTimer.Tick
-
+        WriteStoredData()
     End Sub
 End Class
