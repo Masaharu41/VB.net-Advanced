@@ -74,6 +74,7 @@ Public Class DataForm
     Private Sub DataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenPort()
         SampleComboBox.Text = "10"
+        AllRadioButton.Checked = True
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
@@ -134,8 +135,15 @@ Public Class DataForm
 
     End Sub
     Sub DisplayAN1()
+        Dim scale As Integer
         DataPictureBox.Image = Nothing
-        plot(ShiftArrayAN1(ByteToInt))
+        If ThirtyRadioButton.Checked Then
+            scale = CInt(SampleComboBox.Text) * 30
+            plot(ShiftArrayAN1(ByteToInt, scale, False))
+        Else
+
+            plot(ShiftArrayAN1(ByteToInt))
+        End If
         StoreData()
     End Sub
 
@@ -178,8 +186,9 @@ Public Class DataForm
     Function ShiftArrayAN1(newdata As Integer, Optional scale As Integer = 100, Optional display As Boolean = True) As Integer()
         '  Static Dim data(99) As Integer
         Static e As Integer
-        ReDim Preserve storeAll(e)
         ReDim Preserve store30(scale)
+        ReDim Preserve storeAll(e)
+        e += 1
         If display Then
 
             For i = LBound(storeAll) To UBound(storeAll) - 1
@@ -193,9 +202,8 @@ Public Class DataForm
                 store30(i) = store30(i + 1)
             Next
             store30(UBound(store30)) = newdata
-            Return store30()
+            Return store30
         End If
-        e += 1
     End Function
 
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click

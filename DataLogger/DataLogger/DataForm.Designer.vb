@@ -40,6 +40,8 @@ Partial Class DataForm
         Me.SampleComboBox = New System.Windows.Forms.ComboBox()
         Me.SampleButton = New System.Windows.Forms.Button()
         Me.WriteTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.AllRadioButton = New System.Windows.Forms.RadioButton()
+        Me.ThirtyRadioButton = New System.Windows.Forms.RadioButton()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -74,14 +76,14 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'PortToolStripMenuItem
         '
         Me.PortToolStripMenuItem.Name = "PortToolStripMenuItem"
-        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
+        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 40)
         Me.PortToolStripMenuItem.Text = "Port"
         '
         'PortConLabel
@@ -190,11 +192,35 @@ Partial Class DataForm
         '
         Me.WriteTimer.Interval = 6000
         '
+        'AllRadioButton
+        '
+        Me.AllRadioButton.AutoSize = True
+        Me.AllRadioButton.Location = New System.Drawing.Point(378, 361)
+        Me.AllRadioButton.Name = "AllRadioButton"
+        Me.AllRadioButton.Size = New System.Drawing.Size(144, 29)
+        Me.AllRadioButton.TabIndex = 13
+        Me.AllRadioButton.TabStop = True
+        Me.AllRadioButton.Text = "Display All"
+        Me.AllRadioButton.UseVisualStyleBackColor = True
+        '
+        'ThirtyRadioButton
+        '
+        Me.ThirtyRadioButton.AutoSize = True
+        Me.ThirtyRadioButton.Location = New System.Drawing.Point(378, 396)
+        Me.ThirtyRadioButton.Name = "ThirtyRadioButton"
+        Me.ThirtyRadioButton.Size = New System.Drawing.Size(204, 29)
+        Me.ThirtyRadioButton.TabIndex = 14
+        Me.ThirtyRadioButton.TabStop = True
+        Me.ThirtyRadioButton.Text = "Last 30 Seconds"
+        Me.ThirtyRadioButton.UseVisualStyleBackColor = True
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(867, 525)
+        Me.Controls.Add(Me.ThirtyRadioButton)
+        Me.Controls.Add(Me.AllRadioButton)
         Me.Controls.Add(Me.SampleButton)
         Me.Controls.Add(Me.SampleComboBox)
         Me.Controls.Add(Me.ExitButton)
@@ -236,4 +262,6 @@ Partial Class DataForm
     Friend WithEvents SampleComboBox As ComboBox
     Friend WithEvents SampleButton As Button
     Friend WithEvents WriteTimer As Timer
+    Friend WithEvents AllRadioButton As RadioButton
+    Friend WithEvents ThirtyRadioButton As RadioButton
 End Class
