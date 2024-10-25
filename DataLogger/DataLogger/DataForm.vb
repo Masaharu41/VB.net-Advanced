@@ -27,6 +27,8 @@ Public Class DataForm
     Dim lsb As Byte
     Dim anCh As String
     Dim store(1) As String
+    Dim storeAll(1) As Integer
+    Dim store30(1) As Integer
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -101,7 +103,7 @@ Public Class DataForm
 
 
         Try
-            FileOpen(1, $"..\..\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
+            FileOpen(1, $"..\..\Logged Data\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
 
         Catch ex As Exception
             FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
@@ -173,15 +175,27 @@ Public Class DataForm
 
         Return byteAsInt
     End Function
-    Function ShiftArrayAN1(newdata As Integer) As Integer()
-        Static Dim data(99) As Integer
+    Function ShiftArrayAN1(newdata As Integer, Optional scale As Integer = 100, Optional display As Boolean = True) As Integer()
+        '  Static Dim data(99) As Integer
+        Static e As Integer
+        ReDim Preserve storeAll(e)
+        ReDim Preserve store30(scale)
+        If display Then
 
-        For i = LBound(data) To UBound(data) - 1
-            data(i) = data(i + 1)
-        Next
-        data(UBound(data)) = newdata
-        'Console.Read()
-        Return data
+            For i = LBound(storeAll) To UBound(storeAll) - 1
+                storeAll(i) = storeAll(i + 1)
+            Next
+            storeAll(UBound(storeAll)) = newdata
+            'Console.Read()
+            Return storeAll
+        Else
+            For i = LBound(store30) To UBound(store30) - 1
+                store30(i) = store30(i + 1)
+            Next
+            store30(UBound(store30)) = newdata
+            Return store30()
+        End If
+        e += 1
     End Function
 
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
