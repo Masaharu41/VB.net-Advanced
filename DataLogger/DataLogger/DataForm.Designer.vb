@@ -39,6 +39,7 @@ Partial Class DataForm
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.SampleComboBox = New System.Windows.Forms.ComboBox()
         Me.SampleButton = New System.Windows.Forms.Button()
+        Me.WriteTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -185,6 +186,10 @@ Partial Class DataForm
         Me.SampleButton.Text = "Sample"
         Me.SampleButton.UseVisualStyleBackColor = True
         '
+        'WriteTimer
+        '
+        Me.WriteTimer.Interval = 60000
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -230,4 +235,5 @@ Partial Class DataForm
     Friend WithEvents ExitButton As Button
     Friend WithEvents SampleComboBox As ComboBox
     Friend WithEvents SampleButton As Button
+    Friend WithEvents WriteTimer As Timer
 End Class

@@ -12,7 +12,7 @@ Option Strict On
 ' {} Graphical display for last 30 second history
 ' {} Multiple analog channels
 ' {*} Default sample rate for 10 samples a second
-' {} Add variable sample select from 1 to 100 samp/sec
+' {*} Add variable sample select from 1 to 100 samp/sec
 ' {} Store analog data in an external file using below format
 ' "$$AN1",<HighByte>,<LowByte>,<timestamp>
 ' log_YYMMDDHH.log >> File name style
@@ -26,6 +26,7 @@ Public Class DataForm
     Dim msb As Byte
     Dim lsb As Byte
     Dim anCh As String
+    Dim store() As String
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -131,7 +132,21 @@ Public Class DataForm
     Sub DisplayAN1()
         DataPictureBox.Image = Nothing
         plot(ShiftArrayAN1(ByteToInt))
+
     End Sub
+
+    Sub StoreData(Optional reset As Boolean = False)
+        Static i As Integer
+
+        If reset Then
+            i = 0
+        Else
+            store(i) = $"{anCh},{msb},{lsb >> 6}"
+            i += 1
+        End If
+
+    End Sub
+
 
     Sub plot(plotdata() As Integer)
         Dim g As Graphics = DataPictureBox.CreateGraphics
@@ -202,4 +217,8 @@ Public Class DataForm
 
         Return pollRate
     End Function
+
+    Private Sub WriteTimer_Tick(sender As Object, e As EventArgs) Handles WriteTimer.Tick
+
+    End Sub
 End Class
