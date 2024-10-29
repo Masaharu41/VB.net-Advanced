@@ -27,6 +27,8 @@ Public Class DataForm
     Dim lsb As Byte
     Dim anCh As String
     Dim disScale As Integer
+    Dim anOne As Boolean
+    Dim anTwo As Boolean
     Dim store(1) As String
     '  Dim storeAll(10) As Integer
     ' Dim store30(1) As Integer
@@ -77,6 +79,8 @@ Public Class DataForm
         SampleComboBox.Text = "10"
         AllRadioButton.Checked = True
         DisplayTimer.Enabled = False
+        anOne = True
+        anTwo = False
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
@@ -99,6 +103,21 @@ Public Class DataForm
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
         End Try
         anCh = "$$AN1"
+    End Sub
+
+
+    Sub PollAN2()
+        ' Sends byte to get the adc result for ADC2
+        Dim x(1) As Byte
+        x(0) = &H52
+        Try
+
+            DataSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+        End Try
+        anCh = "$$AN2"
     End Sub
 
     Sub WriteStoredData()
@@ -135,14 +154,15 @@ Public Class DataForm
                 lsb = data(1)
                 Console.WriteLine(msb)
                 Console.WriteLine(lsb >> 6)
-                DisplayAN1()
+
+                DisplayAnalog()
             End If
         Catch ex As Exception
 
         End Try
 
     End Sub
-    Sub DisplayAN1()
+    Sub DisplayAnalog()
         Dim scale As Integer
         Dim text As String
         ' DataPictureBox.Image = Nothing
@@ -178,12 +198,20 @@ Public Class DataForm
 
     End Sub
 
+    Function AnalogColor() As Color
+        If anOne Then
+            Return Color.Black
+        Else
+            Return Color.Blue
+        End If
+    End Function
 
     Sub plot(plotdata() As Integer, Optional length As Integer = 100)
         Dim g As Graphics = DataPictureBox.CreateGraphics
-        Dim pen As New Pen(Color.Black)
+        Dim pen As New Pen(AnalogColor)
         Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
+
         '   Dim widthUnit% = CInt(DataPictureBox.Width / length)
         g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
@@ -246,8 +274,10 @@ Public Class DataForm
     End Sub
 
     Private Sub PollTimer_Tick(sender As Object, e As EventArgs) Handles PollTimer.Tick
-        If port Then
+        If port And anOne Then
             PollAN1()
+        Else
+            PollAN2()
         End If
     End Sub
 
@@ -284,5 +314,15 @@ Public Class DataForm
 
             plot(ShiftArrayAN1(ByteToInt), disScale)
         End If
+    End Sub
+
+    Private Sub AN1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN1ToolStripMenuItem.Click
+        anOne = True
+        anTwo = False
+    End Sub
+
+    Private Sub AN2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN2ToolStripMenuItem.Click
+        anTwo = True
+        anOne = False
     End Sub
 End Class
