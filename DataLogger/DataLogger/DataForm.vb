@@ -28,8 +28,8 @@ Public Class DataForm
     Dim anCh As String
     Dim disScale As Integer
     Dim store(1) As String
-    Dim storeAll(10) As Integer
-    Dim store30(1) As Integer
+    '  Dim storeAll(10) As Integer
+    ' Dim store30(1) As Integer
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -76,6 +76,7 @@ Public Class DataForm
         OpenPort()
         SampleComboBox.Text = "10"
         AllRadioButton.Checked = True
+        DisplayTimer.Enabled = False
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
@@ -105,7 +106,7 @@ Public Class DataForm
 
 
         Try
-            FileOpen(1, $"..\..\Logged Data\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Append)
+            FileOpen(1, $"..\..\Logged Data\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Output)
 
         Catch ex As Exception
             FileOpen(2, "..\..\Errorlog.txt", OpenMode.Append)
@@ -114,7 +115,7 @@ Public Class DataForm
         End Try
         For e = LBound(store) To UBound(store)
 
-            Write(1, $"{store(e)}")
+            Print(1, $"{store(e)}")
         Next
         FileClose(1)
 
@@ -126,11 +127,16 @@ Public Class DataForm
         Try
             Dim data(DataSerialPort.BytesToRead) As Byte
             DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
-            msb = data(0)
-            lsb = data(1)
-            Console.WriteLine(msb)
-            Console.WriteLine(lsb >> 6)
-            DisplayAN1()
+            If CInt(data(0)) = 0 And CInt(data(1)) = 0 Then
+                Console.WriteLine(data(0))
+                Console.WriteLine(data(1))
+            Else
+                msb = data(0)
+                lsb = data(1)
+                Console.WriteLine(msb)
+                Console.WriteLine(lsb >> 6)
+                DisplayAN1()
+            End If
         Catch ex As Exception
 
         End Try
@@ -138,7 +144,8 @@ Public Class DataForm
     End Sub
     Sub DisplayAN1()
         Dim scale As Integer
-        DataPictureBox.Image = Nothing
+        ' DataPictureBox.Image = Nothing
+        DisplayTimer.Enabled = True
         If ThirtyRadioButton.Checked Then
             scale = CInt(CInt(10) * 30)
             disScale = scale
@@ -157,7 +164,7 @@ Public Class DataForm
         If reset Then
             i = 0
         Else
-            store(i) = $"{anCh},{msb},{lsb >> 6},{DateTime.Now.ToString("ddhhmmss")}{DateTime.UtcNow.Millisecond}"
+            store(i) = $"{Chr(34)}{anCh}{Chr(34)},{msb},{lsb >> 6},{DateTime.Now.ToString("ddhhmmss")}.{DateTime.UtcNow.Millisecond}{vbNewLine}"
             i += 1
             ReDim Preserve store(i)
         End If
@@ -190,14 +197,14 @@ Public Class DataForm
     Function ShiftArrayAN1(newdata As Integer, Optional scale As Integer = 100, Optional display As Boolean = True) As Integer()
         '  Static Dim data(99) As Integer
         Static e As Integer
-        ' Static storeAll(e) As Integer
-        ' Static store30(scale) As Integer
-        e += 1
+        Static storeAll(99) As Integer
+        Static store30(scale) As Integer
         For i = LBound(storeAll) To UBound(storeAll) - 1
             storeAll(i) = storeAll(i + 1)
         Next
         storeAll(UBound(storeAll)) = newdata
-        ReDim Preserve storeAll(e)
+        e += 1
+        ReDim Preserve storeAll(e - 1)
         If display Then
             disScale = e
             'Console.Read()
@@ -216,10 +223,13 @@ Public Class DataForm
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         PollTimer.Enabled = True
         WriteTimer.Enabled = True
+        DisplayTimer.Enabled = True
     End Sub
 
     Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
         PollTimer.Enabled = False
+        DisplayTimer.Enabled = False
+
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
@@ -256,6 +266,7 @@ Public Class DataForm
     End Sub
 
     Private Sub DisplayTimer_Tick(sender As Object, e As EventArgs) Handles DisplayTimer.Tick
+        DataPictureBox.Image = Nothing
         If ThirtyRadioButton.Checked Then
 
             ' ShiftArrayAN1(ByteToInt, Scale, False)
