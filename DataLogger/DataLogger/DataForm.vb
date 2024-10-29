@@ -199,14 +199,16 @@ Public Class DataForm
         Static e As Integer
         Static storeAll(99) As Integer
         Static store30(scale) As Integer
+        e += 1
+        ReDim Preserve storeAll(e)
+        storeAll(UBound(storeAll)) = newdata
         For i = LBound(storeAll) To UBound(storeAll) - 1
             storeAll(i) = storeAll(i + 1)
         Next
-        storeAll(UBound(storeAll)) = newdata
-        e += 1
-        ReDim Preserve storeAll(e - 1)
+
         If display Then
             disScale = e
+            ' disScale = 100
             'Console.Read()
             Return storeAll
         Else

@@ -217,7 +217,7 @@ Partial Class DataForm
         '
         'DisplayTimer
         '
-        Me.DisplayTimer.Interval = 20
+        Me.DisplayTimer.Interval = 10
         '
         'DataForm
         '
