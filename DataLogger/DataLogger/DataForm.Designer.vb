@@ -26,7 +26,7 @@ Partial Class DataForm
         Me.DataSerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.ComComboBox = New System.Windows.Forms.ComboBox()
         Me.PortLabel = New System.Windows.Forms.Label()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.DataMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.PortToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PortConLabel = New System.Windows.Forms.Label()
         Me.ManualCheckBox = New System.Windows.Forms.CheckBox()
@@ -43,8 +43,17 @@ Partial Class DataForm
         Me.AllRadioButton = New System.Windows.Forms.RadioButton()
         Me.ThirtyRadioButton = New System.Windows.Forms.RadioButton()
         Me.DisplayTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.MenuStrip1.SuspendLayout()
+        Me.SerialGroupBox = New System.Windows.Forms.GroupBox()
+        Me.ButtonsGroupBox = New System.Windows.Forms.GroupBox()
+        Me.DisplayGroupBox = New System.Windows.Forms.GroupBox()
+        Me.AnalogChannelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DataMenuStrip.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SerialGroupBox.SuspendLayout()
+        Me.ButtonsGroupBox.SuspendLayout()
+        Me.DisplayGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataSerialPort
@@ -55,7 +64,7 @@ Partial Class DataForm
         Me.ComComboBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ComComboBox.FormattingEnabled = True
         Me.ComComboBox.Items.AddRange(New Object() {"COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10"})
-        Me.ComComboBox.Location = New System.Drawing.Point(17, 377)
+        Me.ComComboBox.Location = New System.Drawing.Point(10, 54)
         Me.ComComboBox.Name = "ComComboBox"
         Me.ComComboBox.Size = New System.Drawing.Size(113, 33)
         Me.ComComboBox.TabIndex = 0
@@ -64,34 +73,34 @@ Partial Class DataForm
         '
         Me.PortLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PortLabel.AutoSize = True
-        Me.PortLabel.Location = New System.Drawing.Point(136, 377)
+        Me.PortLabel.Location = New System.Drawing.Point(129, 54)
         Me.PortLabel.Name = "PortLabel"
         Me.PortLabel.Size = New System.Drawing.Size(118, 25)
         Me.PortLabel.TabIndex = 1
         Me.PortLabel.Text = "Port Status"
         '
-        'MenuStrip1
+        'DataMenuStrip
         '
-        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
-        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
-        Me.MenuStrip1.TabIndex = 2
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.DataMenuStrip.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.DataMenuStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.DataMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem, Me.AnalogChannelToolStripMenuItem})
+        Me.DataMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.DataMenuStrip.Name = "DataMenuStrip"
+        Me.DataMenuStrip.Size = New System.Drawing.Size(963, 42)
+        Me.DataMenuStrip.TabIndex = 2
+        Me.DataMenuStrip.Text = "Data Logger"
         '
         'PortToolStripMenuItem
         '
         Me.PortToolStripMenuItem.Name = "PortToolStripMenuItem"
-        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
+        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 38)
         Me.PortToolStripMenuItem.Text = "Port"
         '
         'PortConLabel
         '
         Me.PortConLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.PortConLabel.AutoSize = True
-        Me.PortConLabel.Location = New System.Drawing.Point(12, 349)
+        Me.PortConLabel.Location = New System.Drawing.Point(5, 26)
         Me.PortConLabel.Name = "PortConLabel"
         Me.PortConLabel.Size = New System.Drawing.Size(222, 25)
         Me.PortConLabel.TabIndex = 3
@@ -101,7 +110,7 @@ Partial Class DataForm
         '
         Me.ManualCheckBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ManualCheckBox.AutoSize = True
-        Me.ManualCheckBox.Location = New System.Drawing.Point(17, 430)
+        Me.ManualCheckBox.Location = New System.Drawing.Point(10, 107)
         Me.ManualCheckBox.Name = "ManualCheckBox"
         Me.ManualCheckBox.Size = New System.Drawing.Size(201, 29)
         Me.ManualCheckBox.TabIndex = 4
@@ -110,7 +119,9 @@ Partial Class DataForm
         '
         'ConnectButton
         '
-        Me.ConnectButton.Location = New System.Drawing.Point(244, 407)
+        Me.ConnectButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ConnectButton.AutoSize = True
+        Me.ConnectButton.Location = New System.Drawing.Point(217, 104)
         Me.ConnectButton.Name = "ConnectButton"
         Me.ConnectButton.Size = New System.Drawing.Size(116, 52)
         Me.ConnectButton.TabIndex = 5
@@ -124,7 +135,7 @@ Partial Class DataForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataPictureBox.Location = New System.Drawing.Point(12, 97)
         Me.DataPictureBox.Name = "DataPictureBox"
-        Me.DataPictureBox.Size = New System.Drawing.Size(831, 249)
+        Me.DataPictureBox.Size = New System.Drawing.Size(927, 279)
         Me.DataPictureBox.TabIndex = 6
         Me.DataPictureBox.TabStop = False
         '
@@ -143,7 +154,7 @@ Partial Class DataForm
         'StartButton
         '
         Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.StartButton.Location = New System.Drawing.Point(574, 364)
+        Me.StartButton.Location = New System.Drawing.Point(21, 42)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(117, 57)
         Me.StartButton.TabIndex = 8
@@ -153,7 +164,7 @@ Partial Class DataForm
         'StopButton
         '
         Me.StopButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.StopButton.Location = New System.Drawing.Point(697, 361)
+        Me.StopButton.Location = New System.Drawing.Point(144, 39)
         Me.StopButton.Name = "StopButton"
         Me.StopButton.Size = New System.Drawing.Size(117, 57)
         Me.StopButton.TabIndex = 9
@@ -163,7 +174,7 @@ Partial Class DataForm
         'ExitButton
         '
         Me.ExitButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ExitButton.Location = New System.Drawing.Point(697, 427)
+        Me.ExitButton.Location = New System.Drawing.Point(144, 105)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(117, 57)
         Me.ExitButton.TabIndex = 10
@@ -172,9 +183,10 @@ Partial Class DataForm
         '
         'SampleComboBox
         '
+        Me.SampleComboBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SampleComboBox.FormattingEnabled = True
         Me.SampleComboBox.Items.AddRange(New Object() {"1", "5", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"})
-        Me.SampleComboBox.Location = New System.Drawing.Point(447, 443)
+        Me.SampleComboBox.Location = New System.Drawing.Point(77, 126)
         Me.SampleComboBox.Name = "SampleComboBox"
         Me.SampleComboBox.Size = New System.Drawing.Size(121, 33)
         Me.SampleComboBox.TabIndex = 11
@@ -182,7 +194,7 @@ Partial Class DataForm
         'SampleButton
         '
         Me.SampleButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SampleButton.Location = New System.Drawing.Point(574, 427)
+        Me.SampleButton.Location = New System.Drawing.Point(21, 105)
         Me.SampleButton.Name = "SampleButton"
         Me.SampleButton.Size = New System.Drawing.Size(117, 57)
         Me.SampleButton.TabIndex = 12
@@ -195,8 +207,9 @@ Partial Class DataForm
         '
         'AllRadioButton
         '
+        Me.AllRadioButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AllRadioButton.AutoSize = True
-        Me.AllRadioButton.Location = New System.Drawing.Point(378, 361)
+        Me.AllRadioButton.Location = New System.Drawing.Point(8, 54)
         Me.AllRadioButton.Name = "AllRadioButton"
         Me.AllRadioButton.Size = New System.Drawing.Size(144, 29)
         Me.AllRadioButton.TabIndex = 13
@@ -206,8 +219,9 @@ Partial Class DataForm
         '
         'ThirtyRadioButton
         '
+        Me.ThirtyRadioButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ThirtyRadioButton.AutoSize = True
-        Me.ThirtyRadioButton.Location = New System.Drawing.Point(378, 396)
+        Me.ThirtyRadioButton.Location = New System.Drawing.Point(8, 89)
         Me.ThirtyRadioButton.Name = "ThirtyRadioButton"
         Me.ThirtyRadioButton.Size = New System.Drawing.Size(204, 29)
         Me.ThirtyRadioButton.TabIndex = 14
@@ -219,32 +233,87 @@ Partial Class DataForm
         '
         Me.DisplayTimer.Interval = 10
         '
+        'SerialGroupBox
+        '
+        Me.SerialGroupBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SerialGroupBox.Controls.Add(Me.ConnectButton)
+        Me.SerialGroupBox.Controls.Add(Me.ManualCheckBox)
+        Me.SerialGroupBox.Controls.Add(Me.PortConLabel)
+        Me.SerialGroupBox.Controls.Add(Me.PortLabel)
+        Me.SerialGroupBox.Controls.Add(Me.ComComboBox)
+        Me.SerialGroupBox.Location = New System.Drawing.Point(12, 400)
+        Me.SerialGroupBox.Name = "SerialGroupBox"
+        Me.SerialGroupBox.Size = New System.Drawing.Size(369, 185)
+        Me.SerialGroupBox.TabIndex = 15
+        Me.SerialGroupBox.TabStop = False
+        Me.SerialGroupBox.Text = "Serial Functions"
+        '
+        'ButtonsGroupBox
+        '
+        Me.ButtonsGroupBox.Controls.Add(Me.SampleButton)
+        Me.ButtonsGroupBox.Controls.Add(Me.ExitButton)
+        Me.ButtonsGroupBox.Controls.Add(Me.StopButton)
+        Me.ButtonsGroupBox.Controls.Add(Me.StartButton)
+        Me.ButtonsGroupBox.Location = New System.Drawing.Point(629, 410)
+        Me.ButtonsGroupBox.Name = "ButtonsGroupBox"
+        Me.ButtonsGroupBox.Size = New System.Drawing.Size(289, 175)
+        Me.ButtonsGroupBox.TabIndex = 16
+        Me.ButtonsGroupBox.TabStop = False
+        Me.ButtonsGroupBox.Text = "Buttons"
+        '
+        'DisplayGroupBox
+        '
+        Me.DisplayGroupBox.Controls.Add(Me.ThirtyRadioButton)
+        Me.DisplayGroupBox.Controls.Add(Me.AllRadioButton)
+        Me.DisplayGroupBox.Controls.Add(Me.SampleComboBox)
+        Me.DisplayGroupBox.Location = New System.Drawing.Point(387, 410)
+        Me.DisplayGroupBox.Name = "DisplayGroupBox"
+        Me.DisplayGroupBox.Size = New System.Drawing.Size(222, 175)
+        Me.DisplayGroupBox.TabIndex = 17
+        Me.DisplayGroupBox.TabStop = False
+        Me.DisplayGroupBox.Text = "Display"
+        '
+        'AnalogChannelToolStripMenuItem
+        '
+        Me.AnalogChannelToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AN1ToolStripMenuItem, Me.AN2ToolStripMenuItem})
+        Me.AnalogChannelToolStripMenuItem.Name = "AnalogChannelToolStripMenuItem"
+        Me.AnalogChannelToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
+        Me.AnalogChannelToolStripMenuItem.Text = "Analog Channel"
+        '
+        'AN1ToolStripMenuItem
+        '
+        Me.AN1ToolStripMenuItem.Name = "AN1ToolStripMenuItem"
+        Me.AN1ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN1ToolStripMenuItem.Text = "AN1"
+        '
+        'AN2ToolStripMenuItem
+        '
+        Me.AN2ToolStripMenuItem.Name = "AN2ToolStripMenuItem"
+        Me.AN2ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN2ToolStripMenuItem.Text = "AN2"
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(867, 525)
-        Me.Controls.Add(Me.ThirtyRadioButton)
-        Me.Controls.Add(Me.AllRadioButton)
-        Me.Controls.Add(Me.SampleButton)
-        Me.Controls.Add(Me.SampleComboBox)
-        Me.Controls.Add(Me.ExitButton)
-        Me.Controls.Add(Me.StopButton)
-        Me.Controls.Add(Me.StartButton)
+        Me.ClientSize = New System.Drawing.Size(963, 597)
+        Me.Controls.Add(Me.DisplayGroupBox)
+        Me.Controls.Add(Me.ButtonsGroupBox)
+        Me.Controls.Add(Me.SerialGroupBox)
         Me.Controls.Add(Me.AnalogLabel)
         Me.Controls.Add(Me.DataPictureBox)
-        Me.Controls.Add(Me.ConnectButton)
-        Me.Controls.Add(Me.ManualCheckBox)
-        Me.Controls.Add(Me.PortConLabel)
-        Me.Controls.Add(Me.PortLabel)
-        Me.Controls.Add(Me.ComComboBox)
-        Me.Controls.Add(Me.MenuStrip1)
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.Controls.Add(Me.DataMenuStrip)
+        Me.MainMenuStrip = Me.DataMenuStrip
         Me.Name = "DataForm"
         Me.Text = "Data Logger"
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
+        Me.DataMenuStrip.ResumeLayout(False)
+        Me.DataMenuStrip.PerformLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SerialGroupBox.ResumeLayout(False)
+        Me.SerialGroupBox.PerformLayout()
+        Me.ButtonsGroupBox.ResumeLayout(False)
+        Me.DisplayGroupBox.ResumeLayout(False)
+        Me.DisplayGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -252,7 +321,7 @@ Partial Class DataForm
 
     Friend WithEvents DataSerialPort As IO.Ports.SerialPort
     Friend WithEvents ComComboBox As ComboBox
-    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents DataMenuStrip As MenuStrip
     Friend WithEvents PortToolStripMenuItem As ToolStripMenuItem
     Public WithEvents PortLabel As Label
     Friend WithEvents PortConLabel As Label
@@ -270,4 +339,10 @@ Partial Class DataForm
     Friend WithEvents AllRadioButton As RadioButton
     Friend WithEvents ThirtyRadioButton As RadioButton
     Friend WithEvents DisplayTimer As Timer
+    Friend WithEvents SerialGroupBox As GroupBox
+    Friend WithEvents ButtonsGroupBox As GroupBox
+    Friend WithEvents DisplayGroupBox As GroupBox
+    Friend WithEvents AnalogChannelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AN1ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AN2ToolStripMenuItem As ToolStripMenuItem
 End Class
