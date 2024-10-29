@@ -191,7 +191,7 @@ Partial Class DataForm
         '
         'WriteTimer
         '
-        Me.WriteTimer.Interval = 6000
+        Me.WriteTimer.Interval = 60000
         '
         'AllRadioButton
         '
