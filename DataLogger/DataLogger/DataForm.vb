@@ -13,7 +13,7 @@ Option Strict On
 ' {} Multiple analog channels
 ' {*} Default sample rate for 10 samples a second
 ' {*} Add variable sample select from 1 to 100 samp/sec
-' {} Store analog data in an external file using below format
+' {*} Store analog data in an external file using below format
 ' "$$AN1",<HighByte>,<LowByte>,<timestamp>
 ' log_YYMMDDHH.log >> File name style
 ' {} Write to file every hour
@@ -26,8 +26,9 @@ Public Class DataForm
     Dim msb As Byte
     Dim lsb As Byte
     Dim anCh As String
+    Dim disScale As Integer
     Dim store(1) As String
-    Dim storeAll(1) As Integer
+    Dim storeAll(10) As Integer
     Dim store30(1) As Integer
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
@@ -121,6 +122,7 @@ Public Class DataForm
 
 
     Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
+
         Try
             Dim data(DataSerialPort.BytesToRead) As Byte
             DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
@@ -128,7 +130,7 @@ Public Class DataForm
             lsb = data(1)
             Console.WriteLine(msb)
             Console.WriteLine(lsb >> 6)
-            displayAN1()
+            DisplayAN1()
         Catch ex As Exception
 
         End Try
@@ -138,11 +140,13 @@ Public Class DataForm
         Dim scale As Integer
         DataPictureBox.Image = Nothing
         If ThirtyRadioButton.Checked Then
-            scale = CInt(SampleComboBox.Text) * 30
-            plot(ShiftArrayAN1(ByteToInt, scale, False))
+            scale = CInt(CInt(10) * 30)
+            disScale = scale
+            ShiftArrayAN1(ByteToInt, scale, False)
+            '  plot(ShiftArrayAN1(ByteToInt, scale, False), disScale)
         Else
-
-            plot(ShiftArrayAN1(ByteToInt))
+            ShiftArrayAN1(ByteToInt)
+            '  plot(ShiftArrayAN1(ByteToInt), disScale)
         End If
         StoreData()
     End Sub
@@ -161,13 +165,13 @@ Public Class DataForm
     End Sub
 
 
-    Sub plot(plotdata() As Integer)
+    Sub plot(plotdata() As Integer, Optional length As Integer = 100)
         Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(Color.Black)
         Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
-        Dim widthUnit% = CInt(DataPictureBox.Width / 100)
-        g.ScaleTransform(CSng(DataPictureBox.Width / 100), 1)
+        '   Dim widthUnit% = CInt(DataPictureBox.Width / length)
+        g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
             g.DrawLine(pen, oldX, oldY, x, CInt(plotdata(x) * height))
             oldX = x
@@ -186,15 +190,16 @@ Public Class DataForm
     Function ShiftArrayAN1(newdata As Integer, Optional scale As Integer = 100, Optional display As Boolean = True) As Integer()
         '  Static Dim data(99) As Integer
         Static e As Integer
-        ReDim Preserve store30(scale)
-        ReDim Preserve storeAll(e)
+        ' Static storeAll(e) As Integer
+        ' Static store30(scale) As Integer
         e += 1
+        For i = LBound(storeAll) To UBound(storeAll) - 1
+            storeAll(i) = storeAll(i + 1)
+        Next
+        storeAll(UBound(storeAll)) = newdata
+        ReDim Preserve storeAll(e)
         If display Then
-
-            For i = LBound(storeAll) To UBound(storeAll) - 1
-                storeAll(i) = storeAll(i + 1)
-            Next
-            storeAll(UBound(storeAll)) = newdata
+            disScale = e
             'Console.Read()
             Return storeAll
         Else
@@ -202,6 +207,8 @@ Public Class DataForm
                 store30(i) = store30(i + 1)
             Next
             store30(UBound(store30)) = newdata
+            ReDim Preserve store30(scale)
+
             Return store30
         End If
     End Function
@@ -246,5 +253,16 @@ Public Class DataForm
 
     Private Sub WriteTimer_Tick(sender As Object, e As EventArgs) Handles WriteTimer.Tick
         WriteStoredData()
+    End Sub
+
+    Private Sub DisplayTimer_Tick(sender As Object, e As EventArgs) Handles DisplayTimer.Tick
+        If ThirtyRadioButton.Checked Then
+
+            ' ShiftArrayAN1(ByteToInt, Scale, False)
+            plot(ShiftArrayAN1(ByteToInt, disScale, False), disScale)
+        Else
+
+            plot(ShiftArrayAN1(ByteToInt), disScale)
+        End If
     End Sub
 End Class

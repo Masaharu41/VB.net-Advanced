@@ -42,6 +42,7 @@ Partial Class DataForm
         Me.WriteTimer = New System.Windows.Forms.Timer(Me.components)
         Me.AllRadioButton = New System.Windows.Forms.RadioButton()
         Me.ThirtyRadioButton = New System.Windows.Forms.RadioButton()
+        Me.DisplayTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -76,14 +77,14 @@ Partial Class DataForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PortToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(867, 48)
+        Me.MenuStrip1.Size = New System.Drawing.Size(867, 40)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'PortToolStripMenuItem
         '
         Me.PortToolStripMenuItem.Name = "PortToolStripMenuItem"
-        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 40)
+        Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 36)
         Me.PortToolStripMenuItem.Text = "Port"
         '
         'PortConLabel
@@ -214,6 +215,11 @@ Partial Class DataForm
         Me.ThirtyRadioButton.Text = "Last 30 Seconds"
         Me.ThirtyRadioButton.UseVisualStyleBackColor = True
         '
+        'DisplayTimer
+        '
+        Me.DisplayTimer.Enabled = True
+        Me.DisplayTimer.Interval = 50
+        '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -264,4 +270,5 @@ Partial Class DataForm
     Friend WithEvents WriteTimer As Timer
     Friend WithEvents AllRadioButton As RadioButton
     Friend WithEvents ThirtyRadioButton As RadioButton
+    Friend WithEvents DisplayTimer As Timer
 End Class
