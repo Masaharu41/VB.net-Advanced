@@ -144,16 +144,23 @@ Public Class DataForm
     End Sub
     Sub DisplayAN1()
         Dim scale As Integer
+        Dim text As String
         ' DataPictureBox.Image = Nothing
         DisplayTimer.Enabled = True
         If ThirtyRadioButton.Checked Then
-            scale = CInt(CInt(10) * 30)
+            If Me.SampleComboBox.InvokeRequired Then
+
+                Me.SampleComboBox.Invoke(New MethodInvoker(Sub() text = SampleComboBox.Text))
+            Else
+                text = SampleComboBox.Text
+            End If
+            scale = CInt(CInt(text) * 30)
             disScale = scale
             ShiftArrayAN1(ByteToInt, scale, False)
-            '  plot(ShiftArrayAN1(ByteToInt, scale, False), disScale)
+
         Else
             ShiftArrayAN1(ByteToInt)
-            '  plot(ShiftArrayAN1(ByteToInt), disScale)
+
         End If
         StoreData()
     End Sub
