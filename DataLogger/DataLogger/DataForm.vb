@@ -5,7 +5,7 @@ Option Strict On
 ' Data Logger
 ' Started on 10/24/2024
 ' TODO
-' {} Create Gui with full interface and display
+' {*} Create Gui with full interface and display
 ' {*} Serial communication to Pic/Qy@ board
 ' {*} Add serial verify for port state
 ' {*} Graphical display of entire data history
@@ -17,6 +17,10 @@ Option Strict On
 ' "$$AN1",<HighByte>,<LowByte>,<timestamp>
 ' log_YYMMDDHH.log >> File name style
 ' {*} Write to file every hour
+
+' Notes: Current GUI display does have some "ghosting" effect
+' unable to resolve the ghosting but 
+
 
 Imports System.IO.Ports
 
@@ -32,8 +36,7 @@ Public Class DataForm
     Dim anThree As Boolean
     Dim anFour As Boolean
     Dim store(1) As String
-    '  Dim storeAll(10) As Integer
-    ' Dim store30(1) As Integer
+
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
         Dim portName As String
@@ -77,15 +80,21 @@ Public Class DataForm
     End Sub
 
     Private Sub DataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' on form load try to open serial port automatically
+        ' enable analog one as the default and 10 samples a second
         OpenPort()
         SampleComboBox.Text = "10"
         AllRadioButton.Checked = True
         DisplayTimer.Enabled = False
         anOne = True
         anTwo = False
+        anThree = False
+        anFour = False
     End Sub
 
     Private Sub ConnectButton_Click(sender As Object, e As EventArgs) Handles ConnectButton.Click
+        ' allows user to connect to serial port with button connect.
+        ' auto connect or manual selection of the com port is allowed
         If ManualCheckBox.Checked Then
             OpenPort(True)
         Else
@@ -155,8 +164,7 @@ Public Class DataForm
     End Sub
 
     Sub WriteStoredData()
-        ' Static currentUser As String
-
+        ' open file to write data to
 
         Try
             FileOpen(1, $"..\..\Logged Data\log_{DateTime.Now.ToString("yyMMddhh")}.log", OpenMode.Output)
@@ -166,6 +174,7 @@ Public Class DataForm
             Write(2, CStr($"Error: {Err.Number}, {Err.Description} {vbNewLine}"))
             FileClose(2)
         End Try
+        ' loop to enter all values stored
         For e = LBound(store) To UBound(store)
 
             Print(1, $"{store(e)}")
@@ -199,6 +208,7 @@ Public Class DataForm
     Sub DisplayAnalog()
         Dim scale As Integer
         Dim text As String
+        Dim anString(1) As String
         ' DataPictureBox.Image = Nothing
         DisplayTimer.Enabled = True
         If ThirtyRadioButton.Checked Then
@@ -216,11 +226,19 @@ Public Class DataForm
             ShiftArrayAN1(ByteToInt)
 
         End If
-        AnalogLabel.Text = anCh
+        anString = Split(anCh, "$$")
+        If Me.AnalogLabel.InvokeRequired Then
+            Me.AnalogLabel.Invoke(New MethodInvoker(Sub() AnalogLabel.Text = anString(1)))
+        Else
+
+            AnalogLabel.Text = anString(1)
+        End If
         StoreData()
     End Sub
 
     Sub StoreData(Optional reset As Boolean = False)
+        ' generate an expanding array that stores all the values collected
+        ' stores the channel, msb, lsb, day hour minute second millisecond for each record
         Static i As Integer
 
         If reset Then
@@ -234,6 +252,7 @@ Public Class DataForm
     End Sub
 
     Function AnalogColor() As Color
+        '
         If anOne Then
             Return Color.Chartreuse
         ElseIf anTwo Then
@@ -255,6 +274,7 @@ Public Class DataForm
         '   Dim widthUnit% = CInt(DataPictureBox.Width / length)
         g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
+            g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
             g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
             g.DrawLine(pen, oldX, oldY, x, CInt(plotdata(x) * height))
             oldX = x
