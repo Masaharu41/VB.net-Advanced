@@ -185,10 +185,12 @@ Public Class DataForm
 
 
     Private Sub DataSerialPort_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles DataSerialPort.DataReceived
-
+        ' uses the recieve flag for data from the serial port
+        ' try catch in event of errors reading data from the port
         Try
             Dim data(DataSerialPort.BytesToRead) As Byte
             DataSerialPort.Read(data, 0, DataSerialPort.BytesToRead)
+            ' reject instances of no data recieved
             If CInt(data(0)) = 0 And CInt(data(1)) = 0 Then
                 Console.WriteLine(data(0))
                 Console.WriteLine(data(1))
@@ -206,18 +208,22 @@ Public Class DataForm
 
     End Sub
     Sub DisplayAnalog()
+        ' displays analog data 
         Dim scale As Integer
         Dim text As String
         Dim anString(1) As String
-        ' DataPictureBox.Image = Nothing
+
         DisplayTimer.Enabled = True
         If ThirtyRadioButton.Checked Then
+            ' checks if the combo box is in a background thread and forces it to main thread if needed
+            ' this section caused multi thread errors in testing
             If Me.SampleComboBox.InvokeRequired Then
 
                 Me.SampleComboBox.Invoke(New MethodInvoker(Sub() text = SampleComboBox.Text))
             Else
                 text = SampleComboBox.Text
             End If
+            ' set scale of the 30 second display based on sample rate
             scale = CInt(CInt(text) * 30)
             disScale = scale
             ShiftArrayAN1(ByteToInt, scale, False)
@@ -252,7 +258,7 @@ Public Class DataForm
     End Sub
 
     Function AnalogColor() As Color
-        '
+        ' sets a different color based on the analog channel selected
         If anOne Then
             Return Color.Chartreuse
         ElseIf anTwo Then
@@ -265,13 +271,14 @@ Public Class DataForm
     End Function
 
     Sub plot(plotdata() As Integer, Optional length As Integer = 100)
+        ' draws the shifted array to the scale of the # of samples taken
         Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(AnalogColor)
         Dim pen2 As New Pen(DataPictureBox.BackColor)
         Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
 
-        '   Dim widthUnit% = CInt(DataPictureBox.Width / length)
+
         g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
             g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
@@ -283,15 +290,16 @@ Public Class DataForm
     End Sub
 
     Function ByteToInt() As Integer
+        ' converts the byte data into its integer equavilent honoring the msb and lsb bytes representation
         Dim byteAsInt%
 
         byteAsInt = CInt(msb) * 4 + CInt(lsb >> 6)
-        ' DataPictureBox.Refresh()
 
         Return byteAsInt
     End Function
     Function ShiftArrayAN1(newdata As Integer, Optional scale As Integer = 100, Optional display As Boolean = True) As Integer()
-        '  Static Dim data(99) As Integer
+        ' has two shiftable arrays. the store all is always written to keep track of all the data
+        ' the store 30 is only updated and applied when the 30 second is working
         Static e As Integer
         Static storeAll(99) As Integer
         Static store30(scale) As Integer
@@ -304,8 +312,7 @@ Public Class DataForm
 
         If display Then
             disScale = e
-            ' disScale = 100
-            'Console.Read()
+
             Return storeAll
         Else
             For i = LBound(store30) To UBound(store30) - 1
@@ -319,22 +326,26 @@ Public Class DataForm
     End Function
 
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
+        ' start the analog sampling by enabling all timers
         PollTimer.Enabled = True
         WriteTimer.Enabled = True
         DisplayTimer.Enabled = True
     End Sub
 
     Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
+        ' disables sampling but does not disable write timer
         PollTimer.Enabled = False
         DisplayTimer.Enabled = False
 
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+        ' closes form
         Me.Close()
     End Sub
 
     Private Sub PollTimer_Tick(sender As Object, e As EventArgs) Handles PollTimer.Tick
+        ' polls the designated analog input on a timer which is user defined via the combo box
         If port And anOne Then
             PollAN1()
         ElseIf port And anTwo Then
@@ -349,16 +360,24 @@ Public Class DataForm
     End Sub
 
     Private Sub SampleButton_Click(sender As Object, e As EventArgs) Handles SampleButton.Click
-        PollTimer.Enabled = False
+        ' update the sample rate
+        ' PollTimer.Enabled = False
         PollTimer.Interval = CalculatePoll()
-        PollTimer.Enabled = True
+        '  PollTimer.Enabled = True
     End Sub
 
     Function CalculatePoll() As Integer
         Dim pollRate%
-        If CInt(SampleComboBox.Text) <= 100 Then
+        Dim text As String = SampleComboBox.Text
+        If Me.SampleComboBox.InvokeRequired Then
 
-            pollRate = CInt(1000 / CInt(SampleComboBox.Text))
+            Me.SampleComboBox.Invoke(New MethodInvoker(Sub() text = SampleComboBox.Text))
+        Else
+            text = SampleComboBox.Text
+        End If
+        If 100 >= CInt(text) Then
+
+            pollRate = CInt(1000 / CInt(text))
         Else
             MsgBox("Sample Rate cannot be greater than 100")
             pollRate = 10
@@ -397,8 +416,11 @@ Public Class DataForm
         anFour = False
     End Sub
 
-    Private Sub ComComboBox_TextChanged(sender As Object, e As EventArgs) Handles ComComboBox.TextChanged
+    Private Sub ComComboBox_TextChanged(sender As Object, e As EventArgs) Handles ComComboBox.Click
         DataPictureBox.Refresh()
+        PollTimer.Enabled = False
+        PollTimer.Interval = CalculatePoll()
+        PollTimer.Enabled = True
     End Sub
 
     Private Sub AN3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN3ToolStripMenuItem.Click
