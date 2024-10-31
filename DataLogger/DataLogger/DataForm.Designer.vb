@@ -28,6 +28,9 @@ Partial Class DataForm
         Me.PortLabel = New System.Windows.Forms.Label()
         Me.DataMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.PortToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnalogChannelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PortConLabel = New System.Windows.Forms.Label()
         Me.ManualCheckBox = New System.Windows.Forms.CheckBox()
         Me.ConnectButton = New System.Windows.Forms.Button()
@@ -46,9 +49,8 @@ Partial Class DataForm
         Me.SerialGroupBox = New System.Windows.Forms.GroupBox()
         Me.ButtonsGroupBox = New System.Windows.Forms.GroupBox()
         Me.DisplayGroupBox = New System.Windows.Forms.GroupBox()
-        Me.AnalogChannelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AN1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AN2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN3ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AN4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataMenuStrip.SuspendLayout()
         CType(Me.DataPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SerialGroupBox.SuspendLayout()
@@ -96,6 +98,25 @@ Partial Class DataForm
         Me.PortToolStripMenuItem.Size = New System.Drawing.Size(76, 38)
         Me.PortToolStripMenuItem.Text = "Port"
         '
+        'AnalogChannelToolStripMenuItem
+        '
+        Me.AnalogChannelToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AN1ToolStripMenuItem, Me.AN2ToolStripMenuItem, Me.AN3ToolStripMenuItem, Me.AN4ToolStripMenuItem})
+        Me.AnalogChannelToolStripMenuItem.Name = "AnalogChannelToolStripMenuItem"
+        Me.AnalogChannelToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
+        Me.AnalogChannelToolStripMenuItem.Text = "Analog Channel"
+        '
+        'AN1ToolStripMenuItem
+        '
+        Me.AN1ToolStripMenuItem.Name = "AN1ToolStripMenuItem"
+        Me.AN1ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN1ToolStripMenuItem.Text = "AN1"
+        '
+        'AN2ToolStripMenuItem
+        '
+        Me.AN2ToolStripMenuItem.Name = "AN2ToolStripMenuItem"
+        Me.AN2ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN2ToolStripMenuItem.Text = "AN2"
+        '
         'PortConLabel
         '
         Me.PortConLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -133,6 +154,7 @@ Partial Class DataForm
         Me.DataPictureBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataPictureBox.BackColor = System.Drawing.Color.Black
         Me.DataPictureBox.Location = New System.Drawing.Point(12, 97)
         Me.DataPictureBox.Name = "DataPictureBox"
         Me.DataPictureBox.Size = New System.Drawing.Size(927, 279)
@@ -273,29 +295,23 @@ Partial Class DataForm
         Me.DisplayGroupBox.TabStop = False
         Me.DisplayGroupBox.Text = "Display"
         '
-        'AnalogChannelToolStripMenuItem
+        'AN3ToolStripMenuItem
         '
-        Me.AnalogChannelToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AN1ToolStripMenuItem, Me.AN2ToolStripMenuItem})
-        Me.AnalogChannelToolStripMenuItem.Name = "AnalogChannelToolStripMenuItem"
-        Me.AnalogChannelToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
-        Me.AnalogChannelToolStripMenuItem.Text = "Analog Channel"
+        Me.AN3ToolStripMenuItem.Name = "AN3ToolStripMenuItem"
+        Me.AN3ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN3ToolStripMenuItem.Text = "AN3"
         '
-        'AN1ToolStripMenuItem
+        'AN4ToolStripMenuItem
         '
-        Me.AN1ToolStripMenuItem.Name = "AN1ToolStripMenuItem"
-        Me.AN1ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
-        Me.AN1ToolStripMenuItem.Text = "AN1"
-        '
-        'AN2ToolStripMenuItem
-        '
-        Me.AN2ToolStripMenuItem.Name = "AN2ToolStripMenuItem"
-        Me.AN2ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
-        Me.AN2ToolStripMenuItem.Text = "AN2"
+        Me.AN4ToolStripMenuItem.Name = "AN4ToolStripMenuItem"
+        Me.AN4ToolStripMenuItem.Size = New System.Drawing.Size(359, 44)
+        Me.AN4ToolStripMenuItem.Text = "AN4"
         '
         'DataForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(963, 597)
         Me.Controls.Add(Me.DisplayGroupBox)
         Me.Controls.Add(Me.ButtonsGroupBox)
@@ -345,4 +361,6 @@ Partial Class DataForm
     Friend WithEvents AnalogChannelToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AN1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AN2ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AN3ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AN4ToolStripMenuItem As ToolStripMenuItem
 End Class

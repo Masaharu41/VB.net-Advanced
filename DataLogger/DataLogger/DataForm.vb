@@ -10,7 +10,7 @@ Option Strict On
 ' {*} Add serial verify for port state
 ' {*} Graphical display of entire data history
 ' {*} Graphical display for last 30 second history
-' {} Multiple analog channels
+' {*} Multiple analog channels
 ' {*} Default sample rate for 10 samples a second
 ' {*} Add variable sample select from 1 to 100 samp/sec
 ' {*} Store analog data in an external file using below format
@@ -29,6 +29,8 @@ Public Class DataForm
     Dim disScale As Integer
     Dim anOne As Boolean
     Dim anTwo As Boolean
+    Dim anThree As Boolean
+    Dim anFour As Boolean
     Dim store(1) As String
     '  Dim storeAll(10) As Integer
     ' Dim store30(1) As Integer
@@ -101,6 +103,7 @@ Public Class DataForm
         Catch ex As Exception
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            PollTimer.Enabled = False
         End Try
         anCh = "$$AN1"
     End Sub
@@ -116,8 +119,39 @@ Public Class DataForm
         Catch ex As Exception
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            PollTimer.Enabled = False
         End Try
         anCh = "$$AN2"
+    End Sub
+
+    Sub PollAN3()
+        ' Sends byte to get the adc result for ADC3
+        Dim x(1) As Byte
+        x(0) = &H54
+        Try
+
+            DataSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            PollTimer.Enabled = False
+        End Try
+        anCh = "$$AN3"
+    End Sub
+
+    Sub PollAN4()
+        ' Sends byte to get the adc result for ADC4
+        Dim x(1) As Byte
+        x(0) = &H58
+        Try
+
+            DataSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            PollTimer.Enabled = False
+        End Try
+        anCh = "$$AN4"
     End Sub
 
     Sub WriteStoredData()
@@ -182,6 +216,7 @@ Public Class DataForm
             ShiftArrayAN1(ByteToInt)
 
         End If
+        AnalogLabel.Text = anCh
         StoreData()
     End Sub
 
@@ -200,21 +235,27 @@ Public Class DataForm
 
     Function AnalogColor() As Color
         If anOne Then
-            Return Color.Black
+            Return Color.Chartreuse
+        ElseIf anTwo Then
+            Return Color.Cyan
+        ElseIf anThree Then
+            Return Color.Red
         Else
-            Return Color.Blue
+            Return Color.Magenta
         End If
     End Function
 
     Sub plot(plotdata() As Integer, Optional length As Integer = 100)
         Dim g As Graphics = DataPictureBox.CreateGraphics
         Dim pen As New Pen(AnalogColor)
+        Dim pen2 As New Pen(DataPictureBox.BackColor)
         Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
 
         '   Dim widthUnit% = CInt(DataPictureBox.Width / length)
         g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
+            g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
             g.DrawLine(pen, oldX, oldY, x, CInt(plotdata(x) * height))
             oldX = x
             oldY = CInt(plotdata(x) * height)
@@ -276,8 +317,14 @@ Public Class DataForm
     Private Sub PollTimer_Tick(sender As Object, e As EventArgs) Handles PollTimer.Tick
         If port And anOne Then
             PollAN1()
-        Else
+        ElseIf port And anTwo Then
             PollAN2()
+        ElseIf port And anThree Then
+            PollAN3()
+        ElseIf port And anFour Then
+            PollAN4()
+        Else
+
         End If
     End Sub
 
@@ -305,7 +352,7 @@ Public Class DataForm
     End Sub
 
     Private Sub DisplayTimer_Tick(sender As Object, e As EventArgs) Handles DisplayTimer.Tick
-        DataPictureBox.Image = Nothing
+        '    DataPictureBox.Image = Nothing
         If ThirtyRadioButton.Checked Then
 
             ' ShiftArrayAN1(ByteToInt, Scale, False)
@@ -319,10 +366,32 @@ Public Class DataForm
     Private Sub AN1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN1ToolStripMenuItem.Click
         anOne = True
         anTwo = False
+        anThree = False
+        anFour = False
     End Sub
 
     Private Sub AN2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN2ToolStripMenuItem.Click
         anTwo = True
         anOne = False
+        anThree = False
+        anFour = False
+    End Sub
+
+    Private Sub ComComboBox_TextChanged(sender As Object, e As EventArgs) Handles ComComboBox.TextChanged
+        DataPictureBox.Refresh()
+    End Sub
+
+    Private Sub AN3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN3ToolStripMenuItem.Click
+        anOne = False
+        anTwo = False
+        anThree = True
+        anFour = False
+    End Sub
+
+    Private Sub AN4ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN4ToolStripMenuItem.Click
+        anOne = False
+        anTwo = False
+        anThree = False
+        anFour = True
     End Sub
 End Class
