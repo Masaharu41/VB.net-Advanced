@@ -83,7 +83,7 @@ Public Class DataForm
         ' on form load try to open serial port automatically
         ' enable analog one as the default and 10 samples a second
         OpenPort()
-        SampleComboBox.Text = "10"
+        'SampleComboBox.Text = "10"
         AllRadioButton.Checked = True
         DisplayTimer.Enabled = False
         anOne = True
@@ -277,9 +277,13 @@ Public Class DataForm
         Dim pen2 As New Pen(DataPictureBox.BackColor)
         Dim height As Double = DataPictureBox.Height / 1030
         Dim oldX%, oldY%
+        If length = 0 Then
+            g.ScaleTransform(CSng(DataPictureBox.Width / 10), 1)
+        Else
+            g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
 
+        End If
 
-        g.ScaleTransform(CSng(DataPictureBox.Width / length), 1)
         For x = 0 To UBound(plotdata)
             g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
             g.DrawLine(pen2, x, 0, x, CSng(DataPictureBox.Height))
@@ -361,9 +365,9 @@ Public Class DataForm
 
     Private Sub SampleButton_Click(sender As Object, e As EventArgs) Handles SampleButton.Click
         ' update the sample rate
-        ' PollTimer.Enabled = False
+        PollTimer.Enabled = False
         PollTimer.Interval = CalculatePoll()
-        '  PollTimer.Enabled = True
+        PollTimer.Enabled = True
     End Sub
 
     Function CalculatePoll() As Integer
@@ -416,12 +420,13 @@ Public Class DataForm
         anFour = False
     End Sub
 
-    Private Sub ComComboBox_TextChanged(sender As Object, e As EventArgs) Handles ComComboBox.Click
-        DataPictureBox.Refresh()
-        PollTimer.Enabled = False
-        PollTimer.Interval = CalculatePoll()
-        PollTimer.Enabled = True
-    End Sub
+    'Private Sub SampleComboBox_TextChanged(sender As Object, e As EventArgs) Handles SampleComboBox.SelectedIndexChanged
+
+    '    DataPictureBox.Refresh()
+    '    PollTimer.Enabled = False
+    '    PollTimer.Interval = CalculatePoll()
+    '    PollTimer.Enabled = True
+    'End Sub
 
     Private Sub AN3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AN3ToolStripMenuItem.Click
         anOne = False

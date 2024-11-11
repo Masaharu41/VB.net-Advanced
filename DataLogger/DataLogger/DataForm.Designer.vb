@@ -266,6 +266,7 @@ Partial Class DataForm
         '
         'DisplayTimer
         '
+        Me.DisplayTimer.Enabled = True
         Me.DisplayTimer.Interval = 10
         '
         'SerialGroupBox
