@@ -28,6 +28,57 @@ Public Class HVACGuiForm
     Public RoarangeL As Color = Color.FromArgb(246, 146, 64)
     Public BengalBlack As Color = Color.FromArgb(0, 0, 0)
 
+    Dim port As Boolean
+
+    Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.BackColor = GrowlGrey
+        Me.ForeColor = BengalBlack
+        OpenPort()
+    End Sub
+
+    Sub OpenPort(Optional force As Boolean = False)
+        Dim portValid As Boolean = False
+        Dim portName As String
+        ' auto test "all" COM port values until a valid connection or nothing reports back
+        If force = True Then
+            Try
+                portName = ComToolStripComboBox.Text
+                SmartSerialPort.PortName = portName
+                SmartSerialPort.BaudRate = 115200
+                SmartSerialPort.Open()
+                portValid = True
+            Catch ex As Exception
+                portValid = False
+            End Try
+        Else
+            For i = 0 To 50
+
+                portName = $"COM{i}"
+                Try
+                    SmartSerialPort.PortName = portName
+                    SmartSerialPort.BaudRate = 115200
+                    SmartSerialPort.Open()
+                    portValid = True
+                    Exit For
+                Catch ex As Exception
+                    ' MsgBox("Com was not Valid")
+                    portValid = False
+
+                End Try
+            Next
+        End If
+
+        If portValid = True Then
+            PortStatustoolstripLabel.Text = "Port Is Open"
+            ComToolStripComboBox.SelectedText = portName
+            port = True
+        Else
+            PortStatusToolStripLabel.Text = "Port Is Closed"
+            port = False
+        End If
+    End Sub
+
+
 
 
 End Class
