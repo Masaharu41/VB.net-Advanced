@@ -19,6 +19,7 @@ Option Compare Binary
 '{} Digital Input 1 handles safety interlock // low = error // Display error on GUI
 '{} Display safety interlock error on Digital Output 1
 '{} Digital Input 2 controls heating function
+Imports System.Threading.Thread
 Public Class HVACGuiForm
 
     Public GrowlGreyLight As Color = Color.FromArgb(230, 213, 232)
@@ -103,11 +104,39 @@ Public Class HVACGuiForm
         Catch ex As Exception
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-
+            port = False
         End Try
+
+
+    End Sub
+
+    Sub PollDigital()
+        Dim temp(1) As Byte
+        temp(0) = &H30
+        Try
+
+            SmartSerialPort.Write(temp, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            port = False
+        End Try
+
 
     End Sub
 
 
+    Function RecieveData(Optional analog As Boolean = True) As Byte
+        Sleep(5) ' wait for data to be recieved from Qy@ board
+        Dim recievedData(SmartSerialPort.BytesToRead) As Byte
+        Dim temp() As Byte
 
+        SmartSerialPort.Read(recievedData, 0, SmartSerialPort.BytesToRead)
+
+        If analog = True Then
+
+            Return recievedData(1)
+        End If
+
+    End Function
 End Class

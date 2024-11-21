@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Qy%40 Com.vb" />
     <Compile Include="HVAC Gui.vb">
       <SubType>Form</SubType>
     </Compile>
