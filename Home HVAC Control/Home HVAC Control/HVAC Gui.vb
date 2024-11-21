@@ -78,6 +78,35 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+    Sub PollAN1()
+        ' Sends byte to get the adc result for ADC1
+        Dim x(1) As Byte
+        x(0) = &H51
+        Try
+
+            SmartSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+
+        End Try
+
+    End Sub
+
+    Sub PollAN2()
+        ' Sends byte to get the adc result for ADC2
+        Dim x(1) As Byte
+        x(0) = &H52
+        Try
+
+            SmartSerialPort.Write(x, 0, 2)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+
+        End Try
+
+    End Sub
 
 
 
