@@ -24,10 +24,12 @@ Partial Class HVACGuiForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.ComToolStripComboBox = New System.Windows.Forms.ToolStripComboBox()
-        Me.SmartSerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.PortStatusToolStripLabel = New System.Windows.Forms.ToolStripLabel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SmartSerialPort = New System.IO.Ports.SerialPort(Me.components)
+        Me.TwoTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.FiveTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -37,9 +39,21 @@ Partial Class HVACGuiForm
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComToolStripComboBox, Me.PortStatusToolStripLabel})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 50)
+        Me.ToolStrip1.Size = New System.Drawing.Size(800, 40)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ComToolStripComboBox
+        '
+        Me.ComToolStripComboBox.Name = "ComToolStripComboBox"
+        Me.ComToolStripComboBox.Size = New System.Drawing.Size(121, 40)
+        Me.ComToolStripComboBox.Text = "Com1"
+        '
+        'PortStatusToolStripLabel
+        '
+        Me.PortStatusToolStripLabel.Name = "PortStatusToolStripLabel"
+        Me.PortStatusToolStripLabel.Size = New System.Drawing.Size(127, 34)
+        Me.PortStatusToolStripLabel.Text = "Port Status"
         '
         'Label1
         '
@@ -51,17 +65,13 @@ Partial Class HVACGuiForm
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Label1"
         '
-        'ComToolStripComboBox
+        'TwoTimer
         '
-        Me.ComToolStripComboBox.Name = "ComToolStripComboBox"
-        Me.ComToolStripComboBox.Size = New System.Drawing.Size(121, 50)
-        Me.ComToolStripComboBox.Text = "Com1"
+        Me.TwoTimer.Interval = 20000
         '
-        'PortStatusToolStripLabel
+        'FiveTimer
         '
-        Me.PortStatusToolStripLabel.Name = "PortStatusToolStripLabel"
-        Me.PortStatusToolStripLabel.Size = New System.Drawing.Size(127, 44)
-        Me.PortStatusToolStripLabel.Text = "Port Status"
+        Me.FiveTimer.Interval = 5000
         '
         'HVACGuiForm
         '
@@ -86,4 +96,6 @@ Partial Class HVACGuiForm
     Friend WithEvents ComToolStripComboBox As ToolStripComboBox
     Friend WithEvents SmartSerialPort As IO.Ports.SerialPort
     Friend WithEvents PortStatusToolStripLabel As ToolStripLabel
+    Friend WithEvents TwoTimer As Timer
+    Friend WithEvents FiveTimer As Timer
 End Class

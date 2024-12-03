@@ -30,11 +30,19 @@ Public Class HVACGuiForm
     Public BengalBlack As Color = Color.FromArgb(0, 0, 0)
 
     Dim port As Boolean
+    Dim houseTemp As Integer
+    Dim unitTemp As Integer
 
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
         Me.ForeColor = BengalBlack
         OpenPort()
+        If port Then
+            TwoTimer.Enabled = True
+        Else
+            TwoTimer.Enabled = False
+        End If
+        FiveTimer.Enabled = False
     End Sub
 
     Sub OpenPort(Optional force As Boolean = False)
@@ -50,6 +58,7 @@ Public Class HVACGuiForm
                 portValid = True
             Catch ex As Exception
                 portValid = False
+                SmartSerialPort.Close()
             End Try
         Else
             For i = 0 To 50
@@ -64,7 +73,7 @@ Public Class HVACGuiForm
                 Catch ex As Exception
                     ' MsgBox("Com was not Valid")
                     portValid = False
-
+                    SmartSerialPort.Close()
                 End Try
             Next
         End If
@@ -73,6 +82,7 @@ Public Class HVACGuiForm
             PortStatustoolstripLabel.Text = "Port Is Open"
             ComToolStripComboBox.SelectedText = portName
             port = True
+
         Else
             PortStatusToolStripLabel.Text = "Port Is Closed"
             port = False
@@ -87,9 +97,9 @@ Public Class HVACGuiForm
 
             SmartSerialPort.Write(x, 0, 2)
         Catch ex As Exception
+            ' try to reconnect port automatically
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-
         End Try
 
     End Sub
@@ -104,7 +114,6 @@ Public Class HVACGuiForm
         Catch ex As Exception
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-            port = False
         End Try
 
 
@@ -120,23 +129,42 @@ Public Class HVACGuiForm
             OpenPort()
             MsgBox($"Port was disconnected {vbNewLine} Please check connection")
             port = False
+
         End Try
 
 
     End Sub
 
 
-    Function RecieveData(Optional analog As Boolean = True) As Byte
+    Function ReceiveData() As Byte()
         Sleep(5) ' wait for data to be recieved from Qy@ board
         Dim recievedData(SmartSerialPort.BytesToRead) As Byte
         Dim temp() As Byte
 
         SmartSerialPort.Read(recievedData, 0, SmartSerialPort.BytesToRead)
 
-        If analog = True Then
-
-            Return recievedData(1)
-        End If
+        Return recievedData
 
     End Function
+
+    Private Sub TwoTimer_Tick(sender As Object, e As EventArgs) Handles TwoTimer.Tick
+        Dim temp() As Byte
+        PollAN1()                       ' poll house temperature
+        temp = ReceiveData()
+        houseTemp = ConvertToTemp(temp) ' convert byte to integer representation 
+        PollAN2()
+        temp = ReceiveData()
+        unitTemp = ConvertToTemp(temp)
+    End Sub
+
+    Function ConvertToTemp(temp() As Byte) As Integer
+        '  converts a two byte array to the temperature of the sensor based upon the 
+        Dim int%
+
+        int = CInt((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6.666)
+
+        Return int
+    End Function
+
+
 End Class
