@@ -30,6 +30,8 @@ Partial Class HVACGuiForm
         Me.SmartSerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.TwoTimer = New System.Windows.Forms.Timer(Me.components)
         Me.FiveTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.HouseTempComboBox = New System.Windows.Forms.ComboBox()
+        Me.SystemTempTextBox = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -73,12 +75,30 @@ Partial Class HVACGuiForm
         '
         Me.FiveTimer.Interval = 5000
         '
+        'HouseTempComboBox
+        '
+        Me.HouseTempComboBox.FormattingEnabled = True
+        Me.HouseTempComboBox.Location = New System.Drawing.Point(89, 141)
+        Me.HouseTempComboBox.Name = "HouseTempComboBox"
+        Me.HouseTempComboBox.Size = New System.Drawing.Size(121, 33)
+        Me.HouseTempComboBox.TabIndex = 2
+        '
+        'SystemTempTextBox
+        '
+        Me.SystemTempTextBox.Location = New System.Drawing.Point(455, 143)
+        Me.SystemTempTextBox.Name = "SystemTempTextBox"
+        Me.SystemTempTextBox.ReadOnly = True
+        Me.SystemTempTextBox.Size = New System.Drawing.Size(100, 31)
+        Me.SystemTempTextBox.TabIndex = 3
+        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.SystemTempTextBox)
+        Me.Controls.Add(Me.HouseTempComboBox)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.ForeColor = System.Drawing.Color.White
@@ -98,4 +118,6 @@ Partial Class HVACGuiForm
     Friend WithEvents PortStatusToolStripLabel As ToolStripLabel
     Friend WithEvents TwoTimer As Timer
     Friend WithEvents FiveTimer As Timer
+    Friend WithEvents HouseTempComboBox As ComboBox
+    Friend WithEvents SystemTempTextBox As TextBox
 End Class

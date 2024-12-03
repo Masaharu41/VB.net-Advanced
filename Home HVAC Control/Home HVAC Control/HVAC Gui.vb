@@ -30,12 +30,14 @@ Public Class HVACGuiForm
     Public BengalBlack As Color = Color.FromArgb(0, 0, 0)
 
     Dim port As Boolean
-    Dim houseTemp As Integer
-    Dim unitTemp As Integer
+    Dim houseTemp As Single
+    Dim unitTemp As Single
+    Dim shutdown As Boolean
 
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
         Me.ForeColor = BengalBlack
+        shutdown = False
         OpenPort()
         If port Then
             TwoTimer.Enabled = True
@@ -135,6 +137,18 @@ Public Class HVACGuiForm
 
     End Sub
 
+    Sub SetDigital(temp() As Byte)
+        Try
+            SmartSerialPort.Write(temp, 0, 1)
+        Catch ex As Exception
+            OpenPort()
+            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
+            port = False
+
+        End Try
+
+    End Sub
+
 
     Function ReceiveData() As Byte()
         Sleep(5) ' wait for data to be recieved from Qy@ board
@@ -157,14 +171,64 @@ Public Class HVACGuiForm
         unitTemp = ConvertToTemp(temp)
     End Sub
 
-    Function ConvertToTemp(temp() As Byte) As Integer
+    Function ConvertToTemp(temp() As Byte) As Single
         '  converts a two byte array to the temperature of the sensor based upon the 
-        Dim int%
+        Dim int As Single
 
-        int = CInt((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6.666)
+        int = CSng((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6.666)
 
         Return int
     End Function
 
+    Sub SetOutputs()
+
+        If houseTemp = CSng(HouseTempComboBox.Text) Then
+            DisableUnit()
+        ElseIf houseTemp < CSng(HouseTempComboBox.text) Then
+
+        End If
+
+
+    End Sub
+
+
+    Sub DisableUnit()
+
+    End Sub
+
+    Sub EnableHeater()
+        Dim byteArray() As Byte
+        Dim bitArray As BitArray = New BitArray(8)
+        PollDigital()
+        byteArray = ReceiveData()
+        bitArray = New BitArray(byteArray(0))
+        If bitArray(0) = False Then
+            InterLockIssue()
+        End If
+    End Sub
+
+    Sub InterLockIssue()
+        Dim temp() As Byte
+        Dim errorS As String
+        temp(0) = &H1
+        SetDigital(temp)    ' Set digital 1 error indicator and clear other outputs
+        errorS = $"{DateTime.Now.ToString("yyMMddhh")} Interlock Safety Switch Error: System Has Shutdown {vbNewLine}"
+        ErrorLog(errorS)
+
+    End Sub
+
+
+    Sub ErrorLog(text As String)
+        Try
+            FileOpen(1, "..\..\Error.log", OpenMode.Append)
+            Write(1, text)
+        Catch ex As Exception
+            FileOpen(2, "..\..\FileError.log", OpenMode.Append)
+            Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
+            FileClose(2)
+        End Try
+
+        FileClose(1)
+    End Sub
 
 End Class
