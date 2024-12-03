@@ -50,6 +50,7 @@ Public Class DataForm
                 portValid = True
             Catch ex As Exception
                 portValid = False
+                DataSerialPort.Close()
             End Try
         Else
             For i = 0 To 50
@@ -64,7 +65,7 @@ Public Class DataForm
                 Catch ex As Exception
                     ' MsgBox("Com was not Valid")
                     portValid = False
-
+                    DataSerialPort.Close()
                 End Try
             Next
         End If
