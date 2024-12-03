@@ -78,6 +78,7 @@ Partial Class HVACGuiForm
         'HouseTempComboBox
         '
         Me.HouseTempComboBox.FormattingEnabled = True
+        Me.HouseTempComboBox.Items.AddRange(New Object() {"50", "50.5"})
         Me.HouseTempComboBox.Location = New System.Drawing.Point(89, 141)
         Me.HouseTempComboBox.Name = "HouseTempComboBox"
         Me.HouseTempComboBox.Size = New System.Drawing.Size(121, 33)

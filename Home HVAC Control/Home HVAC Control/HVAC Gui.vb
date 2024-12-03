@@ -12,13 +12,14 @@ Option Compare Binary
 '{} Display Temperature with state of cooling, heat, and fan
 '{} Allow user to adjust 0.5 degree increments in a high and low setpoint boxes 
 '{} Only allow room temperature to be applied from 50 to 90 degrees farenheit
-'{} Analog Input 1 as the overall temperature of from
-'{} Analog Input 2 as the temperature of the heating and cooling system
-'{} Poll heating and cooling temperature every 2 min
-'{} Thermal protection that shutsdown unit if temperature does not perform as desired
+'{*} Analog Input 1 as the overall temperature of from
+'{*} Analog Input 2 as the temperature of the heating and cooling system
+'{*} Poll heating and cooling temperature every 2 min
+'{*} Thermal protection that shutsdown unit if temperature does not perform as desired
 '{} Digital Input 1 handles safety interlock // low = error // Display error on GUI
 '{} Display safety interlock error on Digital Output 1
 '{} Digital Input 2 controls heating function
+Imports System.CodeDom.Compiler
 Imports System.Threading.Thread
 Public Class HVACGuiForm
 
@@ -33,6 +34,7 @@ Public Class HVACGuiForm
     Dim houseTemp As Single
     Dim unitTemp As Single
     Dim shutdown As Boolean
+    Dim wait As Boolean
 
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
@@ -41,6 +43,7 @@ Public Class HVACGuiForm
         OpenPort()
         If port Then
             TwoTimer.Enabled = True
+            SampleSensors()
         Else
             TwoTimer.Enabled = False
         End If
@@ -81,8 +84,8 @@ Public Class HVACGuiForm
         End If
 
         If portValid = True Then
-            PortStatustoolstripLabel.Text = "Port Is Open"
-            ComToolStripComboBox.SelectedText = portName
+            PortStatusToolStripLabel.Text = "Port Is Open"
+            ComToolStripComboBox.Text = portName
             port = True
 
         Else
@@ -162,10 +165,16 @@ Public Class HVACGuiForm
     End Function
 
     Private Sub TwoTimer_Tick(sender As Object, e As EventArgs) Handles TwoTimer.Tick
+        SampleSensors()
+        SetOutputs()
+    End Sub
+
+    Sub SampleSensors()
         Dim temp() As Byte
         PollAN1()                       ' poll house temperature
         temp = ReceiveData()
         houseTemp = ConvertToTemp(temp) ' convert byte to integer representation 
+        SystemTempTextBox.Text = CStr(houseTemp)
         PollAN2()
         temp = ReceiveData()
         unitTemp = ConvertToTemp(temp)
@@ -182,9 +191,13 @@ Public Class HVACGuiForm
 
     Sub SetOutputs()
 
-        If houseTemp = CSng(HouseTempComboBox.Text) Then
+
+        If houseTemp >= CSng(HouseTempComboBox.Text) + 2 Then
+
+        ElseIf houseTemp <= CSng(HouseTempComboBox.Text) - 2 Then
+            EnableHeater()
+        Else
             DisableUnit()
-        ElseIf houseTemp < CSng(HouseTempComboBox.text) Then
 
         End If
 
@@ -193,10 +206,31 @@ Public Class HVACGuiForm
 
 
     Sub DisableUnit()
+        Dim sendByte() As Byte
+        sendByte(0) = &H4           ' set output fan as true
+        SetDigital(sendByte)
+        FiveTimer.Enabled = True        ' enable 5 second wait
+        wait = True
 
     End Sub
 
     Sub EnableHeater()
+        Dim heaterByte() As Byte
+        If InterlockCheck() Then
+            If unitTemp <= 110 Then
+                wait = False
+                heaterByte(0) = &H4
+                SetDigital(heaterByte)
+            Else
+                DisableUnit()       ' disable heater if temperature is greater than 110 degrees
+            End If
+
+        Else
+                TwoTimer.Enabled = False
+        End If
+    End Sub
+
+    Function InterlockCheck() As Boolean
         Dim byteArray() As Byte
         Dim bitArray As BitArray = New BitArray(8)
         PollDigital()
@@ -204,8 +238,11 @@ Public Class HVACGuiForm
         bitArray = New BitArray(byteArray(0))
         If bitArray(0) = False Then
             InterLockIssue()
+            Return False
+        Else
+            Return True
         End If
-    End Sub
+    End Function
 
     Sub InterLockIssue()
         Dim temp() As Byte
@@ -214,7 +251,7 @@ Public Class HVACGuiForm
         SetDigital(temp)    ' Set digital 1 error indicator and clear other outputs
         errorS = $"{DateTime.Now.ToString("yyMMddhh")} Interlock Safety Switch Error: System Has Shutdown {vbNewLine}"
         ErrorLog(errorS)
-
+        shutdown = True
     End Sub
 
 
@@ -231,4 +268,24 @@ Public Class HVACGuiForm
         FileClose(1)
     End Sub
 
+    Private Sub FiveTimer_Tick(sender As Object, e As EventArgs) Handles FiveTimer.Tick
+        Dim sendByte() As Byte
+        If shutdown Then
+            If InterlockCheck() Then
+                shutdown = False
+                FiveTimer.Enabled = False
+            Else
+
+            End If
+        Else
+            If wait Then
+                sendByte(0) = &H0
+                SetDigital(sendByte)
+            Else
+                sendByte(0) = &H6
+                SetDigital(sendByte)
+            End If
+            FiveTimer.Enabled = False
+        End If
+    End Sub
 End Class
