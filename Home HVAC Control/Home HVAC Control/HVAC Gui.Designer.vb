@@ -23,6 +23,7 @@ Partial Class HVACGuiForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HVACGuiForm))
         Me.HomeToolStrip = New System.Windows.Forms.ToolStrip()
         Me.ComToolStripComboBox = New System.Windows.Forms.ToolStripComboBox()
         Me.PortStatusToolStripLabel = New System.Windows.Forms.ToolStripLabel()
@@ -38,7 +39,13 @@ Partial Class HVACGuiForm
         Me.UnitTempTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.CoolingPictureBox = New System.Windows.Forms.PictureBox()
+        Me.HeaterPictureBox = New System.Windows.Forms.PictureBox()
+        Me.FanPictureBox = New System.Windows.Forms.PictureBox()
         Me.HomeToolStrip.SuspendLayout()
+        CType(Me.CoolingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HeaterPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FanPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HomeToolStrip
@@ -47,7 +54,7 @@ Partial Class HVACGuiForm
         Me.HomeToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComToolStripComboBox, Me.PortStatusToolStripLabel})
         Me.HomeToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.HomeToolStrip.Name = "HomeToolStrip"
-        Me.HomeToolStrip.Size = New System.Drawing.Size(800, 50)
+        Me.HomeToolStrip.Size = New System.Drawing.Size(800, 40)
         Me.HomeToolStrip.TabIndex = 0
         Me.HomeToolStrip.Text = "ToolStrip1"
         '
@@ -67,7 +74,7 @@ Partial Class HVACGuiForm
         '
         Me.ErrorLabel.AutoSize = True
         Me.ErrorLabel.ForeColor = System.Drawing.Color.Black
-        Me.ErrorLabel.Location = New System.Drawing.Point(124, 337)
+        Me.ErrorLabel.Location = New System.Drawing.Point(271, 382)
         Me.ErrorLabel.Name = "ErrorLabel"
         Me.ErrorLabel.Size = New System.Drawing.Size(77, 25)
         Me.ErrorLabel.TabIndex = 1
@@ -99,7 +106,7 @@ Partial Class HVACGuiForm
         '
         'DecButton
         '
-        Me.DecButton.Location = New System.Drawing.Point(129, 137)
+        Me.DecButton.Location = New System.Drawing.Point(129, 143)
         Me.DecButton.Name = "DecButton"
         Me.DecButton.Size = New System.Drawing.Size(76, 43)
         Me.DecButton.TabIndex = 5
@@ -108,7 +115,7 @@ Partial Class HVACGuiForm
         '
         'IncButton
         '
-        Me.IncButton.Location = New System.Drawing.Point(317, 137)
+        Me.IncButton.Location = New System.Drawing.Point(317, 143)
         Me.IncButton.Name = "IncButton"
         Me.IncButton.Size = New System.Drawing.Size(91, 43)
         Me.IncButton.TabIndex = 6
@@ -150,12 +157,45 @@ Partial Class HVACGuiForm
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Unit Temperature"
         '
+        'CoolingPictureBox
+        '
+        Me.CoolingPictureBox.BackgroundImage = CType(resources.GetObject("CoolingPictureBox.BackgroundImage"), System.Drawing.Image)
+        Me.CoolingPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.CoolingPictureBox.Location = New System.Drawing.Point(129, 211)
+        Me.CoolingPictureBox.Name = "CoolingPictureBox"
+        Me.CoolingPictureBox.Size = New System.Drawing.Size(279, 127)
+        Me.CoolingPictureBox.TabIndex = 11
+        Me.CoolingPictureBox.TabStop = False
+        '
+        'HeaterPictureBox
+        '
+        Me.HeaterPictureBox.BackgroundImage = CType(resources.GetObject("HeaterPictureBox.BackgroundImage"), System.Drawing.Image)
+        Me.HeaterPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.HeaterPictureBox.Location = New System.Drawing.Point(129, 211)
+        Me.HeaterPictureBox.Name = "HeaterPictureBox"
+        Me.HeaterPictureBox.Size = New System.Drawing.Size(279, 127)
+        Me.HeaterPictureBox.TabIndex = 12
+        Me.HeaterPictureBox.TabStop = False
+        '
+        'FanPictureBox
+        '
+        Me.FanPictureBox.BackgroundImage = CType(resources.GetObject("FanPictureBox.BackgroundImage"), System.Drawing.Image)
+        Me.FanPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.FanPictureBox.Location = New System.Drawing.Point(455, 248)
+        Me.FanPictureBox.Name = "FanPictureBox"
+        Me.FanPictureBox.Size = New System.Drawing.Size(100, 90)
+        Me.FanPictureBox.TabIndex = 13
+        Me.FanPictureBox.TabStop = False
+        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.FanPictureBox)
+        Me.Controls.Add(Me.HeaterPictureBox)
+        Me.Controls.Add(Me.CoolingPictureBox)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.UnitTempTextBox)
@@ -171,6 +211,9 @@ Partial Class HVACGuiForm
         Me.Text = "Smart Home"
         Me.HomeToolStrip.ResumeLayout(False)
         Me.HomeToolStrip.PerformLayout()
+        CType(Me.CoolingPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HeaterPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FanPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -191,4 +234,7 @@ Partial Class HVACGuiForm
     Friend WithEvents UnitTempTextBox As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents CoolingPictureBox As PictureBox
+    Friend WithEvents HeaterPictureBox As PictureBox
+    Friend WithEvents FanPictureBox As PictureBox
 End Class

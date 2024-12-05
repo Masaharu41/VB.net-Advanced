@@ -16,8 +16,8 @@ Option Compare Binary
 '{*} Analog Input 2 as the temperature of the heating and cooling system
 '{*} Poll heating and cooling temperature every 2 min
 '{*} Thermal protection that shutsdown unit if temperature does not perform as desired
-'{} Digital Input 1 handles safety interlock // low = error // Display error on GUI
-'{} Display safety interlock error on Digital Output 1
+'{*} Digital Input 1 handles safety interlock // low = error // Display error on GUI
+'{*} Display safety interlock error on Digital Output 1
 '{} Digital Input 2 controls heating function
 Imports System.CodeDom.Compiler
 Imports System.Media
@@ -55,10 +55,14 @@ Public Class HVACGuiForm
             TwoTimer.Enabled = False
         End If
         FiveTimer.Enabled = False
+        CoolingPictureBox.Visible = False
+        HeaterPictureBox.Visible = False
+        FanPictureBox.Visible = False
     End Sub
 
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
+        Dim serialError As Boolean = True
         Dim portName As String
         ' auto test "all" COM port values until a valid connection or nothing reports back
         If force = True Then
@@ -73,7 +77,7 @@ Public Class HVACGuiForm
                 SmartSerialPort.Close()
             End Try
         Else
-            For i = 0 To 50
+            For i = 0 To 20
 
                 portName = $"COM{i}"
                 Try
@@ -96,6 +100,8 @@ Public Class HVACGuiForm
 
         Else
             PortStatusToolStripLabel.Text = "Port Is Closed"
+            Panic(serialError)
+            FiveTimer.Enabled = True
             port = False
         End If
     End Sub
@@ -104,14 +110,18 @@ Public Class HVACGuiForm
         ' Sends byte to get the adc result for ADC1
         Dim x(0) As Byte
         x(0) = &H51
-        Try
+        If port Then
+            Try
 
-            SmartSerialPort.Write(x, 0, 1)
-        Catch ex As Exception
-            ' try to reconnect port automatically
-            OpenPort()
-            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-        End Try
+                SmartSerialPort.Write(x, 0, 1)
+            Catch ex As Exception
+                ' try to reconnect port automatically
+                OpenPort()
+
+            End Try
+        Else
+
+        End If
 
     End Sub
 
@@ -119,13 +129,17 @@ Public Class HVACGuiForm
         ' Sends byte to get the adc result for ADC2
         Dim x(0) As Byte
         x(0) = &H52
-        Try
+        If port Then
+            Try
 
-            SmartSerialPort.Write(x, 0, 1)
-        Catch ex As Exception
-            OpenPort()
-            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-        End Try
+                SmartSerialPort.Write(x, 0, 1)
+            Catch ex As Exception
+                OpenPort()
+
+            End Try
+        Else
+
+        End If
 
 
     End Sub
@@ -133,15 +147,16 @@ Public Class HVACGuiForm
     Sub PollDigital()
         Dim temp(0) As Byte
         temp(0) = &H30
-        Try
+        If port Then
+            Try
 
-            SmartSerialPort.Write(temp, 0, 1)
-        Catch ex As Exception
-            OpenPort()
-            MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-            port = False
+                SmartSerialPort.Write(temp, 0, 1)
+            Catch ex As Exception
+                OpenPort()
+            End Try
+        Else
 
-        End Try
+        End If
 
 
     End Sub
@@ -150,13 +165,16 @@ Public Class HVACGuiForm
         Dim digByte(1) As Byte
         digByte(0) = &H20
         digByte(1) = output
-        Try
-            SmartSerialPort.Write(digByte, 0, 2)
-        Catch ex As Exception
-        OpenPort()
-        MsgBox($"Port was disconnected {vbNewLine} Please check connection")
-        port = False
-        End Try
+        If port Then
+            Try
+                SmartSerialPort.Write(digByte, 0, 2)
+            Catch ex As Exception
+                OpenPort()
+
+            End Try
+        Else
+
+        End If
 
     End Sub
 
@@ -172,19 +190,35 @@ Public Class HVACGuiForm
     End Function
 
     Private Sub TwoTimer_Tick(sender As Object, e As EventArgs) Handles TwoTimer.Tick
-        SampleSensors()
-        SetOutputs()
+        If port Then
+            SampleSensors()
+            SetOutputs()
+        Else
+            TwoTimer.Enabled = False
+            FiveTimer.Enabled = False
+        End If
     End Sub
 
     Sub SampleSensors()
         Dim temp() As Byte
+
         PollAN1()                       ' poll house temperature
-        temp = ReceiveData()
-        houseTemp = ConvertToTemp(temp) ' convert byte to integer representation 
-        SystemTempTextBox.Text = CStr(houseTemp)
+        If port Then
+            temp = ReceiveData()
+            houseTemp = ConvertToTemp(temp) ' convert byte to integer representation 
+            SystemTempTextBox.Text = CStr(houseTemp)
+        Else
+
+        End If
+
         PollAN2()
-        temp = ReceiveData()
-        unitTemp = ConvertToTemp(temp)
+        If port Then
+            temp = ReceiveData()
+            unitTemp = ConvertToTemp(temp)
+            UnitTempTextBox.Text = CStr(unitTemp)
+        Else
+
+        End If
     End Sub
 
     Function ConvertToTemp(temp() As Byte) As Single
@@ -197,38 +231,50 @@ Public Class HVACGuiForm
     End Function
 
     Sub SetOutputs()
-        UnitTempTextBox.Text = CStr(unitTemp)
-        If houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
-            EnableCooler()
-        ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
-            EnableHeater()
+
+        If port Then
+            If houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
+                EnableCooler()
+            ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
+                EnableHeater()
+            Else
+                InterlockCheck()
+                DisableUnit()
+            End If
         Else
-            InterlockCheck()
-            DisableUnit()
+
         End If
 
     End Sub
 
 
     Sub DisableUnit()
+        SetDigital(&H4)
         FiveTimer.Enabled = True        ' enable 5 second wait
         wait = True
+        HeaterPictureBox.Visible = False
+        CoolingPictureBox.Visible = False
         cooling = Not cooling
     End Sub
 
     Sub EnableCooler()
+        HeaterPictureBox.Visible = False
         If InterlockCheck() Then
             If unitTemp >= 40 Then
                 If cooling = True Then
                     SetDigital(&HC)
+                    CoolingPictureBox.Visible = True
                     ' system is currently enabled keep cooling until low limit has been reached.
                 Else
                     wait = False
                     cooling = True
+                    FanPictureBox.Visible = True
                     SetDigital(&H4)
                     FiveTimer.Enabled = True
                 End If
             Else
+                CoolingPictureBox.Visible = False
+                FanPictureBox.Visible = True
                 SetDigital(&H4)
             End If
         Else
@@ -238,19 +284,25 @@ Public Class HVACGuiForm
 
 
     Sub EnableHeater()
+        CoolingPictureBox.Visible = False
         If InterlockCheck() Then
             If unitTemp <= 110 Then
                 If cooling = False Then
+                    HeaterPictureBox.Visible = True
                     SetDigital(&H6)
                     ' heater is currently active
                 Else
                     wait = False
                     cooling = False
+
                     SetDigital(&H4)
+                    FanPictureBox.Visible = True
                     FiveTimer.Enabled = True
                 End If
             Else
                 ' disable heater if temperature is greater than 110 degrees
+                HeaterPictureBox.Visible = False
+                FanPictureBox.Visible = True
                 SetDigital(&H4)
             End If
 
@@ -292,15 +344,19 @@ Public Class HVACGuiForm
 
     End Function
 
-    Sub Panic()
-        ErrorLabel.Text = $"Interlock Issue Has Occured {vbNewLine} System Service Mandatory!!!"
+    Sub Panic(Optional serial As Boolean = False)
+        If serial Then
+            ErrorLabel.Text = $"External System Disconnected {vbNewLine} Potential Fire Hazard!!!"
+        Else
+            ErrorLabel.Text = $"Interlock Issue Has Occured {vbNewLine} System Service Mandatory!!!"
+            SetDigital(&H2)
+        End If
         Me.BackColor = Color.Red
         Try
             My.Computer.Audio.Play("..\..\siren2.wav", AudioPlayMode.BackgroundLoop)
         Catch ex As Exception
             MsgBox("no audio found")
         End Try
-        SetDigital(&H2)
     End Sub
 
     Sub InterLockIssue()
@@ -332,20 +388,27 @@ Public Class HVACGuiForm
         If shutdown Then
             If InterlockCheck() Then
                 shutdown = False
-                FiveTimer.Enabled = False
-                ErrorLabel.Text = Nothing
-                Me.BackColor = GrowlGrey    ' restore background color
-                My.Computer.Audio.Stop()    ' stop audio
+                EndPanic()
             Else
+            End If
+        ElseIf port = False Then
+            OpenPort()
+            If port Then
+                EndPanic()
+            Else
+
             End If
         Else
             If wait Then
+                FanPictureBox.Visible = False
                 SetDigital(&H0)
             Else
                 If cooling Then
                     ' enable cooling system
+                    CoolingPictureBox.Visible = True
                     SetDigital(&HC)
                 Else
+                    HeaterPictureBox.Visible = True
                     SetDigital(&H6)    ' enable heating system
                 End If
             End If
@@ -386,4 +449,12 @@ Public Class HVACGuiForm
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
+
+    Sub EndPanic()
+        FiveTimer.Enabled = False
+        ErrorLabel.Text = Nothing
+        Me.BackColor = GrowlGrey    ' restore background color
+        My.Computer.Audio.Stop()    ' stop audio
+    End Sub
+
 End Class
