@@ -35,6 +35,7 @@ Public Class HVACGuiForm
     Dim unitTemp As Single
     Dim shutdown As Boolean
     Dim wait As Boolean
+    Dim cooling As Boolean
 
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
@@ -156,7 +157,6 @@ Public Class HVACGuiForm
     Function ReceiveData() As Byte()
         Sleep(5) ' wait for data to be recieved from Qy@ board
         Dim recievedData(SmartSerialPort.BytesToRead) As Byte
-        Dim temp() As Byte
 
         SmartSerialPort.Read(recievedData, 0, SmartSerialPort.BytesToRead)
 
@@ -193,7 +193,7 @@ Public Class HVACGuiForm
 
 
         If houseTemp >= CSng(HouseTempComboBox.Text) + 2 Then
-
+            EnableCooler()
         ElseIf houseTemp <= CSng(HouseTempComboBox.Text) - 2 Then
             EnableHeater()
         Else
@@ -214,15 +214,38 @@ Public Class HVACGuiForm
 
     End Sub
 
+    Sub EnableCooler()
+        Dim coolerByte() As Byte
+        If InterlockCheck() Then
+            If unitTemp >= 40 Then
+                wait = False
+                cooling = True
+                coolerByte(0) = &H4
+                SetDigital(coolerByte)
+            Else
+                coolerByte(0) = &H4
+                SetDigital(coolerByte)
+            End If
+        Else
+            TwoTimer.Enabled = False
+        End If
+    End Sub
+
+    Function BytetoBit(byteConvert As Byte) As BitArray
+
+    End Function
     Sub EnableHeater()
         Dim heaterByte() As Byte
         If InterlockCheck() Then
             If unitTemp <= 110 Then
                 wait = False
+                cooling = False
                 heaterByte(0) = &H4
                 SetDigital(heaterByte)
+                FiveTimer.Enabled = True
             Else
-                DisableUnit()       ' disable heater if temperature is greater than 110 degrees
+                heaterByte(0) = &H4   ' disable heater if temperature is greater than 110 degrees
+                SetDigital(heaterByte)
             End If
 
         Else
