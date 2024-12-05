@@ -23,7 +23,7 @@ Partial Class HVACGuiForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.HomeToolStrip = New System.Windows.Forms.ToolStrip()
         Me.ComToolStripComboBox = New System.Windows.Forms.ToolStripComboBox()
         Me.PortStatusToolStripLabel = New System.Windows.Forms.ToolStripLabel()
         Me.ErrorLabel = New System.Windows.Forms.Label()
@@ -36,18 +36,20 @@ Partial Class HVACGuiForm
         Me.IncButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.UnitTempTextBox = New System.Windows.Forms.TextBox()
-        Me.ToolStrip1.SuspendLayout()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.HomeToolStrip.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ToolStrip1
+        'HomeToolStrip
         '
-        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComToolStripComboBox, Me.PortStatusToolStripLabel})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 40)
-        Me.ToolStrip1.TabIndex = 0
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.HomeToolStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.HomeToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComToolStripComboBox, Me.PortStatusToolStripLabel})
+        Me.HomeToolStrip.Location = New System.Drawing.Point(0, 0)
+        Me.HomeToolStrip.Name = "HomeToolStrip"
+        Me.HomeToolStrip.Size = New System.Drawing.Size(800, 50)
+        Me.HomeToolStrip.TabIndex = 0
+        Me.HomeToolStrip.Text = "ToolStrip1"
         '
         'ComToolStripComboBox
         '
@@ -65,7 +67,7 @@ Partial Class HVACGuiForm
         '
         Me.ErrorLabel.AutoSize = True
         Me.ErrorLabel.ForeColor = System.Drawing.Color.Black
-        Me.ErrorLabel.Location = New System.Drawing.Point(275, 260)
+        Me.ErrorLabel.Location = New System.Drawing.Point(124, 337)
         Me.ErrorLabel.Name = "ErrorLabel"
         Me.ErrorLabel.Size = New System.Drawing.Size(77, 25)
         Me.ErrorLabel.TabIndex = 1
@@ -97,7 +99,7 @@ Partial Class HVACGuiForm
         '
         'DecButton
         '
-        Me.DecButton.Location = New System.Drawing.Point(129, 143)
+        Me.DecButton.Location = New System.Drawing.Point(129, 137)
         Me.DecButton.Name = "DecButton"
         Me.DecButton.Size = New System.Drawing.Size(76, 43)
         Me.DecButton.TabIndex = 5
@@ -106,7 +108,7 @@ Partial Class HVACGuiForm
         '
         'IncButton
         '
-        Me.IncButton.Location = New System.Drawing.Point(317, 143)
+        Me.IncButton.Location = New System.Drawing.Point(317, 137)
         Me.IncButton.Name = "IncButton"
         Me.IncButton.Size = New System.Drawing.Size(91, 43)
         Me.IncButton.TabIndex = 6
@@ -115,19 +117,38 @@ Partial Class HVACGuiForm
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(607, 382)
+        Me.ExitButton.Location = New System.Drawing.Point(607, 371)
         Me.ExitButton.Name = "ExitButton"
-        Me.ExitButton.Size = New System.Drawing.Size(73, 35)
+        Me.ExitButton.Size = New System.Drawing.Size(84, 46)
         Me.ExitButton.TabIndex = 7
         Me.ExitButton.Text = "Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'UnitTempTextBox
         '
-        Me.UnitTempTextBox.Location = New System.Drawing.Point(455, 180)
+        Me.UnitTempTextBox.Location = New System.Drawing.Point(455, 211)
         Me.UnitTempTextBox.Name = "UnitTempTextBox"
+        Me.UnitTempTextBox.ReadOnly = True
         Me.UnitTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.UnitTempTextBox.TabIndex = 8
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(450, 115)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(202, 25)
+        Me.Label1.TabIndex = 9
+        Me.Label1.Text = "House Temperature"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(450, 183)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(178, 25)
+        Me.Label2.TabIndex = 10
+        Me.Label2.Text = "Unit Temperature"
         '
         'HVACGuiForm
         '
@@ -135,6 +156,8 @@ Partial Class HVACGuiForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.UnitTempTextBox)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.IncButton)
@@ -142,18 +165,18 @@ Partial Class HVACGuiForm
         Me.Controls.Add(Me.HouseTempTextBox)
         Me.Controls.Add(Me.SystemTempTextBox)
         Me.Controls.Add(Me.ErrorLabel)
-        Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Me.HomeToolStrip)
         Me.ForeColor = System.Drawing.Color.White
         Me.Name = "HVACGuiForm"
         Me.Text = "Smart Home"
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        Me.HomeToolStrip.ResumeLayout(False)
+        Me.HomeToolStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents HomeToolStrip As ToolStrip
     Friend WithEvents ErrorLabel As Label
     Friend WithEvents ComToolStripComboBox As ToolStripComboBox
     Friend WithEvents SmartSerialPort As IO.Ports.SerialPort
@@ -166,4 +189,6 @@ Partial Class HVACGuiForm
     Friend WithEvents IncButton As Button
     Friend WithEvents ExitButton As Button
     Friend WithEvents UnitTempTextBox As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 End Class

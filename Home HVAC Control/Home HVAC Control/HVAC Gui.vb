@@ -41,8 +41,12 @@ Public Class HVACGuiForm
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
         Me.ForeColor = BengalBlack
+        HomeToolStrip.BackColor = Roarange
+        ExitButton.BackColor = GrowlGreyLight
+        ExitButton.ForeColor = BengalBlack
         shutdown = False
         HouseTempTextBox.Text = "70"    ' set default temp to 70
+        ErrorLabel.Text = Nothing
         OpenPort()
         If port Then
             TwoTimer.Enabled = True
@@ -207,22 +211,20 @@ Public Class HVACGuiForm
 
 
     Sub DisableUnit()
-        ' set output fan as true
-        SetDigital(&H4)
         FiveTimer.Enabled = True        ' enable 5 second wait
         wait = True
-
+        cooling = Not cooling
     End Sub
 
     Sub EnableCooler()
         If InterlockCheck() Then
             If unitTemp >= 40 Then
                 If cooling = True Then
+                    SetDigital(&HC)
                     ' system is currently enabled keep cooling until low limit has been reached.
                 Else
                     wait = False
                     cooling = True
-
                     SetDigital(&H4)
                     FiveTimer.Enabled = True
                 End If
@@ -234,14 +236,12 @@ Public Class HVACGuiForm
         End If
     End Sub
 
-    'Function BytetoBit(byteConvert As Byte) As BitArray
 
-    'End Function
     Sub EnableHeater()
-        Dim heaterByte(0) As Byte
         If InterlockCheck() Then
             If unitTemp <= 110 Then
                 If cooling = False Then
+                    SetDigital(&H6)
                     ' heater is currently active
                 Else
                     wait = False
@@ -340,7 +340,6 @@ Public Class HVACGuiForm
             End If
         Else
             If wait Then
-
                 SetDigital(&H0)
             Else
                 If cooling Then
