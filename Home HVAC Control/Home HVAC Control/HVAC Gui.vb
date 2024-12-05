@@ -7,7 +7,7 @@ Option Explicit On
 Option Compare Binary
 
 'TODO
-'{} Create GUI with toolstrip for serial setup
+'{*} Create GUI with toolstrip for serial setup
 '{} Display active time on GUI 
 '{} Display Temperature with state of cooling, heat, and fan
 '{*} Allow user to adjust 0.5 degree increments in a high and low setpoint boxes 
@@ -59,6 +59,7 @@ Public Class HVACGuiForm
         CoolingPictureBox.Visible = False
         HeaterPictureBox.Visible = False
         FanPictureBox.Visible = False
+        TimeToolStripLabel.Text = DateTime.Now.ToString("m")
     End Sub
 
     Sub OpenPort(Optional force As Boolean = False)
