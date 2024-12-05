@@ -34,6 +34,8 @@ Partial Class HVACGuiForm
         Me.HouseTempTextBox = New System.Windows.Forms.TextBox()
         Me.DecButton = New System.Windows.Forms.Button()
         Me.IncButton = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
+        Me.UnitTempTextBox = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -71,7 +73,7 @@ Partial Class HVACGuiForm
         '
         'TwoTimer
         '
-        Me.TwoTimer.Interval = 20000
+        Me.TwoTimer.Interval = 10000
         '
         'FiveTimer
         '
@@ -111,12 +113,30 @@ Partial Class HVACGuiForm
         Me.IncButton.Text = ">"
         Me.IncButton.UseVisualStyleBackColor = True
         '
+        'ExitButton
+        '
+        Me.ExitButton.Location = New System.Drawing.Point(607, 382)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(73, 35)
+        Me.ExitButton.TabIndex = 7
+        Me.ExitButton.Text = "Exit"
+        Me.ExitButton.UseVisualStyleBackColor = True
+        '
+        'UnitTempTextBox
+        '
+        Me.UnitTempTextBox.Location = New System.Drawing.Point(455, 180)
+        Me.UnitTempTextBox.Name = "UnitTempTextBox"
+        Me.UnitTempTextBox.Size = New System.Drawing.Size(100, 31)
+        Me.UnitTempTextBox.TabIndex = 8
+        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.UnitTempTextBox)
+        Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.IncButton)
         Me.Controls.Add(Me.DecButton)
         Me.Controls.Add(Me.HouseTempTextBox)
@@ -144,4 +164,6 @@ Partial Class HVACGuiForm
     Friend WithEvents HouseTempTextBox As TextBox
     Friend WithEvents DecButton As Button
     Friend WithEvents IncButton As Button
+    Friend WithEvents ExitButton As Button
+    Friend WithEvents UnitTempTextBox As TextBox
 End Class
