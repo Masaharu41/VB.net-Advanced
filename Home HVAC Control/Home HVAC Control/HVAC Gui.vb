@@ -296,7 +296,7 @@ Public Class HVACGuiForm
         ErrorLabel.Text = $"Interlock Issue Has Occured {vbNewLine} System Service Mandatory!!!"
         Me.BackColor = Color.Red
         Try
-            My.Computer.Audio.Play("..\..\panic", AudioPlayMode.BackgroundLoop)
+            My.Computer.Audio.Play("..\..\siren2.wav", AudioPlayMode.BackgroundLoop)
         Catch ex As Exception
             MsgBox("no audio found")
         End Try
