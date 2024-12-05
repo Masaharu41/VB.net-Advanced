@@ -20,6 +20,7 @@ Option Compare Binary
 '{} Display safety interlock error on Digital Output 1
 '{} Digital Input 2 controls heating function
 Imports System.CodeDom.Compiler
+Imports System.Media
 Imports System.Threading.Thread
 Public Class HVACGuiForm
 
@@ -77,7 +78,6 @@ Public Class HVACGuiForm
                     portValid = True
                     Exit For
                 Catch ex As Exception
-                    ' MsgBox("Com was not Valid")
                     portValid = False
                     SmartSerialPort.Close()
                 End Try
@@ -191,16 +191,13 @@ Public Class HVACGuiForm
 
     Sub SetOutputs()
 
-
-        If houseTemp >= CSng(HouseTempComboBox.Text) + 2 Then
+        If houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
             EnableCooler()
-        ElseIf houseTemp <= CSng(HouseTempComboBox.Text) - 2 Then
+        ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
             EnableHeater()
         Else
             DisableUnit()
-
         End If
-
 
     End Sub
 
@@ -218,12 +215,17 @@ Public Class HVACGuiForm
         Dim coolerByte() As Byte
         If InterlockCheck() Then
             If unitTemp >= 40 Then
-                wait = False
-                cooling = True
-                coolerByte(0) = &H4
-                SetDigital(coolerByte)
+                If cooling = True Then
+                    ' system is currently enabled keep cooling until low limit has been reached.
+                Else
+                    wait = False
+                    cooling = True
+                    coolerByte(0) = &H4     ' enable fan
+                    SetDigital(coolerByte)
+                    FiveTimer.Enabled = True
+                End If
             Else
-                coolerByte(0) = &H4
+                coolerByte(0) = &H4         ' enable fan and disable cooling unit
                 SetDigital(coolerByte)
             End If
         Else
@@ -231,27 +233,39 @@ Public Class HVACGuiForm
         End If
     End Sub
 
-    Function BytetoBit(byteConvert As Byte) As BitArray
+    'Function BytetoBit(byteConvert As Byte) As BitArray
 
-    End Function
+    'End Function
     Sub EnableHeater()
         Dim heaterByte() As Byte
         If InterlockCheck() Then
             If unitTemp <= 110 Then
-                wait = False
-                cooling = False
-                heaterByte(0) = &H4
-                SetDigital(heaterByte)
-                FiveTimer.Enabled = True
+                If cooling = False Then
+                    ' heater is currently active
+                Else
+                    wait = False
+                    cooling = False
+                    heaterByte(0) = &H4
+                    SetDigital(heaterByte)
+                    FiveTimer.Enabled = True
+                End If
             Else
                 heaterByte(0) = &H4   ' disable heater if temperature is greater than 110 degrees
                 SetDigital(heaterByte)
             End If
 
         Else
-                TwoTimer.Enabled = False
+            TwoTimer.Enabled = False
         End If
     End Sub
+
+
+    ''' <summary>
+    ''' Checks that the interlock switch on input 1 is high 
+    ''' if status reports false the InterLockIssue sub saves the error
+    ''' to a log file and they system enters a shutdown mode
+    ''' </summary>
+    ''' <returns></returns>
 
     Function InterlockCheck() As Boolean
         Dim byteArray() As Byte
@@ -267,6 +281,17 @@ Public Class HVACGuiForm
         End If
     End Function
 
+    Sub Panic()
+        ErrorLabel.Text = $"Interlock Issue Has Occured {vbNewLine} System Service Mandatory!!!"
+        Me.BackColor = Color.Red
+        Try
+
+            My.Computer.Audio.Play("..\..\police-siren-sound-effect-240674.mp3", AudioPlayMode.BackgroundLoop)
+        Catch ex As Exception
+            MsgBox("no audio found")
+        End Try
+    End Sub
+
     Sub InterLockIssue()
         Dim temp() As Byte
         Dim errorS As String
@@ -275,6 +300,7 @@ Public Class HVACGuiForm
         errorS = $"{DateTime.Now.ToString("yyMMddhh")} Interlock Safety Switch Error: System Has Shutdown {vbNewLine}"
         ErrorLog(errorS)
         shutdown = True
+        FiveTimer.Enabled = True
     End Sub
 
 
@@ -297,8 +323,10 @@ Public Class HVACGuiForm
             If InterlockCheck() Then
                 shutdown = False
                 FiveTimer.Enabled = False
+                ErrorLabel.Text = Nothing
+                Me.BackColor = GrowlGrey    ' restore background color
+                My.Computer.Audio.Stop()    ' stop audio
             Else
-
             End If
         Else
             If wait Then
@@ -311,4 +339,6 @@ Public Class HVACGuiForm
             FiveTimer.Enabled = False
         End If
     End Sub
+
+
 End Class

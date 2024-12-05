@@ -26,12 +26,14 @@ Partial Class HVACGuiForm
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ComToolStripComboBox = New System.Windows.Forms.ToolStripComboBox()
         Me.PortStatusToolStripLabel = New System.Windows.Forms.ToolStripLabel()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ErrorLabel = New System.Windows.Forms.Label()
         Me.SmartSerialPort = New System.IO.Ports.SerialPort(Me.components)
         Me.TwoTimer = New System.Windows.Forms.Timer(Me.components)
         Me.FiveTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.HouseTempComboBox = New System.Windows.Forms.ComboBox()
         Me.SystemTempTextBox = New System.Windows.Forms.TextBox()
+        Me.HouseTempTextBox = New System.Windows.Forms.TextBox()
+        Me.DecButton = New System.Windows.Forms.Button()
+        Me.IncButton = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,15 +59,15 @@ Partial Class HVACGuiForm
         Me.PortStatusToolStripLabel.Size = New System.Drawing.Size(127, 34)
         Me.PortStatusToolStripLabel.Text = "Port Status"
         '
-        'Label1
+        'ErrorLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(293, 126)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(77, 25)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Label1"
+        Me.ErrorLabel.AutoSize = True
+        Me.ErrorLabel.ForeColor = System.Drawing.Color.Black
+        Me.ErrorLabel.Location = New System.Drawing.Point(275, 260)
+        Me.ErrorLabel.Name = "ErrorLabel"
+        Me.ErrorLabel.Size = New System.Drawing.Size(77, 25)
+        Me.ErrorLabel.TabIndex = 1
+        Me.ErrorLabel.Text = "Label1"
         '
         'TwoTimer
         '
@@ -75,15 +77,6 @@ Partial Class HVACGuiForm
         '
         Me.FiveTimer.Interval = 5000
         '
-        'HouseTempComboBox
-        '
-        Me.HouseTempComboBox.FormattingEnabled = True
-        Me.HouseTempComboBox.Items.AddRange(New Object() {"50", "50.5"})
-        Me.HouseTempComboBox.Location = New System.Drawing.Point(89, 141)
-        Me.HouseTempComboBox.Name = "HouseTempComboBox"
-        Me.HouseTempComboBox.Size = New System.Drawing.Size(121, 33)
-        Me.HouseTempComboBox.TabIndex = 2
-        '
         'SystemTempTextBox
         '
         Me.SystemTempTextBox.Location = New System.Drawing.Point(455, 143)
@@ -92,15 +85,43 @@ Partial Class HVACGuiForm
         Me.SystemTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.SystemTempTextBox.TabIndex = 3
         '
+        'HouseTempTextBox
+        '
+        Me.HouseTempTextBox.Location = New System.Drawing.Point(211, 143)
+        Me.HouseTempTextBox.Name = "HouseTempTextBox"
+        Me.HouseTempTextBox.ReadOnly = True
+        Me.HouseTempTextBox.Size = New System.Drawing.Size(100, 31)
+        Me.HouseTempTextBox.TabIndex = 4
+        '
+        'DecButton
+        '
+        Me.DecButton.Location = New System.Drawing.Point(129, 143)
+        Me.DecButton.Name = "DecButton"
+        Me.DecButton.Size = New System.Drawing.Size(76, 43)
+        Me.DecButton.TabIndex = 5
+        Me.DecButton.Text = "<"
+        Me.DecButton.UseVisualStyleBackColor = True
+        '
+        'IncButton
+        '
+        Me.IncButton.Location = New System.Drawing.Point(317, 143)
+        Me.IncButton.Name = "IncButton"
+        Me.IncButton.Size = New System.Drawing.Size(91, 43)
+        Me.IncButton.TabIndex = 6
+        Me.IncButton.Text = ">"
+        Me.IncButton.UseVisualStyleBackColor = True
+        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.IncButton)
+        Me.Controls.Add(Me.DecButton)
+        Me.Controls.Add(Me.HouseTempTextBox)
         Me.Controls.Add(Me.SystemTempTextBox)
-        Me.Controls.Add(Me.HouseTempComboBox)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ErrorLabel)
         Me.Controls.Add(Me.ToolStrip1)
         Me.ForeColor = System.Drawing.Color.White
         Me.Name = "HVACGuiForm"
@@ -113,12 +134,14 @@ Partial Class HVACGuiForm
     End Sub
 
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents Label1 As Label
+    Friend WithEvents ErrorLabel As Label
     Friend WithEvents ComToolStripComboBox As ToolStripComboBox
     Friend WithEvents SmartSerialPort As IO.Ports.SerialPort
     Friend WithEvents PortStatusToolStripLabel As ToolStripLabel
     Friend WithEvents TwoTimer As Timer
     Friend WithEvents FiveTimer As Timer
-    Friend WithEvents HouseTempComboBox As ComboBox
     Friend WithEvents SystemTempTextBox As TextBox
+    Friend WithEvents HouseTempTextBox As TextBox
+    Friend WithEvents DecButton As Button
+    Friend WithEvents IncButton As Button
 End Class
