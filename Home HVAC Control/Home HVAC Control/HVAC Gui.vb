@@ -20,6 +20,7 @@ Option Compare Binary
 '{*} Display safety interlock error on Digital Output 1
 '{} Digital Input 2 controls heating function
 Imports System.CodeDom.Compiler
+Imports System.ComponentModel
 Imports System.Media
 Imports System.Threading.Thread
 Public Class HVACGuiForm
@@ -95,6 +96,7 @@ Public Class HVACGuiForm
 
         If portValid = True Then
             PortStatusToolStripLabel.Text = "Port Is Open"
+            EndPanic()
             ComToolStripComboBox.Text = portName
             port = True
 
@@ -205,7 +207,7 @@ Public Class HVACGuiForm
         PollAN1()                       ' poll house temperature
         If port Then
             temp = ReceiveData()
-            houseTemp = ConvertToTemp(temp) ' convert byte to integer representation 
+            houseTemp = CSng(Math.Round(ConvertToTemp(temp), 1)) ' convert byte to integer representation 
             SystemTempTextBox.Text = CStr(houseTemp)
         Else
 
@@ -214,16 +216,16 @@ Public Class HVACGuiForm
         PollAN2()
         If port Then
             temp = ReceiveData()
-            unitTemp = ConvertToTemp(temp)
+            unitTemp = CSng(Math.Round(ConvertToTemp(temp), 1))
             UnitTempTextBox.Text = CStr(unitTemp)
         Else
 
         End If
     End Sub
 
-    Function ConvertToTemp(temp() As Byte) As Single
+    Function ConvertToTemp(temp() As Byte) As Double
         '  converts a two byte array to the temperature of the sensor based upon the 
-        Dim int As Single
+        Dim int As Double
 
         int = CSng((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6.666)
 
@@ -457,4 +459,26 @@ Public Class HVACGuiForm
         My.Computer.Audio.Stop()    ' stop audio
     End Sub
 
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ConnectToolStripButton.Click
+        Dim force As Boolean = True
+        OpenPort(force)
+    End Sub
+
+    Private Sub HVACGuiForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+
+    End Sub
+
+    Sub SaveStatus()
+        Dim status As String
+        Try
+            FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Output)
+            Write(1, status)
+        Catch ex As Exception
+            FileOpen(2, "..\..\FileError.log", OpenMode.Append)
+            Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
+            FileClose(2)
+        End Try
+
+        FileClose(1)
+    End Sub
 End Class
