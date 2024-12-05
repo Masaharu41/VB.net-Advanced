@@ -42,6 +42,7 @@ Public Class HVACGuiForm
         Me.BackColor = GrowlGrey
         Me.ForeColor = BengalBlack
         shutdown = False
+        HouseTempTextBox.Text = "70"
         OpenPort()
         If port Then
             TwoTimer.Enabled = True
@@ -340,5 +341,33 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+    Private Sub DecButton_Click(sender As Object, e As EventArgs) Handles DecButton.Click
+        DecrementTemp()
+    End Sub
 
+    Sub DecrementTemp()
+        Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
+        If currentTemp > 50 Then
+            currentTemp = currentTemp - 0.5
+            HouseTempTextBox.Text = CStr(currentTemp)
+        Else
+
+        End If
+
+    End Sub
+
+    Private Sub IncButton_Click(sender As Object, e As EventArgs) Handles IncButton.Click
+        IncrementTemp()
+    End Sub
+
+    Sub IncrementTemp()
+        Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
+        If currentTemp < 90 Then
+            currentTemp += 0.5
+            HouseTempTextBox.Text = CStr(currentTemp)
+        Else
+
+        End If
+
+    End Sub
 End Class
