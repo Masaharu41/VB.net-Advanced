@@ -23,6 +23,7 @@ Imports System.CodeDom.Compiler
 Imports System.ComponentModel
 Imports System.Media
 Imports System.Threading.Thread
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class HVACGuiForm
 
     Public GrowlGreyLight As Color = Color.FromArgb(230, 213, 232)
@@ -48,6 +49,7 @@ Public Class HVACGuiForm
         shutdown = False
         HouseTempTextBox.Text = "70"    ' set default temp to 70
         ErrorLabel.Text = Nothing
+        RestoreSettings()
         OpenPort()
         If port Then
             TwoTimer.Enabled = True
@@ -109,6 +111,32 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+    Sub RestoreSettings()
+        Dim oldCom() As String
+        Dim oldTemp() As String
+        Dim temp As String
+
+        Try
+            FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Input)
+
+        Catch ex As Exception
+            FileOpen(2, "..\..\FileError.log", OpenMode.Append)
+            Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
+            FileClose(2)
+        End Try
+
+        temp = LineInput(1)
+        oldCom = Split(temp, "COM$$:")
+        ComToolStripComboBox.Text = oldCom(1)
+        temp = LineInput(1)
+        oldTemp = Split(temp, "TEMP$$:")
+        HouseTempTextBox.Text = oldTemp(1)
+
+
+        FileClose(1)
+
+    End Sub
+
     Sub PollAN1()
         ' Sends byte to get the adc result for ADC1
         Dim x(0) As Byte
@@ -122,6 +150,9 @@ Public Class HVACGuiForm
                 OpenPort()
 
             End Try
+
+
+
         Else
 
         End If
@@ -466,14 +497,15 @@ Public Class HVACGuiForm
     End Sub
 
     Private Sub HVACGuiForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-
+        SaveStatus()
     End Sub
 
     Sub SaveStatus()
         Dim status As String
+        status = $"COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Output)
-            Write(1, status)
+            Print(1, status)
         Catch ex As Exception
             FileOpen(2, "..\..\FileError.log", OpenMode.Append)
             Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
@@ -482,4 +514,6 @@ Public Class HVACGuiForm
 
         FileClose(1)
     End Sub
+
+
 End Class
