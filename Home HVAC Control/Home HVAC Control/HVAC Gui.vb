@@ -26,19 +26,29 @@ Imports System.Threading.Thread
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class HVACGuiForm
 
+
+    ' set color variables for form
     Public GrowlGreyLight As Color = Color.FromArgb(230, 213, 232)
     Public GrowlGreyMed As Color = Color.FromArgb(167, 167, 167)
     Public GrowlGrey As Color = Color.FromArgb(130, 130, 130)
     Public Roarange As Color = Color.FromArgb(244, 121, 32)
     Public RoarangeL As Color = Color.FromArgb(246, 146, 64)
     Public BengalBlack As Color = Color.FromArgb(0, 0, 0)
-
+    ' set global variables
     Dim port As Boolean
     Dim houseTemp As Single
     Dim unitTemp As Single
     Dim shutdown As Boolean
     Dim wait As Boolean
     Dim cooling As Boolean
+
+    ''' <summary>
+    ''' On form load
+    ''' set form colors and variables
+    ''' reloads the prior settings from last form close and opens com port
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
     Private Sub HVACGuiForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.BackColor = GrowlGrey
@@ -47,13 +57,13 @@ Public Class HVACGuiForm
         ExitButton.BackColor = GrowlGreyLight
         ExitButton.ForeColor = BengalBlack
         shutdown = False
-        HouseTempTextBox.Text = "70"    ' set default temp to 70
         ErrorLabel.Text = Nothing
         RestoreSettings()
         OpenPort(True)
         If port Then
             TwoTimer.Enabled = True
             SampleSensors()
+            SetOutputs()
         Else
             TwoTimer.Enabled = False
         End If
@@ -61,8 +71,14 @@ Public Class HVACGuiForm
         CoolingPictureBox.Visible = False
         HeaterPictureBox.Visible = False
         FanPictureBox.Visible = False
-        TimeToolStripLabel.Text = DateTime.Now.ToString("m")
+        TimeToolStripLabel.Text = DateTime.Now.ToString
     End Sub
+    ''' <summary>
+    ''' a sub routine that is used to connect to a serial port
+    ''' can either be auto connect or a manual connect based upon
+    ''' the text box provided on the form
+    ''' </summary>
+    ''' <param name="force"></param>
 
     Sub OpenPort(Optional force As Boolean = False)
         Dim portValid As Boolean = False
@@ -111,6 +127,9 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+    ''' <summary>
+    ''' sub routine which opens the save file and then reads the saved settings
+    ''' </summary>
     Sub RestoreSettings()
         Dim oldCom() As String
         Dim oldTemp() As String
@@ -131,12 +150,13 @@ Public Class HVACGuiForm
         temp = LineInput(1)
         oldTemp = Split(temp, "TEMP$$:")
         HouseTempTextBox.Text = oldTemp(1)
-
-
         FileClose(1)
-
     End Sub
 
+    ''' <summary>
+    ''' Polls analog input 1 from the external microcontroller
+    ''' this input is to be connected to the overall house temperature sensor
+    ''' </summary>
     Sub PollAN1()
         ' Sends byte to get the adc result for ADC1
         Dim x(0) As Byte
@@ -150,14 +170,15 @@ Public Class HVACGuiForm
                 OpenPort()
 
             End Try
-
-
-
         Else
 
         End If
-
     End Sub
+
+    ''' <summary>
+    ''' Polls analog input 2 from the external microcontroller
+    ''' this input is to be connected to the HVAC unit temperature sensor
+    ''' </summary>
 
     Sub PollAN2()
         ' Sends byte to get the adc result for ADC2
@@ -174,9 +195,12 @@ Public Class HVACGuiForm
         Else
 
         End If
-
-
     End Sub
+
+    ''' <summary>
+    ''' polls digital input from external microcontroller
+    ''' polling this data gives information on safety interlock and manual overrides
+    ''' </summary>
 
     Sub PollDigital()
         Dim temp(0) As Byte
@@ -191,9 +215,13 @@ Public Class HVACGuiForm
         Else
 
         End If
-
-
     End Sub
+
+    ''' <summary>
+    ''' sets external digital outputs on external microcontroller
+    ''' sets interlock error flag and controls the HVAC functions
+    ''' </summary>
+    ''' <param name="output"></param>
 
     Sub SetDigital(output As Byte)
         Dim digByte(1) As Byte
@@ -212,7 +240,10 @@ Public Class HVACGuiForm
 
     End Sub
 
-
+    ''' <summary>
+    ''' A function which reads the serial port after a 5ms delay.
+    ''' </summary>
+    ''' <returns></returns>
     Function ReceiveData() As Byte()
         Sleep(5) ' wait for data to be recieved from Qy@ board
         Dim recievedData(SmartSerialPort.BytesToRead) As Byte
@@ -223,6 +254,11 @@ Public Class HVACGuiForm
 
     End Function
 
+    ''' <summary>
+    ''' A sub routine that is based on the two second poll timer used to make adjustments to the HVAC system
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub TwoTimer_Tick(sender As Object, e As EventArgs) Handles TwoTimer.Tick
         If port Then
             SampleSensors()
@@ -232,6 +268,10 @@ Public Class HVACGuiForm
             FiveTimer.Enabled = False
         End If
     End Sub
+
+    ''' <summary>
+    ''' A subroutine which grabs the data from external sensors and sets appropriate globals as well as indication
+    ''' </summary>
 
     Sub SampleSensors()
         Dim temp() As Byte
@@ -255,33 +295,55 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+    ''' <summary>
+    ''' A function that converts the analog conversion in to a temperature
+    ''' extenal sensor is configured with .6 gain
+    ''' </summary>
+    ''' <param name="temp"></param>
+    ''' <returns></returns>
+
     Function ConvertToTemp(temp() As Byte) As Double
         '  converts a two byte array to the temperature of the sensor based upon the 
         Dim int As Double
 
-        int = CSng((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6.666)
+        int = CSng((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6)
 
         Return int
     End Function
 
+    ''' <summary>
+    ''' A sub routine which handles comparing the set home temperature to its actual
+    ''' has a +/- 2 degree hysteresis curve to reduce system overshoot and safe costs
+    ''' </summary>
     Sub SetOutputs()
-
+        Static hold As Boolean
         If port Then
             If houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
                 EnableCooler()
+                hold = True
             ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
                 EnableHeater()
+                hold = True
+            ElseIf hold And houseTemp >= CSng(HouseTempTextBox.Text) - 2 Then
+                EnableCooler()
+            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 2 Then
+                EnableHeater()
             Else
+                hold = False
                 InterlockCheck()
                 DisableUnit()
             End If
         Else
-
+            hold = False
         End If
 
     End Sub
 
-
+    ''' <summary>
+    ''' A sub routine that handles when the unit is to be disabled. 
+    ''' The fan will be held an additional 5 seconds after the primary
+    ''' HVAC system has been disabled.
+    ''' </summary>
     Sub DisableUnit()
         SetDigital(&H4)
         FiveTimer.Enabled = True        ' enable 5 second wait
@@ -291,6 +353,10 @@ Public Class HVACGuiForm
         cooling = Not cooling
     End Sub
 
+    ''' <summary>
+    ''' A subroutine that enables the HVAC's cooling system and ensures that the unit
+    ''' does not become too cold as to cause damage or potential safety concerns
+    ''' </summary>
     Sub EnableCooler()
         HeaterPictureBox.Visible = False
         If InterlockCheck() Then
@@ -316,7 +382,10 @@ Public Class HVACGuiForm
         End If
     End Sub
 
-
+    ''' <summary>
+    ''' A subroutine that enables the HVAC's heating system and ensures that the unit
+    ''' does not become too cold as to cause damage or potential safety concerns
+    ''' </summary>
     Sub EnableHeater()
         CoolingPictureBox.Visible = False
         If InterlockCheck() Then
@@ -368,6 +437,13 @@ Public Class HVACGuiForm
         End If
     End Function
 
+    ''' <summary>
+    ''' a function that returns a boolean on whether the bit in the byte included
+    ''' is a true or false statement
+    ''' </summary>
+    ''' <param name="byteA"></param>
+    ''' <param name="bit"></param>
+    ''' <returns></returns>
     Function TestBit(byteA As Byte, bit As Integer) As Boolean
         Dim bitarray As New BitArray({byteA}) ' {} brackets force conversion based upon the value of each bit in the byte. required!!!!
         If bitarray(bit) Then
@@ -377,6 +453,12 @@ Public Class HVACGuiForm
         End If
 
     End Function
+
+    ''' <summary>
+    ''' A sub routine that is called when a system error occurs that warns the user to 
+    ''' service the system immediately to avoid damage and hazards
+    ''' </summary>
+    ''' <param name="serial"></param>
 
     Sub Panic(Optional serial As Boolean = False)
         If serial Then
@@ -393,9 +475,11 @@ Public Class HVACGuiForm
         End Try
     End Sub
 
+    ''' <summary>
+    ''' A subroutine that saves when an interlock error has occured
+    ''' </summary>
     Sub InterLockIssue()
         Dim errorS As String
-
         SetDigital(&H1)    ' Set digital 1 error indicator and clear other outputs
         errorS = $"{DateTime.Now.ToString("yyMMddhh")} Interlock Safety Switch Error: System Has Shutdown {vbNewLine}"
         ErrorLog(errorS)
@@ -403,7 +487,10 @@ Public Class HVACGuiForm
         FiveTimer.Enabled = True
     End Sub
 
-
+    ''' <summary>
+    ''' a subroutine that saves a string to an Error.log file
+    ''' </summary>
+    ''' <param name="text"></param>
     Sub ErrorLog(text As String)
         Try
             FileOpen(1, "..\..\Error.log", OpenMode.Append)
@@ -416,6 +503,17 @@ Public Class HVACGuiForm
 
         FileClose(1)
     End Sub
+
+    ''' <summary>
+    ''' A sub that is triggered at the end of a 5 second timer. 
+    ''' primary purpose is to allow a delay from when the fan is enabled
+    ''' to when the primary HVAC unit is enabled and disabled
+    ''' This sub is also used to continually poll that a panic 
+    ''' error has been properly addressed and that the system
+    ''' can return to normal operations
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
     Private Sub FiveTimer_Tick(sender As Object, e As EventArgs) Handles FiveTimer.Tick
 
@@ -450,10 +548,14 @@ Public Class HVACGuiForm
         End If
     End Sub
 
+
     Private Sub DecButton_Click(sender As Object, e As EventArgs) Handles DecButton.Click
         DecrementTemp()
     End Sub
 
+    ''' <summary>
+    ''' A sub used to decrement the text box used to set the house temperature in 0.5 degree changes
+    ''' </summary>
     Sub DecrementTemp()
         Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
         If currentTemp > 50 Then
@@ -468,7 +570,9 @@ Public Class HVACGuiForm
     Private Sub IncButton_Click(sender As Object, e As EventArgs) Handles IncButton.Click
         IncrementTemp()
     End Sub
-
+    ''' <summary>
+    ''' A sub used to increment the text box used to set the house temperature in 0.5 degree changes
+    ''' </summary>
     Sub IncrementTemp()
         Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
         If currentTemp < 90 Then
@@ -477,13 +581,15 @@ Public Class HVACGuiForm
         Else
 
         End If
-
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' A sub for restoring system to normal after a system panic
+    ''' </summary>
     Sub EndPanic()
         FiveTimer.Enabled = False
         ErrorLabel.Text = Nothing
@@ -492,10 +598,22 @@ Public Class HVACGuiForm
         My.Computer.Audio.Stop()    ' stop audio
     End Sub
 
+    ''' <summary>
+    ''' manual serial port connection feature
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ConnectToolStripButton.Click
         Dim force As Boolean = True
         OpenPort(force)
     End Sub
+
+    ''' <summary>
+    ''' On form closing the current temperature and serial connection are saved to a text file
+    ''' text file is recreated each time to avoid calling prior settings
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
 
     Private Sub HVACGuiForm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         SaveStatus()
