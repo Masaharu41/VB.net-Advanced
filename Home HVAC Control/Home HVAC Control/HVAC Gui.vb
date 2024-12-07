@@ -23,6 +23,7 @@ Imports System.CodeDom.Compiler
 Imports System.ComponentModel
 Imports System.Media
 Imports System.Runtime.InteropServices
+Imports System.Runtime.InteropServices.WindowsRuntime
 Imports System.Threading.Thread
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class HVACGuiForm
@@ -59,8 +60,12 @@ Public Class HVACGuiForm
         ExitButton.ForeColor = BengalBlack
         shutdown = False
         ErrorLabel.Text = Nothing
-        RestoreSettings()
-        OpenPort(True)
+        If RestoreSettings() Then
+            OpenPort(True)
+        Else
+            OpenPort()
+            HouseTempTextBox.Text = "70"
+        End If
         If port Then
             TwoTimer.Enabled = True
             SampleSensors()
@@ -132,7 +137,7 @@ Public Class HVACGuiForm
     ''' <summary>
     ''' sub routine which opens the save file and then reads the saved settings
     ''' </summary>
-    Sub RestoreSettings()
+    Function RestoreSettings() As Boolean
         Dim oldCom() As String
         Dim oldTemp() As String
         Dim oldType() As String
@@ -143,25 +148,33 @@ Public Class HVACGuiForm
 
             temp = LineInput(1)
             oldType = Split(temp, "TYPE$$:")
-            CelsiusRadioButton.Checked = CBool(oldType(1))
+            CelsiusRadioButton.Checked = Not CBool(oldType(1))
             temp = LineInput(1)
             oldCom = Split(temp, "COM$$:")
             ComToolStripComboBox.Text = oldCom(1)
             temp = LineInput(1)
             oldTemp = Split(temp, "TEMP$$:")
-            If CelsiusRadioButton.Checked Then
-                HouseTempTextBox.Text = oldTemp(1)
+            If String.IsNullOrEmpty(oldTemp(1)) Then
+                FileClose(1)
+                Return False
             Else
-                HouseTempTextBox.Text = CStr(FtoC(CDbl(oldTemp(1))))
+                If CelsiusRadioButton.Checked Then
+                    HouseTempTextBox.Text = CStr(FtoC(CDbl(oldTemp(1))))
+                Else
+                    HouseTempTextBox.Text = oldTemp(1)
+                End If
             End If
+
+            FileClose(1)
+            Return True
         Catch ex As Exception
             FileOpen(2, "..\..\FileError.log", OpenMode.Append)
             Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
             FileClose(2)
+            Return False
         End Try
 
-        FileClose(1)
-    End Sub
+    End Function
 
     ''' <summary>
     ''' Polls analog input 1 from the external microcontroller
@@ -668,7 +681,7 @@ Public Class HVACGuiForm
 
     Sub SaveStatus()
         Dim status As String
-        status = $"TYPE$$:{CelsiusRadioButton.Checked}{vbNewLine}COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
+        status = $"TYPE$$:{Not CelsiusRadioButton.Checked}{vbNewLine}COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Output)
             Print(1, status)
