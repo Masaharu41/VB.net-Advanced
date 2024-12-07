@@ -9,7 +9,7 @@ Option Compare Binary
 'TODO
 '{*} Create GUI with toolstrip for serial setup
 '{} Display active time on GUI 
-'{} Display Temperature with state of cooling, heat, and fan
+'{*} Display Temperature with state of cooling, heat, and fan
 '{*} Allow user to adjust 0.5 degree increments in a high and low setpoint boxes 
 '{*} Only allow room temperature to be applied from 50 to 90 degrees farenheit
 '{*} Analog Input 1 as the overall temperature of from
@@ -50,7 +50,7 @@ Public Class HVACGuiForm
         HouseTempTextBox.Text = "70"    ' set default temp to 70
         ErrorLabel.Text = Nothing
         RestoreSettings()
-        OpenPort()
+        OpenPort(True)
         If port Then
             TwoTimer.Enabled = True
             SampleSensors()
@@ -487,6 +487,7 @@ Public Class HVACGuiForm
     Sub EndPanic()
         FiveTimer.Enabled = False
         ErrorLabel.Text = Nothing
+        TwoTimer.Enabled = True
         Me.BackColor = GrowlGrey    ' restore background color
         My.Computer.Audio.Stop()    ' stop audio
     End Sub
