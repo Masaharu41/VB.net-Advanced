@@ -47,6 +47,7 @@ Partial Class HVACGuiForm
         Me.SetTempLabel = New System.Windows.Forms.Label()
         Me.IsuPictureBox = New System.Windows.Forms.PictureBox()
         Me.TimeTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.HouseToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.HomeToolStrip.SuspendLayout()
         CType(Me.CoolingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaterPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +71,7 @@ Partial Class HVACGuiForm
         Me.ComToolStripComboBox.Name = "ComToolStripComboBox"
         Me.ComToolStripComboBox.Size = New System.Drawing.Size(121, 42)
         Me.ComToolStripComboBox.Text = "Com1"
+        Me.ComToolStripComboBox.ToolTipText = "Com Identification"
         '
         'PortStatusToolStripLabel
         '
@@ -85,6 +87,7 @@ Partial Class HVACGuiForm
         Me.ConnectToolStripButton.Name = "ConnectToolStripButton"
         Me.ConnectToolStripButton.Size = New System.Drawing.Size(46, 36)
         Me.ConnectToolStripButton.Text = "Connect"
+        Me.ConnectToolStripButton.ToolTipText = "Manual Connect to External Device"
         '
         'TimeToolStripLabel
         '
@@ -117,6 +120,8 @@ Partial Class HVACGuiForm
         Me.SystemTempTextBox.ReadOnly = True
         Me.SystemTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.SystemTempTextBox.TabIndex = 3
+        Me.SystemTempTextBox.TabStop = False
+        Me.HouseToolTip.SetToolTip(Me.SystemTempTextBox, "Current House Temperature")
         '
         'HouseTempTextBox
         '
@@ -125,13 +130,14 @@ Partial Class HVACGuiForm
         Me.HouseTempTextBox.ReadOnly = True
         Me.HouseTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.HouseTempTextBox.TabIndex = 4
+        Me.HouseTempTextBox.TabStop = False
         '
         'DecButton
         '
         Me.DecButton.Location = New System.Drawing.Point(129, 143)
         Me.DecButton.Name = "DecButton"
         Me.DecButton.Size = New System.Drawing.Size(76, 43)
-        Me.DecButton.TabIndex = 5
+        Me.DecButton.TabIndex = 1
         Me.DecButton.Text = "<"
         Me.DecButton.UseVisualStyleBackColor = True
         '
@@ -140,7 +146,7 @@ Partial Class HVACGuiForm
         Me.IncButton.Location = New System.Drawing.Point(317, 143)
         Me.IncButton.Name = "IncButton"
         Me.IncButton.Size = New System.Drawing.Size(91, 43)
-        Me.IncButton.TabIndex = 6
+        Me.IncButton.TabIndex = 2
         Me.IncButton.Text = ">"
         Me.IncButton.UseVisualStyleBackColor = True
         '
@@ -149,7 +155,7 @@ Partial Class HVACGuiForm
         Me.ExitButton.Location = New System.Drawing.Point(607, 371)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(84, 46)
-        Me.ExitButton.TabIndex = 7
+        Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
@@ -160,6 +166,7 @@ Partial Class HVACGuiForm
         Me.UnitTempTextBox.ReadOnly = True
         Me.UnitTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.UnitTempTextBox.TabIndex = 8
+        Me.UnitTempTextBox.TabStop = False
         '
         'Label1
         '
@@ -291,4 +298,5 @@ Partial Class HVACGuiForm
     Friend WithEvents TimeToolStripLabel As ToolStripLabel
     Friend WithEvents IsuPictureBox As PictureBox
     Friend WithEvents TimeTimer As Timer
+    Friend WithEvents HouseToolTip As ToolTip
 End Class
