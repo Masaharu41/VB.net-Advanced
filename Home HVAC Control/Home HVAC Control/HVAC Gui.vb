@@ -8,7 +8,7 @@ Option Compare Binary
 
 'TODO
 '{*} Create GUI with toolstrip for serial setup
-'{} Display active time on GUI 
+'{*} Display active time on GUI 
 '{*} Display Temperature with state of cooling, heat, and fan
 '{*} Allow user to adjust 0.5 degree increments in a high and low setpoint boxes 
 '{*} Only allow room temperature to be applied from 50 to 90 degrees farenheit
@@ -319,16 +319,16 @@ Public Class HVACGuiForm
     Sub SetOutputs()
         Static hold As Boolean
         If port Then
-            If houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
+            If hold And houseTemp >= CSng(HouseTempTextBox.Text) - 2 Then
+                EnableCooler()
+            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 2 Then
+                EnableHeater()
+            ElseIf houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
                 EnableCooler()
                 hold = True
             ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
                 EnableHeater()
                 hold = True
-            ElseIf hold And houseTemp >= CSng(HouseTempTextBox.Text) - 2 Then
-                EnableCooler()
-            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 2 Then
-                EnableHeater()
             Else
                 hold = False
                 InterlockCheck()
@@ -635,5 +635,7 @@ Public Class HVACGuiForm
         FileClose(1)
     End Sub
 
-
+    Private Sub TimeTimer_Tick(sender As Object, e As EventArgs) Handles TimeTimer.Tick
+        TimeToolStripLabel.Text = DateTime.Now.ToString
+    End Sub
 End Class

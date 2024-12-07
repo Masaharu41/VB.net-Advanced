@@ -46,6 +46,7 @@ Partial Class HVACGuiForm
         Me.FanPictureBox = New System.Windows.Forms.PictureBox()
         Me.SetTempLabel = New System.Windows.Forms.Label()
         Me.IsuPictureBox = New System.Windows.Forms.PictureBox()
+        Me.TimeTimer = New System.Windows.Forms.Timer(Me.components)
         Me.HomeToolStrip.SuspendLayout()
         CType(Me.CoolingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaterPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +228,11 @@ Partial Class HVACGuiForm
         Me.IsuPictureBox.TabIndex = 15
         Me.IsuPictureBox.TabStop = False
         '
+        'TimeTimer
+        '
+        Me.TimeTimer.Enabled = True
+        Me.TimeTimer.Interval = 1000
+        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -284,4 +290,5 @@ Partial Class HVACGuiForm
     Friend WithEvents SetTempLabel As Label
     Friend WithEvents TimeToolStripLabel As ToolStripLabel
     Friend WithEvents IsuPictureBox As PictureBox
+    Friend WithEvents TimeTimer As Timer
 End Class
