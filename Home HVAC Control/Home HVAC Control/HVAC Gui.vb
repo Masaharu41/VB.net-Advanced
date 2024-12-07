@@ -308,7 +308,6 @@ Public Class HVACGuiForm
         Dim int As Double
 
         int = CSng((CInt(temp(0)) * 4 + CInt(temp(1) >> 6) * 4.888) / 6)
-
         Return int
     End Function
 
@@ -319,9 +318,9 @@ Public Class HVACGuiForm
     Sub SetOutputs()
         Static hold As Boolean
         If port Then
-            If hold And houseTemp >= CSng(HouseTempTextBox.Text) - 2 Then
+            If hold And houseTemp >= CSng(HouseTempTextBox.Text) - 1 Then
                 EnableCooler()
-            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 2 Then
+            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 1 Then
                 EnableHeater()
             ElseIf houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
                 EnableCooler()
@@ -637,5 +636,25 @@ Public Class HVACGuiForm
 
     Private Sub TimeTimer_Tick(sender As Object, e As EventArgs) Handles TimeTimer.Tick
         TimeToolStripLabel.Text = DateTime.Now.ToString
+        '  OutputOverride()
+    End Sub
+
+    ''' <summary>
+    ''' allows user to manually enable a given HVAC output at the controller unit itself
+    ''' </summary>
+    Sub OutputOverride()
+        Dim digByte() As Byte
+        PollDigital()
+        digByte = ReceiveData()
+
+        If TestBit(digByte(0), 2) Then
+            EnableHeater()
+        ElseIf TestBit(digByte(0), 3) Then
+            SetDigital(&H4)
+        ElseIf TestBit(digByte(0), 4) Then
+            EnableCooler()
+        Else
+
+        End If
     End Sub
 End Class

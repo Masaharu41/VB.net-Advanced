@@ -131,6 +131,7 @@ Partial Class HVACGuiForm
         Me.HouseTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.HouseTempTextBox.TabIndex = 4
         Me.HouseTempTextBox.TabStop = False
+        Me.HouseToolTip.SetToolTip(Me.HouseTempTextBox, "Desired House Temperature")
         '
         'DecButton
         '
@@ -139,6 +140,7 @@ Partial Class HVACGuiForm
         Me.DecButton.Size = New System.Drawing.Size(76, 43)
         Me.DecButton.TabIndex = 1
         Me.DecButton.Text = "<"
+        Me.HouseToolTip.SetToolTip(Me.DecButton, "Decrease House Temperature")
         Me.DecButton.UseVisualStyleBackColor = True
         '
         'IncButton
@@ -148,6 +150,7 @@ Partial Class HVACGuiForm
         Me.IncButton.Size = New System.Drawing.Size(91, 43)
         Me.IncButton.TabIndex = 2
         Me.IncButton.Text = ">"
+        Me.HouseToolTip.SetToolTip(Me.IncButton, "Increase House Temperature")
         Me.IncButton.UseVisualStyleBackColor = True
         '
         'ExitButton
@@ -167,6 +170,7 @@ Partial Class HVACGuiForm
         Me.UnitTempTextBox.Size = New System.Drawing.Size(100, 31)
         Me.UnitTempTextBox.TabIndex = 8
         Me.UnitTempTextBox.TabStop = False
+        Me.HouseToolTip.SetToolTip(Me.UnitTempTextBox, "HVAC Unit Temperature")
         '
         'Label1
         '
