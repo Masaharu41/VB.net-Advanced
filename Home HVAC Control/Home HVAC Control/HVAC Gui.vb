@@ -71,6 +71,7 @@ Public Class HVACGuiForm
         CoolingPictureBox.Visible = False
         HeaterPictureBox.Visible = False
         FanPictureBox.Visible = False
+        IsuPictureBox.Visible = True
         TimeToolStripLabel.Text = DateTime.Now.ToString
     End Sub
     ''' <summary>
