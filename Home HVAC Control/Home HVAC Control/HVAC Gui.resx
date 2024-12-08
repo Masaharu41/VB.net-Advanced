@@ -910,16 +910,10 @@
   <metadata name="HouseToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1028, 17</value>
   </metadata>
-  <metadata name="HouseToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1028, 17</value>
-  </metadata>
-  <metadata name="HouseToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1028, 17</value>
-  </metadata>
   <data name="CoolingPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfQAAAD2CAYAAAAgaXU1AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAxw5JREFUeF7s/YeXHUd25ou+f+G+td6696237r0jdau7pfbdUksjOxpJoyup5aWR
+        DAAACwwBP0AiyAAAxw5JREFUeF7s/YeXHUd25ou+f+G+td6696237r0jdau7pfbdUksjOxpJoyup5aWR
         WiOpHQ0IEt577733hiDoPeG9BwiA8Ci4Mih4FIACyvuq/b5vR0ZmZJ48p06hCgWQjAB/PGnCm/1FpKv/
         l3jnnXfeeeedd5975wXdO++88847774Azgu6d95555133n0BnBd077zzzjvvvPsCOC/o3nnnnXfeefcF
         cF7QvfPOO++88+4L4Lyge+edd955590XwHlB984777zzzrsvgPOC7p133nnnnXdfAOcF3TvvvPPOO+++
@@ -1774,7 +1768,7 @@
   <data name="HeaterPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfQAAAD8CAYAAACB8lZTAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAA3alJREFUeF7snQWcHUXW9gePuye4Leusu+9+6/K+a+8Ka6ziARIs7sTd3d0mk8zE
+        DAAACwwBP0AiyAAA3alJREFUeF7snQWcHUXW9gePuye4Leusu+9+6/K+a+8Ka6ziARIs7sTd3d0mk8zE
         XbBAcEIg7hl3Od/zVPW5t7qn70jIJAPbxe9PW9UpP09V3zs3SRKFKFyiUFZWJqWlpT5KikuksLBQCgoK
         JC8vz0dubq45FhUVmbRhgfddEgV9zjzd+FoO9x4JC1peja/3XBKlTRTcPKtCWH7kQgfaZF3Z9vn5+aYf
         eCTZ2dm+/DW45eM507JfNR3PFbXJvmd8bdeKbOoz9zlD8NoNGj8sHUPwuZuX5ueGYPwoROFShkjQo3BJ
@@ -5146,7 +5140,7 @@
   <data name="IsuPictureBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAA4sAAAEsCAYAAABqlSYcAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        cgAAEnIBXmVb4wAAcn9JREFUeF7tnYe7FbX+9X//yXuvvStiwYoVKxZsKCoWFBQrelUUURQEBCtWxMIV
+        cQAAEnEB89x6jgAAcn9JREFUeF7tnYe7FbX+9X//yXuvvStiwYoVKxZsKCoWFBQrelUUURQEBCtWxMIV
         xIINERXFBoqKKGJFEcECchVE5PSS1zXMeIacb2aSaXv2PuvzPOtBz04ymUwmkzXJJP+nCCGEEEIIIYQQ
         DZpFQgghhBBCCCGdoFkkhBBCCCGEENIJmkVCCCGEEEIIIZ2gWSSEEEIIIYQQ0gmaRUIIIYQQQgghnaBZ
         JIQQQgghhBDSCZpFQgghhBBCCCGdoFkkhBBCCCGEENIJmkVCCCGEEEIIIZ2gWSSEEEIIIYQQ0gmaRUII
@@ -5640,5 +5634,8 @@
   </data>
   <metadata name="TimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>837, 17</value>
+  </metadata>
+  <metadata name="HouseToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1028, 17</value>
   </metadata>
 </root>
