@@ -141,21 +141,24 @@ Public Class HVACGuiForm
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Input)
 
+            temp = LineInput(1)
+            oldType = Split(temp, "TYPE$$:")
+            CelsiusRadioButton.Checked = CBool(oldType(1))
+            temp = LineInput(1)
+            oldCom = Split(temp, "COM$$:")
+            ComToolStripComboBox.Text = oldCom(1)
+            temp = LineInput(1)
+            oldTemp = Split(temp, "TEMP$$:")
+            If CelsiusRadioButton.Checked Then
+                HouseTempTextBox.Text = oldTemp(1)
+            Else
+                HouseTempTextBox.Text = CStr(FtoC(CDbl(oldTemp(1))))
+            End If
         Catch ex As Exception
             FileOpen(2, "..\..\FileError.log", OpenMode.Append)
             Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
             FileClose(2)
         End Try
-
-        temp = LineInput(1)
-        oldCom = Split(temp, "COM$$:")
-        ComToolStripComboBox.Text = oldCom(1)
-        temp = LineInput(1)
-        oldTemp = Split(temp, "TEMP$$:")
-        HouseTempTextBox.Text = oldTemp(1)
-        temp = LineInput(1)
-        oldType = Split(temp, "TYPE$$:")
-        CelsiusRadioButton.Checked = CBool(oldType(1))
 
         FileClose(1)
     End Sub
@@ -595,11 +598,10 @@ Public Class HVACGuiForm
             celTemp = 50
         Else
             celTemp = FtoC(50)
-            currentTemp = FtoC(currentTemp)
         End If
         If currentTemp > celTemp Then
             currentTemp = currentTemp - 0.5
-            HouseTempTextBox.Text = CStr(currentTemp)
+            HouseTempTextBox.Text = CStr(Math.Round(currentTemp, 1))
         Else
 
         End If
@@ -619,11 +621,10 @@ Public Class HVACGuiForm
             celtemp = 90
         Else
             celtemp = FtoC(90)
-            currentTemp = FtoC(currentTemp)
         End If
         If currentTemp < celtemp Then
             currentTemp += 0.5
-            HouseTempTextBox.Text = CStr(currentTemp)
+            HouseTempTextBox.Text = CStr(Math.Round(currentTemp, 1))
         Else
 
         End If
@@ -667,7 +668,7 @@ Public Class HVACGuiForm
 
     Sub SaveStatus()
         Dim status As String
-        status = $"COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}{vbNewLine}TYPE$$:{CelsiusRadioButton.Checked}"
+        status = $"TYPE$$:{CelsiusRadioButton.Checked}{vbNewLine}COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Output)
             Print(1, status)
