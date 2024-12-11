@@ -335,6 +335,7 @@ Public Class HVACGuiForm
     ''' <summary>
     ''' A sub routine which handles comparing the set home temperature to its actual
     ''' has a +/- 2 degree hysteresis curve to reduce system overshoot and safe costs
+    ''' Heating and cooling will overshoot by 1 degree to prevent constant HVAC on times
     ''' </summary>
     Sub SetOutputs()
         Static coldHold As Boolean
