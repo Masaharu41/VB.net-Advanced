@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class HVACGuiForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class HVACGuiForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HVACGuiForm))
@@ -48,7 +48,6 @@ Partial Class HVACGuiForm
         Me.IsuPictureBox = New System.Windows.Forms.PictureBox()
         Me.TimeTimer = New System.Windows.Forms.Timer(Me.components)
         Me.HouseToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CelsiusRadioButton = New System.Windows.Forms.RadioButton()
         Me.HomeToolStrip.SuspendLayout()
         CType(Me.CoolingPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaterPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +61,7 @@ Partial Class HVACGuiForm
         Me.HomeToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComToolStripComboBox, Me.PortStatusToolStripLabel, Me.ConnectToolStripButton, Me.TimeToolStripLabel})
         Me.HomeToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.HomeToolStrip.Name = "HomeToolStrip"
-        Me.HomeToolStrip.Size = New System.Drawing.Size(800, 50)
+        Me.HomeToolStrip.Size = New System.Drawing.Size(800, 42)
         Me.HomeToolStrip.TabIndex = 0
         Me.HomeToolStrip.Text = "ToolStrip1"
         '
@@ -70,14 +69,14 @@ Partial Class HVACGuiForm
         '
         Me.ComToolStripComboBox.Items.AddRange(New Object() {"COM0", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10"})
         Me.ComToolStripComboBox.Name = "ComToolStripComboBox"
-        Me.ComToolStripComboBox.Size = New System.Drawing.Size(121, 50)
+        Me.ComToolStripComboBox.Size = New System.Drawing.Size(121, 42)
         Me.ComToolStripComboBox.Text = "Com1"
         Me.ComToolStripComboBox.ToolTipText = "Com Identification"
         '
         'PortStatusToolStripLabel
         '
         Me.PortStatusToolStripLabel.Name = "PortStatusToolStripLabel"
-        Me.PortStatusToolStripLabel.Size = New System.Drawing.Size(127, 44)
+        Me.PortStatusToolStripLabel.Size = New System.Drawing.Size(127, 36)
         Me.PortStatusToolStripLabel.Text = "Port Status"
         '
         'ConnectToolStripButton
@@ -86,14 +85,14 @@ Partial Class HVACGuiForm
         Me.ConnectToolStripButton.Image = CType(resources.GetObject("ConnectToolStripButton.Image"), System.Drawing.Image)
         Me.ConnectToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ConnectToolStripButton.Name = "ConnectToolStripButton"
-        Me.ConnectToolStripButton.Size = New System.Drawing.Size(46, 44)
+        Me.ConnectToolStripButton.Size = New System.Drawing.Size(46, 36)
         Me.ConnectToolStripButton.Text = "Connect"
         Me.ConnectToolStripButton.ToolTipText = "Manual Connect to External Device"
         '
         'TimeToolStripLabel
         '
         Me.TimeToolStripLabel.Name = "TimeToolStripLabel"
-        Me.TimeToolStripLabel.Size = New System.Drawing.Size(132, 44)
+        Me.TimeToolStripLabel.Size = New System.Drawing.Size(132, 36)
         Me.TimeToolStripLabel.Text = "ActiveTime"
         '
         'ErrorLabel
@@ -245,24 +244,12 @@ Partial Class HVACGuiForm
         Me.TimeTimer.Enabled = True
         Me.TimeTimer.Interval = 1000
         '
-        'CelsiusRadioButton
-        '
-        Me.CelsiusRadioButton.AutoSize = True
-        Me.CelsiusRadioButton.Location = New System.Drawing.Point(570, 248)
-        Me.CelsiusRadioButton.Name = "CelsiusRadioButton"
-        Me.CelsiusRadioButton.Size = New System.Drawing.Size(114, 29)
-        Me.CelsiusRadioButton.TabIndex = 16
-        Me.CelsiusRadioButton.TabStop = True
-        Me.CelsiusRadioButton.Text = "Celsius"
-        Me.CelsiusRadioButton.UseVisualStyleBackColor = True
-        '
         'HVACGuiForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.CelsiusRadioButton)
         Me.Controls.Add(Me.IsuPictureBox)
         Me.Controls.Add(Me.SetTempLabel)
         Me.Controls.Add(Me.FanPictureBox)
@@ -316,5 +303,4 @@ Partial Class HVACGuiForm
     Friend WithEvents IsuPictureBox As PictureBox
     Friend WithEvents TimeTimer As Timer
     Friend WithEvents HouseToolTip As ToolTip
-    Friend WithEvents CelsiusRadioButton As RadioButton
 End Class

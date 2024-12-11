@@ -43,7 +43,7 @@ Public Class HVACGuiForm
     Dim shutdown As Boolean
     Dim wait As Boolean
     Dim cooling As Boolean
-    Dim farenheit As Boolean
+
     ''' <summary>
     ''' On form load
     ''' set form colors and variables
@@ -140,15 +140,13 @@ Public Class HVACGuiForm
     Function RestoreSettings() As Boolean
         Dim oldCom() As String
         Dim oldTemp() As String
-        Dim oldType() As String
+
         Dim temp As String
 
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Input)
 
-            temp = LineInput(1)
-            oldType = Split(temp, "TYPE$$:")
-            CelsiusRadioButton.Checked = Not CBool(oldType(1))
+
             temp = LineInput(1)
             oldCom = Split(temp, "COM$$:")
             ComToolStripComboBox.Text = oldCom(1)
@@ -158,11 +156,7 @@ Public Class HVACGuiForm
                 FileClose(1)
                 Return False
             Else
-                If CelsiusRadioButton.Checked Then
-                    HouseTempTextBox.Text = CStr(FtoC(CDbl(oldTemp(1))))
-                Else
-                    HouseTempTextBox.Text = oldTemp(1)
-                End If
+                HouseTempTextBox.Text = oldTemp(1)
             End If
 
             FileClose(1)
@@ -171,6 +165,7 @@ Public Class HVACGuiForm
             FileOpen(2, "..\..\FileError.log", OpenMode.Append)
             Write(2, CStr($"Error:{Err.Number}, {Err.Description} {vbNewLine}"))
             FileClose(2)
+            FileClose(1)
             Return False
         End Try
 
@@ -303,10 +298,7 @@ Public Class HVACGuiForm
         If port Then
             temp = ReceiveData()
             houseTemp = CSng(Math.Round(ConvertToTemp(temp), 1)) ' convert byte to integer representation 
-            If farenheit Then
-            Else
-                houseTemp = CSng(FtoC(houseTemp))
-            End If
+
             SystemTempTextBox.Text = CStr(houseTemp)
         Else
 
@@ -316,10 +308,7 @@ Public Class HVACGuiForm
         If port Then
             temp = ReceiveData()
             unitTemp = CSng(Math.Round(ConvertToTemp(temp), 1))
-            If farenheit Then
-            Else
-                unitTemp = CSng(FtoC(unitTemp))
-            End If
+
             UnitTempTextBox.Text = CStr(unitTemp)
         Else
 
@@ -341,36 +330,35 @@ Public Class HVACGuiForm
         Return int
     End Function
 
-    Function FtoC(unit As Double) As Double
 
-        Return Math.Round(((unit - 32) * 5 / 9), 1)
-
-    End Function
 
     ''' <summary>
     ''' A sub routine which handles comparing the set home temperature to its actual
     ''' has a +/- 2 degree hysteresis curve to reduce system overshoot and safe costs
     ''' </summary>
     Sub SetOutputs()
-        Static hold As Boolean
+        Static coldHold As Boolean
+        Static hotHold As Boolean
         If port Then
-            If hold And houseTemp >= CSng(HouseTempTextBox.Text) - 1 Then
+            If coldHold And houseTemp >= CSng(HouseTempTextBox.Text) - 1 Then
                 EnableCooler()
-            ElseIf hold And houseTemp <= CSng(HouseTempTextBox.Text) + 1 Then
+            ElseIf hotHold And houseTemp <= CSng(HouseTempTextBox.Text) + 1 Then
                 EnableHeater()
             ElseIf houseTemp >= CSng(HouseTempTextBox.Text) + 2 Then
                 EnableCooler()
-                hold = True
+                coldHold = True
             ElseIf houseTemp <= CSng(HouseTempTextBox.Text) - 2 Then
                 EnableHeater()
-                hold = True
+                hotHold = True
             Else
-                hold = False
+                coldHold = False
+                hotHold = False
                 InterlockCheck()
                 DisableUnit()
             End If
         Else
-            hold = False
+            coldHold = False
+            hotHold = False
         End If
 
     End Sub
@@ -394,15 +382,11 @@ Public Class HVACGuiForm
     ''' does not become too cold as to cause damage or potential safety concerns
     ''' </summary>
     Sub EnableCooler()
-        Dim minTemp As Double
+
         HeaterPictureBox.Visible = False
-        If farenheit Then
-            minTemp = 40
-        Else
-            minTemp = FtoC(40)
-        End If
+
         If InterlockCheck() Then
-            If unitTemp >= minTemp Then
+            If unitTemp >= 40 Then
                 If cooling = True Then
                     SetDigital(&HC)
                     CoolingPictureBox.Visible = True
@@ -430,14 +414,9 @@ Public Class HVACGuiForm
     ''' </summary>
     Sub EnableHeater()
         CoolingPictureBox.Visible = False
-        Dim maxTemp As Double
-        If farenheit Then
-            maxTemp = 110
-        Else
-            maxTemp = FtoC(110)
-        End If
+
         If InterlockCheck() Then
-            If unitTemp <= maxTemp Then
+            If unitTemp <= 110 Then
                 If cooling = False Then
                     HeaterPictureBox.Visible = True
                     SetDigital(&H6)
@@ -606,13 +585,7 @@ Public Class HVACGuiForm
     ''' </summary>
     Sub DecrementTemp()
         Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
-        Dim celTemp As Double
-        If farenheit Then
-            celTemp = 50
-        Else
-            celTemp = FtoC(50)
-        End If
-        If currentTemp > celTemp Then
+        If currentTemp > 50 Then
             currentTemp = currentTemp - 0.5
             HouseTempTextBox.Text = CStr(Math.Round(currentTemp, 1))
         Else
@@ -629,13 +602,8 @@ Public Class HVACGuiForm
     ''' </summary>
     Sub IncrementTemp()
         Dim currentTemp As Double = CSng(HouseTempTextBox.Text)
-        Dim celtemp As Double
-        If farenheit Then
-            celtemp = 90
-        Else
-            celtemp = FtoC(90)
-        End If
-        If currentTemp < celtemp Then
+
+        If currentTemp < 90 Then
             currentTemp += 0.5
             HouseTempTextBox.Text = CStr(Math.Round(currentTemp, 1))
         Else
@@ -681,7 +649,7 @@ Public Class HVACGuiForm
 
     Sub SaveStatus()
         Dim status As String
-        status = $"TYPE$$:{Not CelsiusRadioButton.Checked}{vbNewLine}COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
+        status = $"COM$$:{ComToolStripComboBox.Text}{vbNewLine}TEMP$$:{HouseTempTextBox.Text}"
         Try
             FileOpen(1, "..\..\HVAC Settings.log", OpenMode.Output)
             Print(1, status)
@@ -696,7 +664,10 @@ Public Class HVACGuiForm
 
     Private Sub TimeTimer_Tick(sender As Object, e As EventArgs) Handles TimeTimer.Tick
         TimeToolStripLabel.Text = DateTime.Now.ToString
-        '  OutputOverride()
+        If port Then
+            OutputOverride()
+
+        End If
     End Sub
 
     ''' <summary>
@@ -718,11 +689,5 @@ Public Class HVACGuiForm
         End If
     End Sub
 
-    Private Sub CelsiusRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles CelsiusRadioButton.CheckedChanged
-        If CelsiusRadioButton.Checked Then
-            farenheit = False
-        Else
-            farenheit = True
-        End If
-    End Sub
+
 End Class
