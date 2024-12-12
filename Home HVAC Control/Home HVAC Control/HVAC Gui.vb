@@ -673,6 +673,7 @@ Public Class HVACGuiForm
 
     ''' <summary>
     ''' allows user to manually enable a given HVAC output at the controller unit itself
+    ''' as this is a user override
     ''' </summary>
     Sub OutputOverride()
         Dim digByte() As Byte
@@ -680,13 +681,21 @@ Public Class HVACGuiForm
         digByte = ReceiveData()
 
         If TestBit(digByte(0), 2) Then
-            EnableHeater()
+            HeaterPictureBox.Visible = True
+            FanPictureBox.Visible = True
+            SetDigital(&H6)
         ElseIf TestBit(digByte(0), 3) Then
+            FanPictureBox.Visible = True
             SetDigital(&H4)
         ElseIf TestBit(digByte(0), 4) Then
-            EnableCooler()
+            CoolingPictureBox.Visible = True
+            FanPictureBox.Visible = True
+            SetDigital(&HC)
         Else
-
+            FanPictureBox.Visible = False
+            HeaterPictureBox.Visible = False
+            CoolingPictureBox.Visible = False
+            SetDigital(&H0)
         End If
     End Sub
 
